@@ -1,10 +1,13 @@
 ﻿using Common.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+
 using Portal.Pages;
 
-namespace TestCases.PortalTests
+namespace TestCases.PortalAndH5Tests
 {
-    public class PortalTestInit
+
+    public class PortalAndH5TestInit
     {
         [TestInitialize]
         public void Inti()
@@ -19,7 +22,6 @@ namespace TestCases.PortalTests
         public void CleanUp()
         {
             LoginPage.GoTo();
-            //PortalChromeDriver.Instance.Close();
         }
     }
 }

@@ -31,6 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="appium-dotnet-driver, Version=2.0.1.1, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Common\bin\Debug\Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
@@ -49,11 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="H5Tests\ChatWithHI.cs" />
-    <Compile Include="H5Tests\H5TestInit.cs" />
-    <Compile Include="InactiveTests\ChatWithCustomerService.cs" />
+    <Compile Include="PortalAndH5Tests\ChatWithCustomerService.cs" />
+    <Compile Include="PortalAndH5Tests\PortalAndH5TestInit.cs" />
     <Compile Include="PortalTests\HITest.cs" />
+    <Compile Include="PortalTests\LoginTest.cs" />
     <Compile Include="PortalTests\PortalTestInit.cs" />
+    <Compile Include="PortalTests\PortalTestInitNoCookies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,17 +73,13 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{aab0901b-dd48-4db0-9085-3680b214dc89}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XiaoIceH5\XiaoIceH5.csproj">
+    <ProjectReference Include="..\XiaoIceH5\H5.csproj">
       <Project>{56e8e736-1136-4c44-8b2c-74f00da70039}</Project>
-      <Name>XiaoIceH5</Name>
+      <Name>H5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XiaoIcePortal\XiaoIcePortal.csproj">
+    <ProjectReference Include="..\XiaoIcePortal\Portal.csproj">
       <Project>{1e7679db-1c5b-4f27-aa66-d56110899883}</Project>
-      <Name>XiaoIcePortal</Name>
+      <Name>Portal</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

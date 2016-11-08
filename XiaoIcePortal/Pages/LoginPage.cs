@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using XiaoIcePortal.Driver;
+using Common;
+using Common.Driver;
 
-namespace XiaoIcePortal.Pages
+namespace Portal.Pages
 {
     public class LoginPage
     {
         public static void GoTo()
         {
-            PortalChromeDriver.Instance.Navigate().GoToUrl(PortalChromeDriver.BaseAddress);
+            PortalChromeDriver.Instance.Navigate().GoToUrl(PortalChromeDriver.BaseProductAddress);
         }
 
         public static void LoginWithPhoneNumber(string phoneNumber)
@@ -20,23 +21,9 @@ namespace XiaoIcePortal.Pages
             //Input phoneNumber
             var loginInput = PortalChromeDriver.GetElementByID("phoneNumber");
             loginInput.SendKeys(phoneNumber);
-
             //Send Verification
             var sendVrificationButton = PortalChromeDriver.GetElementByID("sendverification");
             sendVrificationButton.Click();
-
-            //Wait the customer to input Verification Code
-            var verification = PortalChromeDriver.GetElementByID("verification");
-            while (verification.GetAttribute("value").Length < 6)
-            {
-                Thread.Sleep(1 * 1000);
-            }
-
-            //Click SendButton
-            var loginButton = PortalChromeDriver.GetElementByClassName("sbtn");
-            loginButton.Click();
-
-
         }
     }
 }

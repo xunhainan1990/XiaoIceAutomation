@@ -46,9 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndroidDriver.cs" />
-    <Compile Include="HI.cs" />
-    <Compile Include="UIElement\HIChatElement.cs" />
+    <Compile Include="HIMobileH5.cs" />
+    <Compile Include="UIElement\SMSElement.cs" />
+    <Compile Include="UIElement\HIMobileH5Element.cs" />
     <Compile Include="UIElement\PinYanZhiElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -57,9 +57,9 @@
       <Project>{AAB0901B-DD48-4DB0-9085-3680B214DC89}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XiaoIcePortal\XiaoIcePortal.csproj">
+    <ProjectReference Include="..\XiaoIcePortal\Portal.csproj">
       <Project>{1e7679db-1c5b-4f27-aa66-d56110899883}</Project>
-      <Name>XiaoIcePortal</Name>
+      <Name>Portal</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

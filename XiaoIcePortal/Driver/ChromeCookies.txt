@@ -1,9 +1,0 @@
-﻿{isQqQrCodeShown=true; expires=Fri 12/31/9999 15:59:59 UTC; path=/; domain=e.msxiaobing.com}
-{ARRAffinity=8727c69254d10f03b26c1dc712bed9fd560277db5acc2f51260457f35fc2fef3; path=/; domain=.e.msxiaobing.com}
-{cpid=GDVdTSdNQ7RcS1MweTErSzIyEUxlNCdKJ0pESScxUk9JAA; expires=Wed 11/23/2016 07:54:06 UTC; path=/; domain=.msxiaobing.com; httpOnly}
-{ASP.NET_SessionId=ktfwogxe0mezllp1mqvtddpr; path=/; domain=e.msxiaobing.com; httpOnly}
-{__RequestVerificationToken=airTe9QER4HFjOliqf9pftde6h5Ja6OyBNPPmJS4-Gl0IXGiS3hZlJcHeG5_aOFnP0ZL57obqp3KxBoXBLLF0U4Dsv40XIF_ylFXP4ExrpQ1; path=/; domain=e.msxiaobing.com; httpOnly}
-{_gat=1; expires=Mon 10/24/2016 08:03:44 UTC; path=/; domain=.msxiaobing.com}
-{_ga=GA1.2.365437137.1477295625; expires=Wed 10/24/2018 07:54:07 UTC; path=/; domain=.msxiaobing.com}
-{.ASPXAUTH=E42EDC30751A221589BD5620A9E90C937D8465982B0F6BEED7ACCA83A58487D0676AB7BA75FCBF539384A7EDE0F76607FC96C7D81C6FD6FA7E95CA5EB63F5E0F9ED38A6CDACFBF59C6F5951E3402AE74; expires=Wed 11/23/2016 07:54:05 UTC; path=/; domain=e.msxiaobing.com; httpOnly}
-{salt=8BF359AEF57DDBADD70C67C5827769FA; expires=Wed 11/23/2016 07:54:06 UTC; path=/; domain=.msxiaobing.com; httpOnly}

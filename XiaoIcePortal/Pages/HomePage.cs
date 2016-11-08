@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Common.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XiaoIcePortal.UIElement;
+using Portal.UIElement;
 
-namespace XiaoIcePortal.Pages
+namespace Portal.Pages
 {
     public class HomePage
     {
@@ -13,12 +14,12 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var weChatapp = Driver.PortalChromeDriver.GetElementByXpath(HomePageElement.weChatApp);
+                var weChatapp = PortalChromeDriver.GetElementByXpath(HomePageElement.weChatApp);
                 weChatapp.Click();
             }
             catch
             {
-                Driver.PortalChromeDriver.TakeScreenShot(System.Reflection.MethodBase.GetCurrentMethod().Name);
+                
             }
         }
     }

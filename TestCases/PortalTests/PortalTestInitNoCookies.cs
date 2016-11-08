@@ -1,25 +1,22 @@
-﻿using Common.Driver;
+﻿using Common;
+using Common.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Portal.Pages;
 
 namespace TestCases.PortalTests
 {
-    public class PortalTestInit
+    public class PortalTestInitNoCookies
     {
         [TestInitialize]
         public void Inti()
         {
             if (PortalChromeDriver.Instance == null)
             {
-                PortalChromeDriver.ChromeInitialize();
+                PortalChromeDriver.ChromeInitializeWithNoCookies();
             }
+            MobileAndroidDriver.AndroidMmsInitialize();
+            //MobileAndroidDriver
         }
-
-        [TestCleanup]
-        public void CleanUp()
-        {
-            LoginPage.GoTo();
-            //PortalChromeDriver.Instance.Close();
-        }
+        
     }
 }

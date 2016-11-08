@@ -33,6 +33,10 @@
     <Reference Include="appium-dotnet-driver">
       <HintPath>D:\Android\AndroidTest\AndroidTest\packages\Appium.WebDriver.2.0.1.1\lib\net45\appium-dotnet-driver.dll</HintPath>
     </Reference>
+    <Reference Include="Interop.AutoItX3Lib">
+      <HintPath>..\TestCases\obj\Debug\Interop.AutoItX3Lib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -47,18 +51,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Driver\ChromeDriver.cs" />
     <Compile Include="Pages\HIPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\WeChatManagermentPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIElement\HIPageUIElement.cs" />
+    <Compile Include="UIElement\HIPortalPageUIElement.cs" />
     <Compile Include="UIElement\HomePageElement.cs" />
     <Compile Include="UIElement\WeChatManagermentPageUIElement.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Driver\ChromeCookies.txt" />
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{aab0901b-dd48-4db0-9085-3680b214dc89}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

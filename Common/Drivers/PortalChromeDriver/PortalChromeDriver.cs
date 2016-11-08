@@ -5,43 +5,86 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using XiaoIcePortal.Pages;
+
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Remote;
 using System.IO;
+using System.Threading;
 
-namespace XiaoIcePortal.Driver
+namespace Common.Driver
 {
     public static class PortalChromeDriver
     {
         public static IWebDriver Instance { get; set; }
+        public static string testUrl = "";
+        public static string cookiePath = "";
 
         public static void ChromeInitialize()
+        {          
+            Instance = new ChromeDriver(@"C:\Users\v-haxun\Documents\Visual Studio 2015\Projects\XiaoIceAutomation\XiaoIceAutomation\bin\Debug\Tools");
+            Instance.Manage().Window.Maximize();
+            string line;
+            ReadConfig();
+            Instance.Navigate().GoToUrl(testUrl);
+            StreamReader sr = new StreamReader(cookiePath);
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] cookies = line.Split(';', '=', '{');
+                Cookie cookie = new Cookie(cookies[1], cookies[2], "/");
+                Instance.Manage().Cookies.AddCookie(cookie);
+            }
+            Instance.Navigate().GoToUrl(testUrl);
+        }
+
+        public static void ChromeInitializeWithNoCookies()
         {
             if (null == PortalChromeDriver.Instance)
             {
                 Instance = new ChromeDriver(@"C:\Users\v-haxun\Documents\Visual Studio 2015\Projects\XiaoIceAutomation\XiaoIceAutomation\bin\Debug\Tools");
                 Instance.Manage().Window.Maximize();
-                LoginPage.GoTo();        
-                string line;
-                StreamReader sr = new StreamReader(@"C:\Users\v-haxun\Documents\Visual Studio 2015\Projects\XiaoIceAutomation\XiaoIcePortal\Driver\ChromeCookies.txt");
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] cookies = line.Split(';', '=', '{');
-                    Cookie cookie = new Cookie(cookies[1], cookies[2], "/");
-                    Instance.Manage().Cookies.AddCookie(cookie);
-                }
-                LoginPage.GoTo();
+                ReadConfig();
+                Instance.Navigate().GoToUrl(testUrl);
             }
         }
 
-        public static string BaseAddress
+        public static void ReadConfig()
+        {
+            string line;
+            StreamReader srTestAgainstConfig = new StreamReader(@"D:\work\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\TestAgainstConfig.txt");
+
+            while ((line = srTestAgainstConfig.ReadLine()) != null&& line!="")
+            {
+                string para = line;
+                if (para == "product")
+                {
+                    testUrl = PortalChromeDriver.BaseProductAddress;
+                    cookiePath = @"D:\work\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\ChromeCookies.txt";
+                }
+                else
+                {
+                    testUrl = PortalChromeDriver.BaseIntAddress;
+                    cookiePath = @"D:\work\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\IntCookies.txt";
+                }
+            }
+            
+        }
+
+
+        public static string BaseIntAddress
         {
             get
             {
-                return "http://e.msxiaobing.com/";
+                return "http://csint.trafficmanager.cn";
             } 
+        }
+
+        public static string BaseProductAddress
+        {
+            get
+            {
+                return "http://e.msxiaobing.com";
+            }
         }
 
         public static void Refresh()
@@ -79,11 +122,12 @@ namespace XiaoIcePortal.Driver
         {
             return Instance.FindElements(By.TagName(tagName)).ToList();
         }
+
         public static void TakeScreenShot(string fileName)
         {
             try
             {
-                string filePath = @"D:\TestResult\";
+                string filePath = @"D:\TestResult\"+DateTime.Now;
                 Screenshot ss = ((ITakesScreenshot)Instance).GetScreenshot();
                 string path = filePath  + fileName;
                 Directory.CreateDirectory(path);
@@ -94,6 +138,11 @@ namespace XiaoIcePortal.Driver
                 Console.WriteLine("Failed to take screenshot.Error:" + e.ToString());
             }
 
+        }
+
+        public static void Wait(TimeSpan timeSpan)
+        {
+            Thread.Sleep((int)(timeSpan.TotalSeconds * 1000));
         }
 
     }

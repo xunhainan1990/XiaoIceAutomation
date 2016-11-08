@@ -1,14 +1,14 @@
-﻿using OpenQA.Selenium;
+﻿using AutoItX3Lib;
+using Common.Driver;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using XiaoIcePortal.Driver;
-using XiaoIcePortal.UIElement;
+using Portal.UIElement;
 
-namespace XiaoIcePortal.Pages
+namespace Portal.Pages
 {
     public class HIPage
     {
@@ -19,11 +19,11 @@ namespace XiaoIcePortal.Pages
                 IWebElement setting = null ;
                 if (HIPage.IsHiChat())
                 {
-                    setting = PortalChromeDriver.GetElementByXpath(HIPageUIElement.HISettingTurnOn);
+                    setting = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HISettingTurnOn);
                 }
                 else
                 {
-                    setting = PortalChromeDriver.GetElementByXpath(HIPageUIElement.HISetting);
+                    setting = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HISetting);
                 }          
                 setting.Click();
             }
@@ -37,7 +37,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var setting = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.IsSetting);
+                var setting = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.IsSetting);
                 if (setting.Text.ToString().Equals("人工客服"))
                     return true;
                 return false;
@@ -52,12 +52,12 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var turnOn = PortalChromeDriver.GetElementByXpath(HIPageUIElement.HITurnOnButton);
+                var turnOn = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOnButton);
                 turnOn.Click();
             }
             catch (Exception e)
             {
-                Driver.PortalChromeDriver.TakeScreenShot(System.Reflection.MethodBase.GetCurrentMethod().Name);
+                PortalChromeDriver.TakeScreenShot(System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
 
@@ -65,13 +65,14 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var turnOff = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.HITurnOffButton);
+                var turnOff = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffButton);
                 turnOff.Click();
-                Thread.Sleep(5 * 1000);
-                var confirmButton = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.HITurnOffConfirm);
-                Thread.Sleep(5 * 1000);
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffConfirm);
+                var confirmButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffConfirm);
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
                 confirmButton.Click();
-                Thread.Sleep(5 * 1000);
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
             }
             catch (Exception e)
             {
@@ -83,10 +84,10 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var inputTrigger = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.TriggerAddBox);
+                var inputTrigger = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TriggerAddBox);
                 inputTrigger.Clear();
                 inputTrigger.SendKeys(input);
-                var addTriggerButton = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.TriggerAddButton);
+                var addTriggerButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TriggerAddButton);
                 addTriggerButton.Click();
             }
             catch (Exception e)
@@ -99,7 +100,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var inputKeywords = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.TriggerAddBox);
+                var inputKeywords = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TriggerAddBox);
                 inputKeywords.Clear();
                 inputKeywords.SendKeys(input);
             }
@@ -110,7 +111,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var deleteButton = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.DeleteTriggerButton);
+                var deleteButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.DeleteTriggerButton);
                 deleteButton.Click();
             }
             catch (Exception e)
@@ -123,9 +124,9 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var editButton = PortalChromeDriver.GetElementByXpath(HIPageUIElement.EditTriggerButton);
+                var editButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.EditTriggerButton);
                 editButton.Click();
-                var editCurrentTrigger = PortalChromeDriver.GetElementByClassName(HIPageUIElement.EditCurrentTrigger);
+                var editCurrentTrigger = PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger);
                 editCurrentTrigger.SendKeys(appendText);
             }
             catch (Exception e)
@@ -138,10 +139,10 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                PortalChromeDriver.GetElementByXpath(HIPageUIElement.EditTriggerButton).Click();
-                PortalChromeDriver.GetElementByClassName(HIPageUIElement.EditCurrentTrigger).Clear();
-                PortalChromeDriver.GetElementByClassName(HIPageUIElement.EditCurrentTrigger).SendKeys("");
-                PortalChromeDriver.GetElementByXpath(HIPageUIElement.OtherButton).Click();
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.EditTriggerButton).Click();
+                PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger).Clear();
+                PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger).SendKeys("");
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.OtherButton).Click();
                 PortalChromeDriver.Instance.Navigate().Refresh();
             }
             catch (Exception e)
@@ -154,10 +155,10 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                PortalChromeDriver.GetElementByXpath(HIPageUIElement.EditTriggerButton).Click();
-                PortalChromeDriver.GetElementByClassName(HIPageUIElement.EditCurrentTrigger).Clear();
-                PortalChromeDriver.GetElementByClassName(HIPageUIElement.EditCurrentTrigger).SendKeys(text);
-                PortalChromeDriver.GetElementByXpath(HIPageUIElement.OtherButton).Click();
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.EditTriggerButton).Click();
+                PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger).Clear();
+                PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger).SendKeys(text);
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.OtherButton).Click();
                 PortalChromeDriver.Instance.Navigate().Refresh();
             }
             catch (Exception e)
@@ -170,7 +171,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var setting = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.HIIsOn);
+                var setting = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HIIsOn);
                 if (setting.Text.ToString().Equals("停用"))
                     return true;
                 return false;
@@ -185,7 +186,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var setting = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.HIIsOff);
+                var setting = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HIIsOff);
                 if (setting.Text.ToString().Equals("开启"))
                     return true;
                 return false;
@@ -201,7 +202,7 @@ namespace XiaoIcePortal.Pages
             try
             {
 
-                var keywords = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.Trigger);
+                var keywords =PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Trigger);
                 if (keywords.Text.ToString().Equals(keyword)) return true;
                 return false;
             }
@@ -215,7 +216,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var alert_failure = PortalChromeDriver.GetElementByXpath(HIPageUIElement.Alert_Trigger);
+                var alert_failure = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Alert_Trigger);
                 if (alert_failure.Text.Contains("保存失败")) return true;
                 return false;
             }
@@ -229,7 +230,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var keywords = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.SecondTrigger);
+                var keywords = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.SecondTrigger);
                 if (keywords.Text.ToString().Equals(secondKeyword)) return true;
                 return false;
             }
@@ -243,7 +244,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var editButton = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.EditTriggerButton);
+                var editButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.EditTriggerButton);
                 if (editButton!=null) return true;
                 return false;
             }
@@ -257,7 +258,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var deleteButton = Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.DeleteTriggerButton);
+                var deleteButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.DeleteTriggerButton);
                 if (deleteButton.GetAttribute("class").ToString().Equals("deleteHiTriggerBtn")) return true;
                 return false;
             }
@@ -271,7 +272,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if (Driver.PortalChromeDriver.GetElementByXpath(HIPageUIElement.TriggerAddBox).GetAttribute("placeholder").ToString().Equals(text))
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TriggerAddBox).GetAttribute("placeholder").ToString().Equals(text))
                     return true;
                 return false;
             }
@@ -297,7 +298,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                PortalChromeDriver.GetElementByXpath(HIPageUIElement.HiChatPortal).Click();
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HiChatPortal).Click();
             }
             catch (Exception e)
             {
@@ -309,7 +310,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPageUIElement.SendBox).Text.ToString().Equals("发送"))
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.SendBox).Text.ToString().Equals("发送"))
                 {
                     return true;
                 }
@@ -325,7 +326,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPageUIElement.HiStaffNotVerified).Text.ToString().Trim().Equals("抱歉！非认证公众号无法绑定客服，可通过网页版对话窗口进行客服回复"))
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HiStaffNotVerified).Text.ToString().Trim().Equals("抱歉！非认证公众号无法绑定客服，可通过网页版对话窗口进行客服回复"))
                 {
                     return true;
                 }
@@ -341,11 +342,11 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPageUIElement.HiStaffNotVerified).Text.ToString().Trim().Contains("当前无客服"))
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HiStaffNotVerified).Text.ToString().Trim().Contains("当前无客服"))
                 {
                     return true;
                 }
-                else if(PortalChromeDriver.GetElementByXpath(HIPageUIElement.HaveBindStaff).Text.ToString().Trim().Contains("当前客服"))
+                else if(PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HaveBindStaff).Text.ToString().Trim().Contains("当前客服"))
                 {
                     return true;
                 }
@@ -362,10 +363,10 @@ namespace XiaoIcePortal.Pages
             try
             {
                 //如果有客服就删除
-                if (PortalChromeDriver.GetElementByXpath(HIPageUIElement.HaveBindStaff).Text.ToString().Trim().Contains("当前客服"))
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HaveBindStaff).Text.ToString().Trim().Contains("当前客服"))
                 {
-                    PortalChromeDriver.GetElementByXpath(HIPageUIElement.DeleteStaff).Click();
-                    PortalChromeDriver.GetElementByXpath(HIPageUIElement.DeleteStaffConfirm).Click();
+                    PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.DeleteStaff).Click();
+                    PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.DeleteStaffConfirm).Click();
                 }
             }
             catch (Exception e)
@@ -378,18 +379,39 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPageUIElement.Big_New_Msg_tip) != null)
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Big_New_Msg_tip) != null)
                     return true;
                 return false;
             }
             catch (Exception e) { return false; }         
         }
 
+        public static bool Is_Small_New_Msg_Tip()
+        {
+            try
+            {
+                for (int i = 1; i < 6; i++)
+                {
+                    var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
+                    if (user.Text == "chrysanthemum")
+                    {
+                        var smallTip = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div["+i+"]/div[1]/span");
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+
         public static void OpenHiChatWindow()
         {
             try
             {
-                PortalChromeDriver.GetElementByXpath(HIPageUIElement.SubTabHiChat).Click();
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.SubTabHiChat).Click();
             }
             catch (Exception e)
             {
@@ -401,7 +423,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPageUIElement.StaffAvatar) != null)
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.StaffAvatar) != null)
                 {
                     return true;
                 }
@@ -414,9 +436,9 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                PortalChromeDriver.GetElementByXpath(HIPageUIElement.timer).Click();
-                Thread.Sleep(5 * 1000);
-                return  PortalChromeDriver.GetElementByXpath(HIPageUIElement.LoginCodeText).GetAttribute("value");
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.timer).Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+                return  PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoginCodeText).GetAttribute("value");
             }
             catch (Exception e)
             {
@@ -428,7 +450,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPageUIElement.timer).Text.ToString().Trim().Contains("后重新获取"))
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.timer).Text.ToString().Trim().Contains("后重新获取"))
                 {
                     return true;
                 }
@@ -441,7 +463,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var text = PortalChromeDriver.GetElementByXpath(HIPageUIElement.LoginCodeText);
+                var text = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoginCodeText);
                 text.SendKeys("123456");
                 if (!text.Text.Equals("123456"))
                 {
@@ -459,7 +481,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if(PortalChromeDriver.GetElementByXpath(HIPageUIElement.LoginCodeText).Text.Length==6)
+                if(PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoginCodeText).Text.Length==6)
                 {
                     return true;
                 }
@@ -471,7 +493,7 @@ namespace XiaoIcePortal.Pages
             }
             finally
             {
-                Driver.PortalChromeDriver.TakeScreenShot(System.Reflection.MethodBase.GetCurrentMethod().Name);
+                PortalChromeDriver.TakeScreenShot(System.Reflection.MethodBase.GetCurrentMethod().Name);
             }
         }
 
@@ -500,7 +522,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var okButton = PortalChromeDriver.GetElementByXpath(HIPageUIElement.ModifyButton);
+                var okButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.ModifyButton);
                 okButton.Click();
             }
             catch(Exception e)
@@ -513,7 +535,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var someWhere = PortalChromeDriver.GetElementByXpath(HIPageUIElement.SomewhereToSave);
+                var someWhere = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.SomewhereToSave);
                 someWhere.Click();
             }
             catch (Exception e)
@@ -526,7 +548,7 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var elementChatBody = XiaoIcePortal.Driver.PortalChromeDriver.GetElementsByClassName("conversation_item");
+                var elementChatBody = PortalChromeDriver.GetElementsByClassName("conversation_item");
                 List<String> list = new List<string>();
                 foreach (var item in elementChatBody)
                 {
@@ -587,17 +609,31 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var inputBox = PortalChromeDriver.GetElementByXpath(HIPageUIElement.msgInputBox);
+                var inputBox = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.msgInputBox);
+                inputBox.Clear();
                 inputBox.SendKeys(text);
-                var sendButton = PortalChromeDriver.GetElementByXpath(HIPageUIElement.msgSendBtn);
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+                var sendButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.msgSendBtn);
                 sendButton.Click();
-
-
+                Thread.Sleep(2 *1000);
             }
             catch (Exception e)
-            {
-                
+            {                
+
             }  
+        }
+
+        public static void SendImage()
+        {
+            PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.addimg_hidden_input).Click();
+            AutoItX3 au3 = new AutoItX3();
+            au3.ControlFocus("Open", "", "Edit1");
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+            au3.ControlSetText("Open", "", "Edit1", "Test.png");
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+            au3.ControlClick("Open", "", "Button1");
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
         }
 
         public static void TurnOnSetup()
@@ -606,18 +642,35 @@ namespace XiaoIcePortal.Pages
             HomePage.ClickWeChatApp();
             //Go to AI Page
             WeChatManagermentPage.GoToHIPage();
-            Thread.Sleep(2 * 1000);
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             //click settings
             ClickSettings();
-            Thread.Sleep(2 * 1000);
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             //Turn on HI
-            if (isOff()) { TurnOn(); }
+            if (isOff()) { TurnOn(); DisTurnOnDialogByClickOK(); }
+        }
+
+        public static void DisTurnOnDialogByClickOK()
+        {
+            try
+            {
+                var turnOnDialog = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TurnOnDialog);
+                turnOnDialog.Click();
+            }
+            catch (Exception e) { }
+           
+        }
+
+        public static void DisTurnOnDialogByCancle()
+        {
+            var turnOnDialogCancle=PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TurnOnDialogCancle);
+            turnOnDialogCancle.Click();
         }
 
         public static IWebElement GetTheLastMsg()
         {
             try {
-                var elementChatBody = PortalChromeDriver.GetElementsByXpath("//*[@id='page_bodyo9CrYwU3juCHvh-BaVSQiiivpLl4']/div");
+                var elementChatBody = PortalChromeDriver.GetElementsByXpath("//*[@id='page_bodyof5NLw3-cVZ0Xn14jQ3gssqS6XD4']/div");
                 List<IWebElement> eleList = new List<IWebElement>();
                 foreach (var item in elementChatBody)
                 {
@@ -635,5 +688,41 @@ namespace XiaoIcePortal.Pages
             }
            
         }
+
+        public static bool IsStaffBindOnPortal()
+        {
+            try
+            {
+                var retainButton = PortalChromeDriver.GetElementByName("重新获取");
+                return true;
+            }
+            catch { return false; }
+        }
+
+        public static bool Can_ReceiveMesageFromMobile()
+        {
+            try
+            {
+                var elementChatBody = PortalChromeDriver.GetElementsByClassName("conversation_item");
+
+                foreach (var item in elementChatBody)
+                {
+                    if (item.Text == "这里是测试账号")
+                        return true;
+                }
+                return false;
+            }
+            catch(Exception e) { return false; }
+        }
+
+        public static bool Can_ReceiveImageFromMobile()
+        {
+            try
+            {
+                var elementChatBody = PortalChromeDriver.GetElementByTagName("img");
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }       
     }
 }
