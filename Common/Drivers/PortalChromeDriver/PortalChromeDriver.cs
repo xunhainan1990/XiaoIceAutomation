@@ -22,7 +22,7 @@ namespace Common.Driver
 
         public static void ChromeInitialize()
         {          
-            Instance = new ChromeDriver(@"C:\Users\v-haxun\Documents\Visual Studio 2015\Projects\XiaoIceAutomation\XiaoIceAutomation\bin\Debug\Tools");
+            Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\Common\bin\Debug\Tools");
             Instance.Manage().Window.Maximize();
             string line;
             ReadConfig();
@@ -127,11 +127,16 @@ namespace Common.Driver
         {
             try
             {
-                string filePath = @"D:\TestResult\"+DateTime.Now;
+               //string timeStamp = string.Format("{0}_{1}_{2}_{3}{4}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute);
+                string filePath = @"D:\TestResult\";
                 Screenshot ss = ((ITakesScreenshot)Instance).GetScreenshot();
                 string path = filePath  + fileName;
+                if(Directory.Exists(path))
+                {
+                    Directory.Delete(path,true);
+                }
                 Directory.CreateDirectory(path);
-                ss.SaveAsFile(filePath + fileName + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                ss.SaveAsFile(path + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
             }
             catch (Exception e)
             {

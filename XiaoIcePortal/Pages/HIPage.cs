@@ -299,6 +299,7 @@ namespace Portal.Pages
             try
             {
                 PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HiChatPortal).Click();
+                Thread.Sleep(5*1000);
             }
             catch (Exception e)
             {
@@ -379,7 +380,7 @@ namespace Portal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Big_New_Msg_tip) != null)
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Big_New_Msg_tip).GetAttribute("style")== "display: block;")
                     return true;
                 return false;
             }
@@ -395,7 +396,7 @@ namespace Portal.Pages
                     var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
                     if (user.Text == "chrysanthemum")
                     {
-                        var smallTip = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div["+i+"]/div[1]/span");
+                        var smallTip = PortalChromeDriver.GetElementByClassName("hichat_msg_tip");
                         return true;
                     }
                 }
@@ -412,6 +413,7 @@ namespace Portal.Pages
             try
             {
                 PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.SubTabHiChat).Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
             }
             catch (Exception e)
             {
@@ -582,7 +584,6 @@ namespace Portal.Pages
             }
             catch(Exception e)
             {
-
             }       
         }
         
@@ -596,6 +597,7 @@ namespace Portal.Pages
                     if (user.Text == "xun")
                     {
                         user.Click();
+                        SendMessage("我是xun");
                     }
                 }
             }
@@ -723,6 +725,14 @@ namespace Portal.Pages
                 return true;
             }
             catch (Exception e) { return false; }
-        }       
+        }
+
+        public static bool CheckTheTopUser()
+        {
+            //判断置顶的客户为发送消息的客户
+            var userName = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TopUser).Text;
+            if (userName == "chrysanthemum") return true;
+            return false;
+        }
     }
 }

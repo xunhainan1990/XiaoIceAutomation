@@ -20,7 +20,20 @@ namespace CSH5
         {
             try
             {
-                MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.HiCardXpath);
+                MobileAndroidDriver.GetElementByName(selector);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsAtPerXpath(string xpathSelector)
+        {
+            try
+            {
+                MobileAndroidDriver.GetElementByXpath(xpathSelector);
                 return true;
             }
             catch (Exception e)
@@ -39,10 +52,9 @@ namespace CSH5
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
                 MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.ClearAll).Click();
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-                MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.ClearAllConfirm).Click();
+                MobileAndroidDriver.GetElementByName(HIMobileH5Element.ClearAllConfirm).Click();
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-                MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.backFromHI).Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+                BackButtonClick();
             }
             catch (Exception e)
             { }
@@ -89,26 +101,54 @@ namespace CSH5
 
                 var sendButton = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.SendButtonXpath);
                 sendButton.Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-
-                var HICard = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.HiCardXpath);
-                HICard.Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(20));
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
             }
             catch (Exception e) {
+                Thread.Sleep(5*1000);
                 var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
+                sendMessage.Click();
                 sendMessage.SendKeys(text);
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+
+                var sendButton = MobileAndroidDriver.GetElementByName(HIMobileH5Element.SendButtonXpath);
+                sendButton.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
+            }
+
+        }
+
+        public static void GetHiCard(string text)
+        {
+            try
+            {
+                var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
+                keyBoardSwich.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+
+                var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
+                sendMessage.SendKeys(text);
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
 
                 var sendButton = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.SendButtonXpath);
                 sendButton.Click();
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
 
-                var HICard = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.HiCardXpath);
-                HICard.Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(20));
+                ClickHICard();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(30));
             }
+            catch (Exception e)
+            {
+                var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
+                sendMessage.SendKeys(text);
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
 
+                var sendButton = MobileAndroidDriver.GetElementByName(HIMobileH5Element.SendButtonXpath);
+                sendButton.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
+
+                ClickHICard();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(30));
+            }
         }
 
         public static void XB_SendMessage(string text)
@@ -179,16 +219,17 @@ namespace CSH5
 
         public static void GetImageMessage()
         {
-            var textMessageBefore = MobileAndroidDriver.GetElementByName("上边一条是图片");
-            var id = textMessageBefore.GetAttribute("id");
+            var textMessageBefore = MobileAndroidDriver.GetElementByXpath("//android.webkit.WebView[contains(@content-desc,'人工客服窗口')]");
+            string a= "/android.view.View[@index = '1']//android.view.View[@index='0'";
+            var id = textMessageBefore.Location.X;
             var imageMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.imageMessage+ "/android.view.View[@index='"+ id + "']");
             imageMessage.Click();
         }
 
         public static void GetLoginCode()
         {
-            MobileAndroidDriver.GetElementByName(CSH5.SMSElement.TextMessage).Click();
-            var text = MobileAndroidDriver.GetElementByXpath(CSH5.SMSElement.messageContent).Text;
+            MobileAndroidDriver.GetElementByName(SMSElement.TextMessage).Click();
+            var text = MobileAndroidDriver.GetElementByXpath(SMSElement.messageContent).Text;
             string[] texts = text.Split('，', '：');
             PortalChromeDriver.GetElementByXpath("//*[@id='verification']").SendKeys(texts[2]);
             //Click SendButton
@@ -196,6 +237,17 @@ namespace CSH5
             loginButton.Click();
         }
 
+        public static void BackButtonClick()
+        {
+            //退出当前对话窗口
+            MobileAndroidDriver.GetElementByName(HIMobileH5Element.backFromHI).Click();
+        }
 
+        public static void ClickHICard()
+        {
+            //点击HICard
+            var HICard = MobileAndroidDriver.GetElementByName(HIMobileH5Element.HiCardXpath);
+            HICard.Click();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Portal.UIElement
         public static string OtherButton = "//*[@id='tabbody_instructions']/div[2]/h3";
         public static string SubTabHITrigger = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[2]/div[1]/a";
         public static string SubTabHIStaff = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[2]/div[2]/a";
-        public static string HiChatPortal = "//*[@id='tabbody_instructions']/div/div/a";
+        public static string HiChatPortal = "/html/body/div/div[2]/div[2]/div[1]/div/div[1]/a";
         public static string SendBox = "//*[@id='msgSendBtn']";
         public static string DeleteStaff = "//*[@id='tabbody_instructions']/div/div/div[2]/div/ul/li/p[3]";
         public static string DeleteStaffConfirm = "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
@@ -52,5 +52,6 @@ namespace Portal.UIElement
         public static string HaveBindStaff= "//*[@id='tabbody_instructions']/div/div/div[2]/h3";
         public static string TurnOnDialog = "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
         public static string TurnOnDialogCancle= "//*[@id='confirmbox_wrapper']/div/div[1]/div[1]";
+        public static string TopUser = "//*[@id='msgListDiv']/div[1]/div[2]/div[1]/div[1]";
     }
 }

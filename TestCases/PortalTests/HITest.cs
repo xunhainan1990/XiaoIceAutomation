@@ -14,9 +14,9 @@ namespace TestCases.PortalTests
         /// <summary>
         /// 1.	是否能够成功切换到人工客服功能的“设置” 界面
         /// </summary>
-        [TestCategory("P1")]
+        [TestCategory("Portal")]
         [TestMethod]
-        public void CanClickSetting()
+        public void Can_ClickSetting()
         {
             LoginPage.GoTo();
             HomePage.ClickWeChatApp();
@@ -34,11 +34,28 @@ namespace TestCases.PortalTests
         /// 2.	是否可以正常开启“人工客服”功能
         /// </summary>
         [TestMethod]
-        public void CanTurnOnHI_Test()
+        [TestCategory("Portal")]
+        public void Can_TurnOnHI()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
 
+            if (HIPage.IsOn())
+            { HIPage.TurnOff(); }
+            HIPage.TurnOn();
+            HIPage.DisTurnOnDialogByClickOK();
+            Assert.IsTrue(HIPage.IsOn());
+
+            if (HIPage.IsOn())
+            { HIPage.TurnOff(); }
+            HIPage.TurnOn();
+            PortalChromeDriver.Instance.Navigate().Refresh();
+            Assert.IsTrue(HIPage.IsOn());
+
+            if (HIPage.IsOn())
+            { HIPage.TurnOff(); }
+            HIPage.TurnOn();
+            HIPage.DisTurnOnDialogByCancle();
             Assert.IsTrue(HIPage.IsOn());
             PortalChromeDriver.TakeScreenShot("2.是否可以正常开启“人工客服”功能");
         }    
@@ -47,7 +64,8 @@ namespace TestCases.PortalTests
         /// 3-10	[接入条件设置]是否可以添加触发关键词
         /// </summary>
         [TestMethod]
-        public void CanAddTrigger()
+        [TestCategory("Portal")]
+        public void Can_AddTrigger()
         { 
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -152,7 +170,8 @@ namespace TestCases.PortalTests
         /// 11-17	[接入条件设置]是否可以编辑已有的触发关键词
         /// </summary>
         [TestMethod]
-        public void CanEditTrigger()
+        [TestCategory("Portal")]
+        public void Can_EditTrigger()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -254,7 +273,8 @@ namespace TestCases.PortalTests
         /// 23.	[接入条件设置]是否保存状态，当输入触发关键词后不点添加，切换到“客服人员设定”tab
         /// </summary>
         [TestMethod]
-        public void CanDeleteTrigger()
+        [TestCategory("Portal")]
+        public void Can_DeleteTrigger()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -351,7 +371,8 @@ namespace TestCases.PortalTests
         /// 24.	[客服人员设定]是否提示非认证的公众号无法使用该功能
         /// </summary>
         //[TestMethod]
-        //public void CanNon_certifiedGoToHiChat()
+        //[TestCategory("Portal")]
+        //public void Can_Non_certified_GoToHiChat()
         //{
         //    //确保HI是Turn on的状态
         //    HIPage.TurnOnSetup();
@@ -366,7 +387,8 @@ namespace TestCases.PortalTests
         /// 25.	[客服人员设定]是否认证的公众号可以使用该功能(尚未获取密码）
         /// </summary>
         [TestMethod]
-        public void CanCertifiedGoToHiStaff()
+        [TestCategory("Portal")]
+        public void Can_Certified_GoToHiStaff()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -381,7 +403,8 @@ namespace TestCases.PortalTests
         /// 26.	[客服人员设定]是否可以获取登陆密码
         /// </summary>
         [TestMethod]
-        public void CanGetLoginCode()
+        [TestCategory("Portal")]
+        public void Can_Staf_GetBindCode()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -400,7 +423,8 @@ namespace TestCases.PortalTests
         /// 32.	[客服人员设定]是否可以移除绑定的客服人员
         /// </summary>
         [TestMethod]
-        public void CanHiChatDeleteStaff()
+        [TestCategory("Portal")]
+        public void Can_Delete_BindedStaff()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -414,10 +438,32 @@ namespace TestCases.PortalTests
         }
 
         /// <summary>
+        /// 50.	[对话窗口]是否可以置顶，当切换用户的时候
+        /// </summary>
+        [TestMethod]
+        [TestCategory("Portal")]
+        public void Is_User_TopShow_ReplyMsg()
+        {
+            //确保HI是Turn on的状态
+            HIPage.TurnOnSetup();
+            HIPage.OpenHiChatWindow();
+            HIPage.GetOtherUserFromUserList();
+            Thread.Sleep(2*1000);
+            HIPage.GetTestUserFromUserList();
+            Thread.Sleep(2 * 1000);
+            Assert.IsFalse(HIPage.CheckTheTopUser());
+            HIPage.GetTestUserFromUserList();
+            HIPage.SendMessage("我应该置顶");
+            Thread.Sleep(2 * 1000);
+            Assert.IsTrue(HIPage.CheckTheTopUser());
+        }
+
+        /// <summary>
         /// 46.	[对话窗口]聊天对话窗是否可以发送不同格式的图片（JPG，PNG，BMP和GIF）
         /// </summary>
         [TestMethod]
-        public void DiffPhotos()
+        [TestCategory("Portal")]
+        public void Can_Send_DiffPhotos()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -436,7 +482,8 @@ namespace TestCases.PortalTests
         /// 47.	[对话窗口]聊天对话窗是否可以输入超过300个字
         /// </summary>
         [TestMethod]
-        public void MsgBoxInputLength()
+        [TestCategory("Portal")]
+        public void Check_MaxLenth_Of_MsgInputBox()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -454,7 +501,8 @@ namespace TestCases.PortalTests
         /// 49.	[对话窗口]聊天对话窗是否保存聊天历史记录（1）
         /// </summary>
         [TestMethod]
-        public void IsMsgHistory()
+        [TestCategory("Portal")]
+        public void Check_Msg_History1()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -468,14 +516,15 @@ namespace TestCases.PortalTests
             PortalChromeDriver.Refresh();
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(15));
             Assert.IsTrue(HIPage.GetTheLastMsg().Text.Equals("3"));
-            PortalChromeDriver.TakeScreenShot("49.	[对话窗口]聊天对话窗是否保存聊天历史记录");
+            PortalChromeDriver.TakeScreenShot("49.[对话窗口]聊天对话窗是否保存聊天历史记录");
         }
 
         /// <summary>
         /// 50.	[对话窗口]聊天对话窗是否保存聊天历史记录（2）
         /// </summary>
         [TestMethod]
-        public void IsMsgHistory2()
+        [TestCategory("Portal")]
+        public void Check_Msg_History2()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -557,7 +606,8 @@ namespace TestCases.PortalTests
         /// 56.	是否可以停用"人工客服"功能
         /// </summary>
         [TestMethod]
-        public void CanTurnOffHI_Test()
+        [TestCategory("Portal")]
+        public void Can_TurnOff_HI()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -565,41 +615,6 @@ namespace TestCases.PortalTests
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
             Assert.IsTrue(HIPage.isOff());
             PortalChromeDriver.TakeScreenShot("56.是否可以停用'人工客服'功能");
-        }
-
-        /// <summary>
-        ///测试三种关闭TurnOnDialog方法 
-        /// </summary>
-        [TestMethod]
-        public void DismissTurnOnDialogInThreeMethods()
-        {
-            //确保HI是Turn on的状态
-            LoginPage.GoTo();
-            HomePage.ClickWeChatApp();
-            //Go to AI Page
-            WeChatManagermentPage.GoToHIPage();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            //click settings
-            HIPage.ClickSettings();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            if (HIPage.IsOn())
-            { HIPage.TurnOff(); }
-            HIPage.TurnOn();
-                HIPage.DisTurnOnDialogByClickOK();
-            Assert.IsTrue(HIPage.IsOn());
-
-            if (HIPage.IsOn())
-            { HIPage.TurnOff(); }
-            HIPage.TurnOn();
-            PortalChromeDriver.Instance.Navigate().Refresh();
-            Assert.IsTrue(HIPage.IsOn());
-
-            if (HIPage.IsOn())
-            { HIPage.TurnOff(); }
-            HIPage.TurnOn();
-            HIPage.DisTurnOnDialogByCancle();
-            Assert.IsTrue(HIPage.IsOn());
-
-        }
+        }       
     }
 }

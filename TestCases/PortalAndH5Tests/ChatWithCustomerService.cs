@@ -9,11 +9,12 @@ using Portal.Pages;
 using Portal.UIElement;
 
 
-namespace TestCases.InactiveTests
+namespace TestCases.PortalAndH5Tests
 {
     [TestClass]
-    public class ChatWithHI : PortalTests.PortalTestInit
+    public class ChatWithCustomerService : PortalTests.PortalTestInit
     {
+        
         [TestInitialize]
         public void LunchWeChat()
         {
@@ -23,9 +24,10 @@ namespace TestCases.InactiveTests
         /// <summary>
         /// 27.	[客服人员设定]是否可以正常使用，当登陆密码有效期超过60s时
         /// </summary>
+        
         [TestCategory("H5")]
         [TestMethod]
-        public void CanStaffBindIfTimeOut()
+        public void Can_StaffBind_IfTimeOut()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -51,7 +53,8 @@ namespace TestCases.InactiveTests
         /// 28.	[客服人员设定]是否可以正常使用，当登陆密码过期后重新获取
         /// </summary>
         [TestMethod]
-        public void RetainCodeIfTimeOut()
+        [TestCategory("H5")]
+        public void Staff_RetainCode_IfTimeOut()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
@@ -79,6 +82,7 @@ namespace TestCases.InactiveTests
         /// 29.	[客服人员设定]是否可以正常使用，当登陆密码有效期超过60s时(首次绑定)
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void CheckCodeAvailableIfTimeOut()
         {
             //确保HI是Turn on的状态
@@ -94,7 +98,7 @@ namespace TestCases.InactiveTests
             HIMobileH5.GetToTestAccount();
             //删除聊天记录
             HIMobileH5.ClearAllRecord();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
             //发送验证码
             HIMobileH5.SendMessage(value);
             //验证网页版是否成功绑定
@@ -107,20 +111,22 @@ namespace TestCases.InactiveTests
         /// 42.	[对话窗口]用户消息列表中点击一条未读消息，小红点是否取消显示
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void Is_Small_New_Msg_Tip()
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
+            HIPage.OpenHiChatWindow();
+            HIPage.GetOtherUserFromUserList();
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             //H5页面进入平台测试账号对话窗口   
             HIMobileH5.GetToTestAccount();
             //召唤客服
-            HIMobileH5.SendMessage("客服");
+            HIMobileH5.GetHiCard("客服");
             //客服窗口发送消息
             HIMobileH5.XB_SendMessage("这里是测试账号");
             //小红点的判断
-            HIPage.OpenHiChatWindow();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(30));
+            HIMobileH5.XB_SendMessage("这里在测试小红点");
             Assert.IsTrue(HIPage.Is_Small_New_Msg_Tip());
         }
 
@@ -296,37 +302,16 @@ namespace TestCases.InactiveTests
 
         //}
 
-        /// <summary>
-        /// 42.	[对话窗口]用户消息列表中点击一条未读消息，小红点是否取消显示
-        /// </summary>
-        [TestMethod]
-        public void Is_Big_Msg_Tip_Show()
-        {
-            //确保HI是Turn on的状态
-            HIPage.TurnOnSetup();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            HIPage.OpenHiChatWindow();
-            PortalChromeDriver.GetElementByName("xun").Click();
-            //H5页面进入平台测试账号对话窗口   
-            HIMobileH5.GetToTestAccount();
-            //向公众号发送消息
-            HIMobileH5.SendMessage("客服");
-            //客服窗口发送消息
-            HIMobileH5.XB_SendMessage("这里是测试账号");
-            //打开Hi对话窗口
-            
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
-           
-        }
 
         /// <summary>
-        /// 43.	客服是否可以正常回复收到的用户消息
-        /// H5 8.	用户在H5对话窗口时，是否可以收到客服的回复
+        /// 59,61.	
+        /// 59.[对话窗口]是否有新消息提示标识显示，当开启人工客服后有消息接入
+        /// 61.	是否可以显示大红点，当不在人工对话栏并有新消息接入时
         /// </summary>
         [TestMethod]
-        public void ReplyMessage()
+        [TestCategory("H5")]
+        public void Is_Big_MsgTip_ShowUp()
         {
-
             //Portal确保HI是Turn on的状态
             HIPage.TurnOnSetup();
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
@@ -334,7 +319,53 @@ namespace TestCases.InactiveTests
             //H5页面进入平台测试账号对话窗口   
             HIMobileH5.GetToTestAccount();
             //H5呼叫客服
-            HIMobileH5.SendMessage("客服");
+            HIMobileH5.GetHiCard("客服");
+            //H5用户发送消息
+            HIMobileH5.XB_SendMessage("这里是测试账号");
+            Assert.IsTrue(HIPage.Is_Big_New_Msg_Tip());
+
+            HIPage.HiChatPoartal();
+            Assert.IsFalse(HIPage.Is_Big_New_Msg_Tip());
+        }
+
+        /// <summary>
+        /// 62.	是否可以显示大红点，当停留在"对话窗口"页面
+        /// </summary>
+        [TestMethod]
+        [TestCategory("H5")]
+        public void Is_Big_MsgTip_Show_InHiWin()
+        {
+            //Portal确保HI是Turn on的状态
+            HIPage.TurnOnSetup();
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+            HIPage.HiChatPoartal();
+
+            //H5页面进入平台测试账号对话窗口   
+            HIMobileH5.GetToTestAccount();
+            //H5呼叫客服
+            HIMobileH5.GetHiCard("客服");
+            //H5用户发送消息
+            HIMobileH5.XB_SendMessage("这里是测试账号");
+            Assert.IsFalse(HIPage.Is_Big_New_Msg_Tip());
+        }
+
+        /// <summary>
+        /// 43.	客服是否可以正常回复收到的用户消息
+        /// H5 8.	用户在H5对话窗口时，是否可以收到客服的回复
+        /// </summary>
+        [TestMethod]
+        [TestCategory("H5")]
+        [TestProperty("name", "43.	客服是否可以正常回复收到的用户消息")]
+        public void Can_Staff_CheckReply_FromCustomer()
+        {
+            //Portal确保HI是Turn on的状态
+            HIPage.TurnOnSetup();
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+
+            //H5页面进入平台测试账号对话窗口   
+            HIMobileH5.GetToTestAccount();
+            //H5呼叫客服
+            HIMobileH5.GetHiCard("客服");
             //H5用户发送消息
             HIMobileH5.XB_SendMessage("这里是测试账号");
 
@@ -348,79 +379,34 @@ namespace TestCases.InactiveTests
             HIPage.SendMessage("这里是客服");
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             //验证Portal最后一条消息是不是客服回复的消息
-            Assert.IsTrue(MobileAndroidDriver.GetElementByXpath("//android.view.View[contains(@content-desc,'这里是客服')]") != null);  
+            Assert.IsTrue(HIMobileH5.IsAtPerXpath(HIMobileH5Element.ReplyFromHi));
         }
-
 
         /// <summary>
         /// 44.	[对话窗口]是否可以在用户消息列表上次置顶显示，无论消息的状态是已读或未读，只要收到新的消息
         /// </summary>
         [TestMethod]
-        public void NewMsgSecondTop_InHIWin()
+        [TestCategory("H5")]
+        public void Is_NewMsg_TopShow_InHIWin()
         {  
             //Portal确保HI是Turn on的状态
             HIPage.TurnOnSetup();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            //H5页面进入平台测试账号对话窗口   
-            HIMobileH5.GetToTestAccount();
-            //H5呼叫客服
-            HIMobileH5.SendMessage("客服");
-            //H5用户发送消息
-            HIMobileH5.XB_SendMessage("这里是测试账号");
-
             //Portal客服打开Hi对话窗口
             HIPage.OpenHiChatWindow();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
-            //判断置顶的客户为发送消息的客户
-            var userName = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[1]/div[2]/div[1]/div[1]").Text;
-            Assert.IsTrue(userName == "chrysanthemum");
-        }
-
-        /// <summary>
-        /// 45.	[对话窗口]是否可以在用户消息列表上置顶-1，无论消息的状态是已读或未读，只要收到新的消息（除了当前聊天的用户外）
-        /// </summary>
-        [TestMethod]
-        public void NewMsgSecondTop_NotInHIWin()
-        {
-            //Portal确保HI是Turn on的状态
-            HIPage.TurnOnSetup();
+            HIPage.GetOtherUserFromUserList();
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            //Portal客服打开Hi对话窗口
-            HIPage.OpenHiChatWindow();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
-
             //H5页面进入平台测试账号对话窗口   
             HIMobileH5.GetToTestAccount();
             //H5呼叫客服
-            HIMobileH5.SendMessage("客服");  
+            HIMobileH5.GetHiCard("客服");
             //H5用户发送消息
-            HIMobileH5.XB_SendMessage("这里是测试账号");
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-
-            //判断第二置顶的客户为发送消息的客户
-            var userName = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[1]/div[2]/div[1]/div[1]").Text;
-            Assert.IsTrue(userName == "chrysanthemum");
+            HIMobileH5.XB_SendMessage("这里是测试账号");          
+            PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
+            Assert.IsTrue(HIPage.CheckTheTopUser());
         }
 
-        /// <summary>
-        /// 54.	[对话窗口]是否有新消息提示标识显示，当开启人工客服后有消息接入
-        /// </summary>
-        [TestMethod]
-        public void IsBigMsgTipGone()
-        {
-            //Portal确保HI是Turn on的状态
-            HIPage.TurnOnSetup();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
 
-            //H5页面进入平台测试账号对话窗口   
-            HIMobileH5.GetToTestAccount();
-            //H5呼叫客服
-            HIMobileH5.SendMessage("客服");
-            //H5用户发送消息
-            HIMobileH5.XB_SendMessage("这里是测试账号");
-            //
-            Assert.IsTrue(HIPage.Is_Big_New_Msg_Tip());
-        }
+
 
         /// <summary>
         /// 1-3
@@ -428,7 +414,8 @@ namespace TestCases.InactiveTests
         /// 2.	删除设置的关键词，是否还能触发人工客服card
         /// 3.	是否可以触发人工客服card，当输入含有找客服意向的语句
         /// </summary>
-        [TestMethod] 
+        [TestMethod]
+        [TestCategory("H5")]
         public void TriggerHICardPerCustomize()
         {
             //Portal确保HI是Turn on的状态
@@ -443,24 +430,25 @@ namespace TestCases.InactiveTests
             HIMobileH5.ClearAllRecord();
             //H5呼叫客服
             HIMobileH5.SendMessage("hi");
-            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.xb_chatwith_texttest));
+            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.HiCardXpath));
             HIPage.DeleteTrigger();
             HIMobileH5.ClearAllRecord();
             //H5呼叫客服
             HIMobileH5.SendMessage("hi");
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            Assert.IsFalse(HIMobileH5.IsAt(HIMobileH5Element.xb_chatwith_texttest));
+            Assert.IsFalse(HIMobileH5.IsAt(HIMobileH5Element.HiCardXpath));
             HIMobileH5.ClearAllRecord();
             //H5呼叫客服
             HIMobileH5.SendMessage("客服");
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.xb_chatwith_texttest));
+            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.HiCardXpath));
         }
 
         /// <summary>
         /// 4.	修改设置好的关键词后，能否正常触发人工客服card
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void TriggerHiCardAfterEditTriger()
         {
             //Portal确保HI是Turn on的状态
@@ -478,11 +466,12 @@ namespace TestCases.InactiveTests
             HIMobileH5.ClearAllRecord();
             //H5呼叫客服
             HIMobileH5.SendMessage("Hiappend");
-            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.xb_chatwith_texttest));
+            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.HiCardXpath));
+            Thread.Sleep(5*1000);
             HIMobileH5.ClearAllRecord();
             HIMobileH5.SendMessage("Hi");
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-            Assert.IsFalse(HIMobileH5.IsAt(HIMobileH5Element.xb_chatwith_texttest));
+            Assert.IsFalse(HIMobileH5.IsAt(HIMobileH5Element.HiCardXpath));
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             HIPage.DeleteTrigger();
         }
@@ -491,6 +480,7 @@ namespace TestCases.InactiveTests
         /// 5.	功能关闭后，在公众号里能否触发人工客服card
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void TriggerHiCardPerHITurnOFF()
         {
             //Portal确保HI是Turn on的状态
@@ -521,6 +511,7 @@ namespace TestCases.InactiveTests
         /// 6.	点击人工客服card，是否可以进入H5对话窗
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void ClickHICard()
         {
             //Portal确保HI是Turn on的状态
@@ -532,14 +523,15 @@ namespace TestCases.InactiveTests
             //清空聊天记录
             HIMobileH5.ClearAllRecord();
             //H5呼叫客服
-            HIMobileH5.SendMessage("客服");
-            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.xb_chatwith_texttest));
+            HIMobileH5.GetHiCard("客服");
+            Assert.IsTrue(HIMobileH5.IsAtPerXpath(HIMobileH5Element.xb_chatwith_texttest));
         }
 
         /// <summary>
         /// 7.	在H5对话窗口,是否可以发送消息
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void SendMessageInHIWindow()
         {
             //Portal确保HI是Turn on的状态
@@ -550,7 +542,7 @@ namespace TestCases.InactiveTests
             //清空聊天记录
             HIMobileH5.ClearAllRecord();
             //H5呼叫客服
-            HIMobileH5.SendMessage("客服");  
+            HIMobileH5.GetHiCard("客服");  
             HIMobileH5.XB_SendMessage("这里是测试账号");
             //目前的问题是取不到最新的消息
             HIPage.OpenHiChatWindow();
@@ -570,6 +562,7 @@ namespace TestCases.InactiveTests
         /// 9.	当用户不在H5对话窗口时，是否可以收到客服的回复
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void CheckReplyBackFromHI()
         {
             //Portal确保HI是Turn on的状态
@@ -578,11 +571,10 @@ namespace TestCases.InactiveTests
             HIMobileH5.GetToTestAccount();
 
             //H5呼叫客服
-            HIMobileH5.SendMessage("客服");
+            HIMobileH5.GetHiCard("客服");
             HIMobileH5.XB_SendMessage("这里是测试账号");
 
-            //退出当前对话窗口
-            MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.backFromHI).Click();
+            HIMobileH5.BackButtonClick();
             Thread.Sleep(10*1000);
 
             //Portal端客服回复
@@ -597,7 +589,7 @@ namespace TestCases.InactiveTests
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
             MobileAndroidDriver.GetElementByName(HIMobileH5Element.ReplyCardFromHI).Click();
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(15));
-            Assert.IsTrue(MobileAndroidDriver.GetElementByXpath("//android.view.View[contains(@content-desc,'这里是客服')]") != null);
+            Assert.IsTrue(HIMobileH5.IsAtPerXpath(HIMobileH5Element.ReplyFromHi));
         }
 
         /// <summary>
@@ -633,6 +625,7 @@ namespace TestCases.InactiveTests
         /// 18.	发送和接受的图片是否可以可以点击放大
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void MagnifyPictures()
         {
             //Portal确保HI是Turn on的状态
@@ -657,6 +650,7 @@ namespace TestCases.InactiveTests
         /// 20.	人工客服功能关闭，是否可以打开H5对话窗口
         /// </summary>
         [TestMethod]
+        [TestCategory("H5")]
         public void IsHICardAvailableAfterHITurnOff()
         {
             //Portal确保HI是Turn on的状态
@@ -670,12 +664,9 @@ namespace TestCases.InactiveTests
             HIMobileH5.SendMessage("客服");
             //关闭HI
             HIPage.TurnOff();
-            //点击HICard
-            var HICard = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.HiCardXpath);
-            HICard.Click();
+            HIMobileH5.ClickHICard();
             PortalChromeDriver.Wait(TimeSpan.FromSeconds(30));
-            Assert.IsTrue(HIMobileH5.IsAt(HIMobileH5Element.HIOffError));
-            
+            Assert.IsTrue(HIMobileH5.IsAtPerXpath(HIMobileH5Element.HIOffError));        
         }
 
         [TestCleanup]
