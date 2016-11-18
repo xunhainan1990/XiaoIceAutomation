@@ -17,21 +17,15 @@ namespace TestCases.PortalTests
         /// <summary>
         /// 登陆
         /// </summary>
+        [TestCategory("1")]
         [TestMethod]
         public void LoginWith_PhoneNumber()
         {
             LoginPage.LoginWithPhoneNumber("13269120258");
-            Thread.Sleep(5*1000);
+            Thread.Sleep(10*1000);
             CSH5.HIMobileH5.GetLoginCode();
             PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
         }
-        [TestCleanup]
-        public void CleanUp()
-        {
-            PortalChromeDriver.Instance.Close();
-            MobileAndroidDriver.androidDriver.Dispose();
-        }
- 
 
     }
 }

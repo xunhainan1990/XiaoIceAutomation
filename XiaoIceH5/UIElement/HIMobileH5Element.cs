@@ -21,7 +21,7 @@ namespace CSH5.UIElement
         public static string backFromHI = "返回";
         public static string HIMessageFromCustom = "点击卡片，进行回复";
         public static string chatwith_Meg = "聊天信息";
-        public static string moreInfo = "//android.view.View[contains(@content-desc,'更多')]";
+        public static string moreInfo = "//android.widget.TextView[contains(@content-desc,'更多')]"; 
         public static string ClearAll = "//android.widget.LinearLayout[@index='1']";
         public static string ClearAllConfirm = "清空内容";
         public static string MsgTexts= "//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/ho')]";
@@ -30,11 +30,12 @@ namespace CSH5.UIElement
         public static string DocumentSelect = "//android.widget.FrameLayout[@index='1']";
         public static string ReplyCardFromHI = "客服人员已回复您的问题";
         public static string imageMessage= "//android.webkit.WebView[contains(@content-desc,'人工客服窗口')]/android.view.View[@index='1']";
-        public static string ModifiedImage = "//android.webkit.WebView[contains(@content-desc,'人工客服窗口')]/android.view.View[@index='2']";
+        public static string ModifiedImage = "//android.widget.Image[@index='0']";
         public static string HIOffError = "//android.view.View[contains(@content-desc,'抱歉，客服功能已关闭（错误代码：40）')]";
+        public static string ReplyFromHi = "//android.view.View[contains(@content-desc,'{0}')]";
+        public static string WeChat = "//android.widget.FrameLayout[contains(@content-desc,'微信')]";
 
-        public static string ReplyFromHi = "//android.view.View[contains(@content-desc,'这里是客服')]";
 
-        
+
     }
 }

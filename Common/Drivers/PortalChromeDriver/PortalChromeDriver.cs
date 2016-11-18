@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using OpenQA.Selenium.Remote;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
+using OpenQA.Selenium.Support.UI;
 
 namespace Common.Driver
 {
@@ -21,8 +23,9 @@ namespace Common.Driver
         public static string cookiePath = "";
 
         public static void ChromeInitialize()
-        {          
+        {
             Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\Common\bin\Debug\Tools");
+
             Instance.Manage().Window.Maximize();
             string line;
             ReadConfig();
@@ -39,13 +42,40 @@ namespace Common.Driver
 
         public static void ChromeInitializeWithNoCookies()
         {
-            if (null == PortalChromeDriver.Instance)
+            Instance = new ChromeDriver(@"C:\Users\v-haxun\Documents\Visual Studio 2015\Projects\XiaoIceAutomation\XiaoIceAutomation\bin\Debug\Tools");
+            Instance.Manage().Window.Maximize();
+            ReadConfig();
+            Instance.Navigate().GoToUrl(testUrl);
+        }
+
+        public static IWebElement  WaitForPageElementToLoad(By by, IWebDriver driver, int timeInSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
+            wait.Until(ExpectedConditions.ElementExists(by));
+            return driver.FindElement(by);
+        }
+        public static List<IWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
+            wait.Until(ExpectedConditions.ElementExists(by));
+            return driver.FindElements(by).ToList(); ;
+        }
+
+        public static void WaitForPageElementToBeRemoved(By by, IWebDriver driver, int timeInSeconds)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
+            wait.Until<bool>((d) =>
             {
-                Instance = new ChromeDriver(@"C:\Users\v-haxun\Documents\Visual Studio 2015\Projects\XiaoIceAutomation\XiaoIceAutomation\bin\Debug\Tools");
-                Instance.Manage().Window.Maximize();
-                ReadConfig();
-                Instance.Navigate().GoToUrl(testUrl);
-            }
+                try
+                {
+                    IWebElement element = d.FindElement(by);
+                    return false;
+                }
+                catch (NoSuchElementException)
+                {
+                    return true;
+                }
+            });
         }
 
         public static void ReadConfig()
@@ -53,7 +83,7 @@ namespace Common.Driver
             string line;
             StreamReader srTestAgainstConfig = new StreamReader(@"D:\work\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\TestAgainstConfig.txt");
 
-            while ((line = srTestAgainstConfig.ReadLine()) != null&& line!="")
+            while ((line = srTestAgainstConfig.ReadLine()) != null && line != "")
             {
                 string para = line;
                 if (para == "product")
@@ -67,16 +97,14 @@ namespace Common.Driver
                     cookiePath = @"D:\work\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\IntCookies.txt";
                 }
             }
-            
         }
-
 
         public static string BaseIntAddress
         {
             get
             {
                 return "http://csint.trafficmanager.cn";
-            } 
+            }
         }
 
         public static string BaseProductAddress
@@ -93,47 +121,52 @@ namespace Common.Driver
         }
         public static IWebElement GetElementByID(string id)
         {
-            return Instance.FindElement(By.Id(id));
+            return WaitForPageElementToLoad(By.Id(id), PortalChromeDriver.Instance, 5);
         }
         public static IWebElement GetElementByName(string name)
         {
-            return Instance.FindElement(By.Name(name));
+            return WaitForPageElementToLoad(By.Name(name), PortalChromeDriver.Instance, 5);
         }
 
         public static IWebElement GetElementByClassName(string className)
         {
-            return Instance.FindElement(By.ClassName(className));
+            return WaitForPageElementToLoad(By.ClassName(className), PortalChromeDriver.Instance, 5);
         }
         public static List<IWebElement> GetElementsByClassName(string className)
         {
-            return Instance.FindElements(By.ClassName(className)).ToList();
+            return WaitForPageElementsToLoad(By.ClassName(className), PortalChromeDriver.Instance, 5);
         }
         public static IWebElement GetElementByXpath(string Xpath)
         {
-            return Instance.FindElement(By.XPath(Xpath));
+            return WaitForPageElementToLoad(By.XPath(Xpath), PortalChromeDriver.Instance, 5);
         }
 
         public static List<IWebElement> GetElementsByXpath(string Xpath)
         {
-            return Instance.FindElements(By.XPath(Xpath)).ToList();
+            return WaitForPageElementsToLoad(By.XPath(Xpath), PortalChromeDriver.Instance, 5);
         }
 
-        public static List<IWebElement> GetElementByTagName(string tagName)
+        public static List<IWebElement> GetElementsByTagName(string tagName)
         {
-            return Instance.FindElements(By.TagName(tagName)).ToList();
+            return WaitForPageElementsToLoad(By.TagName(tagName), PortalChromeDriver.Instance, 5);
+        }
+
+        public static IWebElement GetElementByTagName(string tagName)
+        {
+            return WaitForPageElementToLoad(By.TagName(tagName), PortalChromeDriver.Instance, 5);
         }
 
         public static void TakeScreenShot(string fileName)
         {
             try
             {
-               //string timeStamp = string.Format("{0}_{1}_{2}_{3}{4}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute);
+                //string timeStamp = string.Format("{0}_{1}_{2}_{3}{4}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute);
                 string filePath = @"D:\TestResult\";
                 Screenshot ss = ((ITakesScreenshot)Instance).GetScreenshot();
-                string path = filePath  + fileName;
-                if(Directory.Exists(path))
+                string path = filePath + fileName;
+                if (Directory.Exists(path))
                 {
-                    Directory.Delete(path,true);
+                    Directory.Delete(path, true);
                 }
                 Directory.CreateDirectory(path);
                 ss.SaveAsFile(path + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);

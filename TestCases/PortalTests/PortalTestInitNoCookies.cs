@@ -2,6 +2,7 @@
 using Common.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Portal.Pages;
+using System.Threading;
 
 namespace TestCases.PortalTests
 {
@@ -10,13 +11,21 @@ namespace TestCases.PortalTests
         [TestInitialize]
         public void Inti()
         {
-            if (PortalChromeDriver.Instance == null)
+            if (PortalChromeDriver.Instance!= null)
             {
-                PortalChromeDriver.ChromeInitializeWithNoCookies();
+                PortalChromeDriver.Instance.Close();
+                PortalChromeDriver.Instance.Dispose();
             }
+            PortalChromeDriver.ChromeInitializeWithNoCookies();
             MobileAndroidDriver.AndroidMmsInitialize();
             //MobileAndroidDriver
         }
-        
+        [TestCleanup]
+        public void CleanUp()
+        {
+            PortalChromeDriver.Instance.Close();
+            PortalChromeDriver.Instance.Dispose();
+            MobileAndroidDriver.androidDriver.Dispose();
+        }
     }
 }

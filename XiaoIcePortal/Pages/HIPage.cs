@@ -67,12 +67,10 @@ namespace Portal.Pages
             {
                 var turnOff = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffButton);
                 turnOff.Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
                 PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffConfirm);
                 var confirmButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffConfirm);
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
                 confirmButton.Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+
             }
             catch (Exception e)
             {
@@ -89,6 +87,7 @@ namespace Portal.Pages
                 inputTrigger.SendKeys(input);
                 var addTriggerButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TriggerAddButton);
                 addTriggerButton.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(1));
             }
             catch (Exception e)
             {
@@ -113,10 +112,10 @@ namespace Portal.Pages
             {
                 var deleteButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.DeleteTriggerButton);
                 deleteButton.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(1));
             }
             catch (Exception e)
             {
-                Console.WriteLine("Failed to delete keyword.Error" + e.ToString());
             }           
         }
 
@@ -128,6 +127,7 @@ namespace Portal.Pages
                 editButton.Click();
                 var editCurrentTrigger = PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger);
                 editCurrentTrigger.SendKeys(appendText);
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(1));
             }
             catch (Exception e)
             {
@@ -201,7 +201,6 @@ namespace Portal.Pages
         {
             try
             {
-
                 var keywords =PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Trigger);
                 if (keywords.Text.ToString().Equals(keyword)) return true;
                 return false;
@@ -322,7 +321,7 @@ namespace Portal.Pages
                 return false;
             }         
         }
-
+        
         public static bool IsNotVerified()
         {
             try
@@ -380,7 +379,7 @@ namespace Portal.Pages
         {
             try
             {
-                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Big_New_Msg_tip).GetAttribute("style")== "display: block;")
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.Big_New_Msg_tip).GetAttribute("style")== "")
                     return true;
                 return false;
             }
@@ -439,8 +438,8 @@ namespace Portal.Pages
             try
             {
                 PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.timer).Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-                return  PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoginCodeText).GetAttribute("value");
+                Thread.Sleep(1*1000);
+                return PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoginCodeText).GetAttribute("value");
             }
             catch (Exception e)
             {
@@ -526,6 +525,7 @@ namespace Portal.Pages
             {
                 var okButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.ModifyButton);
                 okButton.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(1));
             }
             catch(Exception e)
             {
@@ -539,6 +539,7 @@ namespace Portal.Pages
             {
                 var someWhere = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.SomewhereToSave);
                 someWhere.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(1));
             }
             catch (Exception e)
             {
@@ -614,10 +615,8 @@ namespace Portal.Pages
                 var inputBox = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.msgInputBox);
                 inputBox.Clear();
                 inputBox.SendKeys(text);
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
                 var sendButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.msgSendBtn);
                 sendButton.Click();
-                Thread.Sleep(2 *1000);
             }
             catch (Exception e)
             {                
@@ -627,29 +626,41 @@ namespace Portal.Pages
 
         public static void SendImage()
         {
-            PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.addimg_hidden_input).Click();
-            AutoItX3 au3 = new AutoItX3();
-            au3.ControlFocus("Open", "", "Edit1");
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            au3.ControlSetText("Open", "", "Edit1", "Test.png");
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            au3.ControlClick("Open", "", "Button1");
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+            try
+            {
+                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.addimg_hidden_input).Click();
+                AutoItX3 au3 = new AutoItX3();
+                au3.ControlFocus("Open", "", "Edit1");
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+                au3.ControlSetText("Open", "", "Edit1", "Test.png");
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+                au3.ControlClick("Open", "", "Button1");
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+            }
+            catch(Exception e)
+            {
+
+            }
+           
         }
 
         public static void TurnOnSetup()
         {
-            LoginPage.GoTo();
-            HomePage.ClickWeChatApp();
-            //Go to AI Page
-            WeChatManagermentPage.GoToHIPage();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            //click settings
-            ClickSettings();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-            //Turn on HI
-            if (isOff()) { TurnOn(); DisTurnOnDialogByClickOK(); }
+            try
+            {
+                LoginPage.GoTo();
+                HomePage.ClickWeChatApp();
+                //Go to AI Page
+                WeChatManagermentPage.GoToHIPage();
+                //click settings
+                ClickSettings();
+                //Turn on HI
+                if (isOff()) { TurnOn(); DisTurnOnDialogByClickOK(); }
+            }
+            catch(Exception e)
+            { }
+
         }
 
         public static void DisTurnOnDialogByClickOK()
@@ -665,8 +676,16 @@ namespace Portal.Pages
 
         public static void DisTurnOnDialogByCancle()
         {
-            var turnOnDialogCancle=PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TurnOnDialogCancle);
-            turnOnDialogCancle.Click();
+            try
+            {
+                var turnOnDialogCancle = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TurnOnDialogCancle);
+                turnOnDialogCancle.Click();
+            }
+            catch(Exception e)
+            {
+
+            }
+
         }
 
         public static IWebElement GetTheLastMsg()
@@ -721,7 +740,7 @@ namespace Portal.Pages
         {
             try
             {
-                var elementChatBody = PortalChromeDriver.GetElementByTagName("img");
+                var elementChatBody = PortalChromeDriver.GetElementsByTagName("img");
                 return true;
             }
             catch (Exception e) { return false; }
@@ -729,10 +748,34 @@ namespace Portal.Pages
 
         public static bool CheckTheTopUser()
         {
-            //判断置顶的客户为发送消息的客户
-            var userName = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TopUser).Text;
-            if (userName == "chrysanthemum") return true;
-            return false;
+            try
+            {
+                //判断置顶的客户为发送消息的客户
+                var userName = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TopUser).Text;
+                if (userName == "chrysanthemum") return true;
+                return false;
+            }
+            catch(Exception e)
+            { return false; }
+
+        }
+
+        public static void ClearTriggers()
+        {
+            try {
+                var triggers = PortalChromeDriver.GetElementsByClassName("contentText");
+                if (triggers != null)
+                {
+                    foreach (var item in triggers)
+                    {
+                        DeleteTrigger();
+                    }
+                }
+            }
+            catch(Exception e)
+            { }
+           
+           
         }
     }
 }
