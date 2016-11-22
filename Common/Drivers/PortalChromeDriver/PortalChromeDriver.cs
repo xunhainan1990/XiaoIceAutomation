@@ -48,13 +48,13 @@ namespace Common.Driver
             Instance.Navigate().GoToUrl(testUrl);
         }
 
-        public static IWebElement  WaitForPageElementToLoad(By by, IWebDriver driver, int timeInSeconds)
+        public static IWebElement  WaitForPageElementToLoad(By by, IWebDriver driver, int timeInSeconds=5)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(by));
             return driver.FindElement(by);
         }
-        public static List<IWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds)
+        public static List<IWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds=5)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(by));
@@ -121,39 +121,39 @@ namespace Common.Driver
         }
         public static IWebElement GetElementByID(string id)
         {
-            return WaitForPageElementToLoad(By.Id(id), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementToLoad(By.Id(id), PortalChromeDriver.Instance);
         }
         public static IWebElement GetElementByName(string name)
         {
-            return WaitForPageElementToLoad(By.Name(name), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementToLoad(By.Name(name), PortalChromeDriver.Instance);
         }
 
         public static IWebElement GetElementByClassName(string className)
         {
-            return WaitForPageElementToLoad(By.ClassName(className), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementToLoad(By.ClassName(className), PortalChromeDriver.Instance);
         }
         public static List<IWebElement> GetElementsByClassName(string className)
         {
-            return WaitForPageElementsToLoad(By.ClassName(className), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementsToLoad(By.ClassName(className), PortalChromeDriver.Instance);
         }
         public static IWebElement GetElementByXpath(string Xpath)
         {
-            return WaitForPageElementToLoad(By.XPath(Xpath), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementToLoad(By.XPath(Xpath), PortalChromeDriver.Instance);
         }
 
         public static List<IWebElement> GetElementsByXpath(string Xpath)
         {
-            return WaitForPageElementsToLoad(By.XPath(Xpath), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementsToLoad(By.XPath(Xpath), PortalChromeDriver.Instance);
         }
 
         public static List<IWebElement> GetElementsByTagName(string tagName)
         {
-            return WaitForPageElementsToLoad(By.TagName(tagName), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementsToLoad(By.TagName(tagName), PortalChromeDriver.Instance);
         }
 
         public static IWebElement GetElementByTagName(string tagName)
         {
-            return WaitForPageElementToLoad(By.TagName(tagName), PortalChromeDriver.Instance, 5);
+            return WaitForPageElementToLoad(By.TagName(tagName), PortalChromeDriver.Instance);
         }
 
         public static void TakeScreenShot(string fileName)

@@ -120,21 +120,9 @@ namespace CSH5
         {
             try
             {
-                var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
-                keyBoardSwich.Click();
+                //var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
+                //keyBoardSwich.Click();
 
-                var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
-                sendMessage.SendKeys(text);
-
-                var sendButton = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.SendButtonXpath);
-                sendButton.Click();
-
-                ClickHICard();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
-            }
-            catch (Exception e)
-            {
-                Thread.Sleep(5 * 1000);
                 var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
                 sendMessage.SendKeys(text);
 
@@ -142,7 +130,10 @@ namespace CSH5
                 sendButton.Click();
 
                 ClickHICard();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(20));
+            }
+            catch (Exception e)
+            {
             }
         }
 
@@ -363,6 +354,7 @@ namespace CSH5
             try
             {
                 MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.WeChat).Click();
+                Thread.Sleep(5*1000);
             }
             catch (Exception e) { }
         }

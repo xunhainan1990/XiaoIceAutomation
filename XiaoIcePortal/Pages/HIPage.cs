@@ -412,7 +412,7 @@ namespace Portal.Pages
             try
             {
                 PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.SubTabHiChat).Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(15));
             }
             catch (Exception e)
             {
@@ -599,6 +599,7 @@ namespace Portal.Pages
                     {
                         user.Click();
                         SendMessage("我是xun");
+                        return;
                     }
                 }
             }

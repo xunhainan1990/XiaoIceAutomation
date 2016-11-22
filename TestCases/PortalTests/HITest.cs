@@ -20,9 +20,7 @@ namespace TestCases.PortalTests
             LoginPage.GoTo();
             HomePage.ClickWeChatApp();
 
-            //string data = "{\"Content\": \"你好\"，\"ContentType\":,\"1\",\"CreateTimeStamp\":\"1479350984010\",\"DirectionType\":\"1\",\"UserId\":\"owmO6wAEYltT1CyYhAcp_GtWCLsc\",\"UserNickname\":\"李能能\"}";
-            //FakeUser user = new FakeUser();
-            //user.GetResponse("http://csint.trafficmanager.cn/WebApps/HiSendMessage?appId=wxa19726ccea8f0293&partnerId=25&userId=owmO6wAEYltT1CyYhAcp_GtWCLsc&sign=uiacrwsa", data);
+            
 
             //Go to AI Page
             WeChatManagermentPage.GoToHIPage();
@@ -78,6 +76,7 @@ namespace TestCases.PortalTests
             #region 4.[接入条件设置]是否可以添加一条为空的触发关键词
             HIPage.ClearTriggers();
             HIPage.InputTrigger("");
+            PortalChromeDriver.Refresh();
             PortalChromeDriver.TakeScreenShot("4.[接入条件设置]是否可以添加一条为空的触发关键词");      
             Assert.IsFalse(HIPage.iskeywordAdded(""));
             #endregion
@@ -292,11 +291,9 @@ namespace TestCases.PortalTests
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
-            //PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             HIPage.SwichHISettingTab(HIPortalPageUIElement.SubTabHIStaff);
-            //PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-            Assert.IsTrue(HIPage.IsVerified());
             PortalChromeDriver.TakeScreenShot("25.[客服人员设定]是否认证的公众号可以使用该功能");
+            Assert.IsTrue(HIPage.IsVerified());
         }
 
         [TestMethod]
@@ -306,14 +303,10 @@ namespace TestCases.PortalTests
         {
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
-            //PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             HIPage.SwichHISettingTab(HIPortalPageUIElement.SubTabHIStaff);
-            //PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
             HIPage.GetLoginCode();
-            //PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
             Assert.IsTrue(HIPage.IsSendLoginCode());
             PortalChromeDriver.TakeScreenShot("26.[客服人员设定]是否可以获取登陆密码");
-            //var value = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoginCodeText).GetAttribute("value");
             Assert.IsTrue(HIPage.IsLoginCodeTextDisable());
         }
 
@@ -326,8 +319,8 @@ namespace TestCases.PortalTests
             HIPage.TurnOnSetup();
             HIPage.SwichHISettingTab(HIPortalPageUIElement.SubTabHIStaff);
             HIPage.DeleteStaff();
-            Assert.IsTrue(HIPage.IsVerified());
             PortalChromeDriver.TakeScreenShot("32.[客服人员设定]是否可以移除绑定的客服人员");
+            Assert.IsTrue(HIPage.IsVerified());
         }
 
         [TestMethod]
@@ -339,19 +332,18 @@ namespace TestCases.PortalTests
             HIPage.TurnOnSetup();
             HIPage.OpenHiChatWindow();
             HIPage.GetOtherUserFromUserList();
-            Thread.Sleep(2*1000);
-            HIPage.GetTestUserFromUserList();
             Thread.Sleep(2 * 1000);
             Assert.IsFalse(HIPage.CheckTheTopUser());
             HIPage.GetTestUserFromUserList();
             HIPage.SendMessage("我应该置顶");
             Thread.Sleep(2 * 1000);
+            PortalChromeDriver.TakeScreenShot("50.[对话窗口]是否可以置顶，当切换用户的时候");
             Assert.IsTrue(HIPage.CheckTheTopUser());
         }
 
         [TestMethod]
         [TestCategory("Portal")]
-        [TestProperty("description", "46.	[对话窗口]聊天对话窗是否可以发送不同格式的图片")]
+        [TestProperty("description", "46.[对话窗口]聊天对话窗是否可以发送不同格式的图片")]
         public void Can_Send_DiffPhotos()
         {
             //确保HI是Turn on的状态
@@ -373,8 +365,9 @@ namespace TestCases.PortalTests
             HIPage.OpenHiChatWindow();
             HIPage.GetTestUserFromUserList();
             HIPage.SendMessage("0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123");
-            Assert.IsTrue(HIPage.IsLengthWithin300());
+            Thread.Sleep(2*1000);
             PortalChromeDriver.TakeScreenShot("47.[对话窗口]聊天对话窗是否可以输入超过300个字");
+            Assert.IsTrue(HIPage.IsLengthWithin300());           
         }
 
         [TestMethod]
@@ -389,8 +382,8 @@ namespace TestCases.PortalTests
             HIPage.SendMessage("1");
             HIPage.SendMessage("2");
             HIPage.SendMessage("3");
-            Assert.IsTrue(HIPage.GetTheLastMsg().Text.Equals("3"));
             PortalChromeDriver.TakeScreenShot("49.[对话窗口]聊天对话窗是否保存聊天历史记录（1）");
+            Assert.IsTrue(HIPage.GetTheLastMsg().Text.Equals("3"));
         }
 
         [TestMethod]
@@ -413,8 +406,8 @@ namespace TestCases.PortalTests
             HIPage.DisTurnOnDialogByClickOK();
             HIPage.OpenHiChatWindow();
             HIPage.GetTestUserFromUserList();
-            Assert.IsTrue(HIPage.GetTheLastMsg().Text.Equals("3"));
             PortalChromeDriver.TakeScreenShot("50.[对话窗口]聊天对话窗是否保存聊天历史记录（2）");
+            Assert.IsTrue(HIPage.GetTheLastMsg().Text.Equals("3"));
         }
 
         /// <summary>
@@ -475,8 +468,8 @@ namespace TestCases.PortalTests
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
             HIPage.TurnOff();
-            Assert.IsTrue(HIPage.isOff());
             PortalChromeDriver.TakeScreenShot("56.是否可以停用'人工客服'功能");
+            Assert.IsTrue(HIPage.isOff());
         }       
     }
 }

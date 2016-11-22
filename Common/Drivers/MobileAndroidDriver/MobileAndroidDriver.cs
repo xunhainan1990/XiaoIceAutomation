@@ -52,13 +52,13 @@ namespace Common
             androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
         }
 
-        public static AppiumWebElement WaitForPageElementToLoad(By by, IWebDriver driver, int timeInSeconds)
+        public static AppiumWebElement WaitForPageElementToLoad(By by, IWebDriver driver, int timeInSeconds=20)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(by));
             return (AppiumWebElement)(driver.FindElement(by));
         }
-        public static List<AppiumWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds)
+        public static List<AppiumWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds=20)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(by));
@@ -72,25 +72,25 @@ namespace Common
         }
         public static AppiumWebElement GetElementByName(string name)
         { 
-            return WaitForPageElementToLoad(By.Name(name), androidDriver, 5);
+            return WaitForPageElementToLoad(By.Name(name), androidDriver);
         }
         public static AppiumWebElement GetElementByXpath(string xpath)
         {
-            return WaitForPageElementToLoad(By.XPath(xpath), androidDriver, 5);
+            return WaitForPageElementToLoad(By.XPath(xpath), androidDriver);
         }
         public static AppiumWebElement GetElementByClassName(string className)
         {
-            return WaitForPageElementToLoad(By.ClassName(className), androidDriver, 5);
+            return WaitForPageElementToLoad(By.ClassName(className), androidDriver);
         }
 
         public static List<AppiumWebElement> GetElementsByClassName(string className)
         {
-            return WaitForPageElementsToLoad(By.ClassName(className), androidDriver, 5);
+            return WaitForPageElementsToLoad(By.ClassName(className), androidDriver);
         }
             
         public static List<AppiumWebElement> GetElementsByXpath(string xpath)
         {
-            return androidDriver.FindElementsByXPath(xpath).ToList();
+            return WaitForPageElementsToLoad(By.XPath(xpath), androidDriver);
         }
 
         public static void GetScreenshot(string fileName)

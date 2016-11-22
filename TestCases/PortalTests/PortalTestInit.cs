@@ -14,6 +14,8 @@ namespace TestCases.PortalTests
             {
                 PortalChromeDriver.ChromeInitialize();
             }
+            LoginPage.GoTo();
+            HomePage.ClickWeChatApp();
         }
 
         [TestCleanup]

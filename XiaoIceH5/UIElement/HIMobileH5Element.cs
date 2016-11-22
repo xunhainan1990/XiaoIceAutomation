@@ -9,7 +9,7 @@ namespace CSH5.UIElement
     public class HIMobileH5Element
     {
         public static string KeyBoardSwichXpath = "//android.widget.ImageButton[contains(@content-desc,'切换到键盘')]";
-        public static string EditTextXpath = "//android.widget.EditText[contains(@resource-id,'com.tencent.mm:id/a2a')]";
+        public static string EditTextXpath = "//android.widget.EditText[contains(@resource-id,'com.tencent.mm:id/a2u')]";
         public static string SendButtonXpath = "发送";
         public static string HiCardXpath = "接入人工客服";
         public static string xb_inputboxXpath = "//android.widget.EditText[contains(@resource-id,'xb_inputbox')]";

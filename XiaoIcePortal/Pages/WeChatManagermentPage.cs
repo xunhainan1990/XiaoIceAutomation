@@ -1,9 +1,5 @@
 ﻿using Common.Driver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Portal.Pages
 {
@@ -21,6 +17,19 @@ namespace Portal.Pages
               
             }
            
+        }
+
+        public static void GoToCS_Skill_Page()
+        {
+            try
+            {
+                var CS_Skill_Page = PortalChromeDriver.GetElementByXpath(UIElement.DocChatElement.cs_skills);
+                CS_Skill_Page.Click();
+            }
+            catch(Exception e)
+            {
+
+            }
         }
     }
 }

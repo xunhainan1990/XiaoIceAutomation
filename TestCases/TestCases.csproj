@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="PortalAndH5Tests\ChatWithCustomerService.cs" />
     <Compile Include="PortalAndH5Tests\PortalAndH5TestInit.cs" />
+    <Compile Include="PortalTests\DocChatTests.cs" />
     <Compile Include="PortalTests\HITest.cs" />
     <Compile Include="PortalTests\LoginTest.cs" />
     <Compile Include="PortalTests\PortalTestInit.cs" />
