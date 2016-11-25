@@ -1,4 +1,5 @@
 ﻿using Common.Driver;
+using Portal.UIElement;
 using System;
 
 namespace Portal.Pages
@@ -9,7 +10,7 @@ namespace Portal.Pages
         {
             try
             {
-                var HIPage = PortalChromeDriver.GetElementByXpath(UIElement.WeChatManagermentPageUIElement.HILinkXpath);
+                var HIPage = PortalChromeDriver.GetElementByXpath(WeChatManagermentPageUIElement.HILinkXpath);
                 HIPage.Click();
             }
             catch
@@ -23,13 +24,24 @@ namespace Portal.Pages
         {
             try
             {
-                var CS_Skill_Page = PortalChromeDriver.GetElementByXpath(UIElement.DocChatElement.cs_skills);
+                var CS_Skill_Page = PortalChromeDriver.GetElementByXpath(DocChatElement.CS_SKills);
                 CS_Skill_Page.Click();
             }
             catch(Exception e)
             {
 
             }
+        }
+
+        public static void GoTo_AutoReply_Page()
+        {
+            try
+            {
+                var autoReply = PortalChromeDriver.GetElementByXpath(WeChatManagermentPageUIElement.AutoReplyXpath);
+                autoReply.Click();
+            }
+            catch(Exception e)
+            { }
         }
     }
 }

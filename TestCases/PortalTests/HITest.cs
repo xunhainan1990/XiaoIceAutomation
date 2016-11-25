@@ -5,6 +5,7 @@ using Portal.UIElement;
 using Common.Driver;
 using System;
 using Common;
+using XiaoIcePortal.Pages;
 
 namespace TestCases.PortalTests
 {
@@ -19,9 +20,6 @@ namespace TestCases.PortalTests
         {
             LoginPage.GoTo();
             HomePage.ClickWeChatApp();
-
-            
-
             //Go to AI Page
             WeChatManagermentPage.GoToHIPage();
             //Click settings
@@ -123,6 +121,8 @@ namespace TestCases.PortalTests
 
         }
 
+      
+
         [TestMethod]
         [TestCategory("Portal")]
         [TestProperty("description", "11-17是否可以编辑已有的触发关键词")]
@@ -137,7 +137,7 @@ namespace TestCases.PortalTests
             HIPage.EditTrigger("append");
             HIPage.ClickSomewhereToSave();
             PortalChromeDriver.TakeScreenShot("11.[接入条件设置]是否可以编辑已有的触发关键词");
-            Assert.IsTrue(HIPage.iskeywordAdded("Hiappend"));      
+            Assert.IsTrue(HIPage.iskeywordAdded("append"));      
             #endregion
 
             # region 12. [接入条件设置]是否可以正常保存，当编辑已有的触发关键词删除所有内容
@@ -151,11 +151,8 @@ namespace TestCases.PortalTests
 
             #region 13.	[接入条件设置]是否可以正常保存，当编辑已有的触发关键词输入空格
             HIPage.InputTrigger("Hi");
-            Thread.Sleep(5* 1000);
-            HIPage.ReplaceTrigger(" ");
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+            HIPage.EditTrigger(" ");
             PortalChromeDriver.Refresh();
-            PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
             Assert.IsTrue(HIPage.iskeywordAdded("Hi"), "Keyword Added");
             PortalChromeDriver.TakeScreenShot("13.[接入条件设置]是否可以正常保存，当编辑已有的触发关键词输入空格");
             HIPage.DeleteTrigger();
@@ -167,7 +164,7 @@ namespace TestCases.PortalTests
             HIPage.ClearTriggers();
             HIPage.InputTrigger("Hi");
             PortalChromeDriver.Refresh();
-            HIPage.ReplaceTrigger("<div class='body'>");
+            HIPage.EditTrigger("<div class='body'>");
             HIPage.ClickSomewhereToSave();
             PortalChromeDriver.TakeScreenShot("14.[接入条件设置]是否可以正常保存，当编辑已有的触发关键词输入html标签时");
             Assert.IsTrue(HIPage.iskeywordAdded("<div class='body'>"), "Keyword Added");
@@ -176,7 +173,7 @@ namespace TestCases.PortalTests
             #region 15.	[接入条件设置]是否可以正常保存，当编辑已有的触发关键词超过20个字
             HIPage.ClearTriggers();
             HIPage.InputTrigger("Hi");
-            HIPage.ReplaceTrigger("012345678901234567890");
+            HIPage.EditTrigger("012345678901234567890");
             HIPage.ClickSomewhereToSave();
             PortalChromeDriver.TakeScreenShot("15.[接入条件设置]是否可以正常保存，当编辑已有的触发关键词超过20个字");
             Assert.IsTrue(HIPage.iskeywordAdded("01234567890123456789"), "Keyword Added");          
@@ -186,7 +183,7 @@ namespace TestCases.PortalTests
             HIPage.ClearTriggers();
             HIPage.InputTrigger("Hi");
             HIPage.InputTrigger("Hello");
-            HIPage.ReplaceTrigger("Hi");
+            HIPage.EditTrigger("Hi");
             HIPage.ClickSomewhereToSave();
             PortalChromeDriver.TakeScreenShot("16.[接入条件设置]是否可以正常保存，当编辑已有的触发关键词跟其他的触发关键词重复时");
             Assert.IsTrue(HIPage.iskeywordAdded("Hello"), "Keyword Added");          
@@ -195,12 +192,15 @@ namespace TestCases.PortalTests
             #region 17.	[接入条件设置]是否可以正常保存，当编辑已有的触发关键词包含非法词语
             HIPage.ClearTriggers();
             HIPage.InputTrigger("Hi");
-            HIPage.ReplaceTrigger("赌博");
-            HIPage.ClickSomewhereToSave();
+            HIPage.EditTrigger("赌博");
+            HIPage.ByPassAlert();
+            PortalChromeDriver.Refresh();
             PortalChromeDriver.TakeScreenShot("17.[接入条件设置]是否可以正常保存，当编辑已有的触发关键词包含非法词语");
-            Assert.IsTrue(HIPage.iskeywordAdded("Hi"), "Keyword Added");
+            Assert.IsTrue(HIPage.iskeywordAdded("Hi"), "Failed to add 非法字符");
             #endregion  
+
         }
+
 
         [TestMethod]
         [TestCategory("Portal")]
@@ -312,7 +312,7 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("Portal")]
-        [TestProperty("description", "32.	[客服人员设定]是否可以移除绑定的客服人员")]
+        [TestProperty("description", "34.	[客服人员设定]是否可以移除绑定的客服人员")]
         public void Can_Delete_BindedStaff()
         {
             //确保HI是Turn on的状态
@@ -336,7 +336,6 @@ namespace TestCases.PortalTests
             Assert.IsFalse(HIPage.CheckTheTopUser());
             HIPage.GetTestUserFromUserList();
             HIPage.SendMessage("我应该置顶");
-            Thread.Sleep(2 * 1000);
             PortalChromeDriver.TakeScreenShot("50.[对话窗口]是否可以置顶，当切换用户的时候");
             Assert.IsTrue(HIPage.CheckTheTopUser());
         }

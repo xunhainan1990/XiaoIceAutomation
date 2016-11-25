@@ -78,6 +78,17 @@ namespace Portal.Pages
             }
         }
 
+        public static void ByPassAlert()
+        {
+            try
+            {
+                var AlertButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.AlertButton);
+                AlertButton.Click();
+            }
+            catch(Exception e)
+            { }
+        }
+
         public static void InputTrigger(string input)
         {
             try
@@ -119,22 +130,6 @@ namespace Portal.Pages
             }           
         }
 
-        public static void EditTrigger(string appendText)
-        {
-            try
-            {
-                var editButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.EditTriggerButton);
-                editButton.Click();
-                var editCurrentTrigger = PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger);
-                editCurrentTrigger.SendKeys(appendText);
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(1));
-            }
-            catch (Exception e)
-            {
-               
-            }          
-        }
-
         public static void DeleteTriggerByEditButton()
         {
             try
@@ -151,15 +146,16 @@ namespace Portal.Pages
             }
         }
 
-        public static void ReplaceTrigger(string text)
+        public static void EditTrigger(string text)
         {
             try
             {
                 PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.EditTriggerButton).Click();
                 PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger).Clear();
                 PortalChromeDriver.GetElementByClassName(HIPortalPageUIElement.EditCurrentTrigger).SendKeys(text);
-                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.OtherButton).Click();
-                PortalChromeDriver.Instance.Navigate().Refresh();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(1));
+                ClickSomewhereToSave();
+                //PortalChromeDriver.Instance.Navigate().Refresh();
             }
             catch (Exception e)
             {

@@ -128,7 +128,7 @@ namespace CSH5
 
                 var sendButton = MobileAndroidDriver.GetElementByName(HIMobileH5Element.SendButtonXpath);
                 sendButton.Click();
-
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
                 ClickHICard();
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(20));
             }
@@ -223,6 +223,7 @@ namespace CSH5
             try
             {              
                 var textMessageBefore = MobileAndroidDriver.GetElementsByXpath("//android.view.View[@index='0']");
+                
                 List<AppiumWebElement> elements = new List<AppiumWebElement>();
                 foreach (var item in textMessageBefore)
                 {

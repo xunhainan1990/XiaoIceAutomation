@@ -63,7 +63,7 @@ namespace Common
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(by));
             List<AppiumWebElement> appiumElements = new List<AppiumWebElement>();
-            var items = driver.FindElements(by).ToList();
+            var items = driver.FindElements(by).ToList();       
             foreach (var item in items)
             {
                 appiumElements.Add((AppiumWebElement)item);
@@ -94,17 +94,22 @@ namespace Common
         }
 
         public static void GetScreenshot(string fileName)
-        { 
-
-            string filePath = @"D:\TestResult\";
-            Screenshot ss = androidDriver.GetScreenshot();
-            string path = filePath + fileName;
-            if (Directory.Exists(path))
+        {
+            try
             {
-                Directory.Delete(path, true);
+                string filePath = @"D:\TestResult\";
+                Screenshot ss = androidDriver.GetScreenshot();
+                string path = filePath + fileName;
+                if (Directory.Exists(path))
+                {
+                    Directory.Delete(path, true);
+                }
+                Directory.CreateDirectory(path);
+                ss.SaveAsFile(path + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
             }
-            Directory.CreateDirectory(path);
-            ss.SaveAsFile(path + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+            catch(Exception e)
+            { }
+           
 
         }
 

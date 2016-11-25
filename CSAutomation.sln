@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTests", "ServiceTests\ServiceTests.csproj", "{9211E024-13D8-4F35-851A-0CE37E7A7BD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSWebAppsServiceTest", "CSWebAppsServiceTest\CSWebAppsServiceTest.csproj", "{4829BFA3-7AD5-40F4-B3DE-A7DF0F6A505C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9211E024-13D8-4F35-851A-0CE37E7A7BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9211E024-13D8-4F35-851A-0CE37E7A7BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9211E024-13D8-4F35-851A-0CE37E7A7BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4829BFA3-7AD5-40F4-B3DE-A7DF0F6A505C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4829BFA3-7AD5-40F4-B3DE-A7DF0F6A505C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4829BFA3-7AD5-40F4-B3DE-A7DF0F6A505C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4829BFA3-7AD5-40F4-B3DE-A7DF0F6A505C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

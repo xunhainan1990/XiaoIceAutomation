@@ -42,13 +42,18 @@ namespace ServiceTests
     {
         static void Main(string[] args)
         {
+            String domainUrl = "http://e.msxiaobing.com/";
+            string HiSendMessageUrl = "WebApps/HiSendMessage?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&staffId=root&sign=osulywmy";
+            string HiReadLatestMessageUrl = "WebApps/HiReadLatestMessage?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&staffId=root&sign=osulywmy";
+            string HiReadNewMessageByUserUrl = "WebApps/HiReadNewMessageByUser?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&staffId=root&messageId=9058799639&sign=osulywmy";
+            string GetUserProfileUrl = "WebApps/GetUserProfile?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&staffId=root&sign=osulywmy";
+            string HiReadNewMessageByStaffUrl = "WebApps/HiReadNewMessageByStaff?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&messageId=9058799639&sign=osulywmy&staffId=root";
+            string HiReadHistoryMessageUrl = "WebApps/HiReadHistoryMessage?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&messageId=8897451991&sign=osulywmy&staffId=root";
+            string HiFindRecentRepliedStaffIdUrl = "WebApps/HiFindRecentRepliedStaffId?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&staffId=root&messageId=8909689666&sign=osulywmy";
             //var url = "http://e.msxiaobing.com/WebApps/HiSendMessage?appId=wx6fa1ce38190e98f3&partnerId=25&userId=of5NLwzb4DdNH1WpKgyoG0XTc8KU&sign=mllaywhy";
             //var url = "http://stcvm-ls202:48794/WebApps/HiSendMessage?appId=wx6fa1ce38190e98f3&partnerId=25&userId=of5NLwzb4DdNH1WpKgyoG0XTc8KU&sign=mllaywhy";
             var url = "http://csint.trafficmanager.cn/WebApps/HiSendMessage?appId=wx6fa1ce38190e98f3&partnerId=25&userId=of5NLwzb4DdNH1WpKgyoG0XTc8KU&sign=mllaywhy";
-            var mainUrl = "http://cs-webapps-service-int.chinacloudapp.cn/WebApps/HiSendMessage?appId=wx6fa1ce38190e98f3&partnerId=25&userId=of5NLwzb4DdNH1WpKgyoG0XTc8KU&staffId=root&sign=mllaywhy ";
-            string url2 = "http://e.msxiaobing.com//WebApps/HiFindRecentRepliedStaffId?appId=wx6846d580669f169e&partnerId=25&userId=o6JzkwzXIUWQwe3LrNHpeGeExit4&staffId=root&messageId=8909689666&sign=mllaywhy";
             //string data = "{\"Content\": \"12\",\"ContentType\":\"4\",\"CreateTimeStamp\":\"1479726078353\",\"DirectionType\":\"1\",\"StaffId\":\"\",\"UserId\":\"of5NLwzb4DdNH1WpKgyoG0XTc8KU\",\"UserNickname\":\"xun\"}";
-            //string tp = DateTime.Now.ToUniversalTime().ToString();
             var unixTimestamp = (int)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             var msg = NewMethod(unixTimestamp, "", "of5NLwzb4DdNH1WpKgyoG0XTc8KU");
             var data = JsonConvert.SerializeObject(msg);
@@ -68,7 +73,10 @@ namespace ServiceTests
             //        CreateTimeStamp: " + unixTimestamp.ToString() + ",                    CreateTime: '',                    PromisedTag: '" + unixTimestamp.ToString() + "'            } ";
 
             string data11 = @"{'UserId':'of5NLwzb4DdNH1WpKgyoG0XTc8KU','UserNickname':'xun','StaffId':'root','Content':'THE LATEST MESSAGE','Image':{},'ContentType':4,'DirectionType':2,'CreateTimeStamp':'','CreateTime':''}";
-            GetResponse(mainUrl, data11);
+            string HiSendMessageResponse= GetResponse(domainUrl+HiSendMessageUrl, data);
+            string HiReadLatestMessage = GetResponse(domainUrl + HiReadLatestMessageUrl);
+            
+
         }
 
         private static MessageModel NewMethod(int tp, string content, string userId)

@@ -14,6 +14,7 @@ namespace Portal.UIElement
         public static string HITurnOnButton = "/html/body/div/div[2]/div[2]/div[2]/div/div/div/div[3]";
         public static string HITurnOffButton = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";
         public static string HITurnOffConfirm = "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
+        public static string AlertButton= "//*[@id='alertbox_wrapper']/div/div[3]/a";
         public static string HIIsOn = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";
         public static string HIIsOff = "/html/body/div/div[2]/div[2]/div[2]/div/div/div/div[3]";
         public static string TriggerAddBox = "//*[@id='tabbody_instructions']/div[1]/div/input";

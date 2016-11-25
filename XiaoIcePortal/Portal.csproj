@@ -51,12 +51,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AutoReplyPage.cs" />
     <Compile Include="Pages\DocChatPage.cs" />
     <Compile Include="Pages\HIPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\WeChatManagermentPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIElement\AutoReplyElement.cs" />
     <Compile Include="UIElement\DocChatElement.cs" />
     <Compile Include="UIElement\HIPortalPageUIElement.cs" />
     <Compile Include="UIElement\HomePageElement.cs" />
