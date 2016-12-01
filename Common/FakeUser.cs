@@ -10,27 +10,24 @@ namespace Common
 {
     public class FakeUser
     {
+
+        public String domainUrl = "http://cs-webapps-service-prod.chinacloudapp.cn/WebApps/HiSendMessage?appId=wx6fa1ce38190e98f3&partnerId=25&userId={0}&staffId=root&sign={1}";
+        public string contentTemp = "{'UserId':'{0}','UserNickname':'{1}','StaffId':'root','Content':'THE LATEST MESSAGE','Image':{},'ContentType':4,'DirectionType':2,'CreateTimeStamp':'','CreateTime':''}";
+        public  string url = string.Empty;
+        public string content = string.Empty;
+        public FakeUser(string userID,string sign,string userNickname)
+        {
+            url=string.Format(domainUrl,userID,sign);
+            content=contentTemp.Replace("{0}", userID).Replace("{1}", userNickname);
+        }
+
         public string GetResponse(string url, string data = null)
         {
             WebClient webClient = new WebClient();
 
             string response = null;
             try
-            {
-                //using (var wc = new System.Net.WebClient())
-                //{
-                //    wc.Headers["Method"] = "Post";
-                //    wc.Headers["ContentType"] = "application/json;charset=\"gb2312\"";
-                //    wc.Headers["Accept"] = "text/xml, */*";
-                //    webClient.Encoding = System.Text.Encoding.UTF8;
-                //    wc.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; .NET CLR 3.5.30729;)";
-                //    wc.Headers[HttpRequestHeader.AcceptLanguage] = "en-us";
-                //    wc.Headers["KeepAlive"] = "true";
-                //    wc.Headers["AutomaticDecompression"] = (DecompressionMethods.Deflate | DecompressionMethods.GZip).ToString();
-                //    response = wc.UploadString(url, data);
-                //}
-
-
+            { 
                 lock (webClient)
                 {
                     webClient.Headers.Clear();

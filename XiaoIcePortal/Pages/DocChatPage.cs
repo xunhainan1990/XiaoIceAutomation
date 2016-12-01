@@ -1,6 +1,7 @@
 ﻿using Portal.UIElement;
 using Common.Driver;
 using System;
+using System.Collections.Generic;
 
 namespace XiaoIcePortal.Pages
 {
@@ -37,6 +38,15 @@ namespace XiaoIcePortal.Pages
                 wechat_Material.Click();
                 var btn_add = PortalChromeDriver.GetElementByXpath(DocChatElement.Wechat_btn_add);
                 btn_add.Click();
+                string currentWindow = PortalChromeDriver.WechatInstance.CurrentWindowHandle;
+
+                foreach (var item in PortalChromeDriver.WechatInstance.CurrentWindowHandle)
+                {
+                    if (item.Equals(currentWindow))
+                        continue;
+                    PortalChromeDriver.WechatInstance.SwitchTo();
+                }
+                //ISet<String> handles = PortalChromeDriver.WechatInstance.WindowHandles;
                 PortalChromeDriver.WechatInstance.SwitchTo();
             }
             catch(Exception e) { }

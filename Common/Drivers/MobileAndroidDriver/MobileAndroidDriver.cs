@@ -93,19 +93,19 @@ namespace Common
             return WaitForPageElementsToLoad(By.XPath(xpath), androidDriver);
         }
 
-        public static void GetScreenshot(string fileName)
+        public static void GetScreenshot(string filePath, string fileName)
         {
             try
             {
-                string filePath = @"D:\TestResult\";
+                //string filePath = @"D:\TestResult\";
                 Screenshot ss = androidDriver.GetScreenshot();
-                string path = filePath + fileName;
-                if (Directory.Exists(path))
-                {
-                    Directory.Delete(path, true);
-                }
-                Directory.CreateDirectory(path);
-                ss.SaveAsFile(path + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                //string path = filePath + fileName;
+                //if (Directory.Exists(path))
+                //{
+                //    Directory.Delete(path, true);
+                //}
+                //Directory.CreateDirectory(path);
+                ss.SaveAsFile(filePath + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
             }
             catch(Exception e)
             { }

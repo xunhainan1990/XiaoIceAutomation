@@ -17,7 +17,6 @@ namespace TestCases.PortalTests
         /// <summary>
         /// 登陆
         /// </summary>
-        [TestCategory("1")]
         [TestMethod]
         public void LoginWith_PhoneNumber()
         {

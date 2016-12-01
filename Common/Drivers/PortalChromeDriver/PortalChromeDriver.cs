@@ -65,7 +65,7 @@ namespace Common.Driver
 
         public static void ChromeInitializeWithNoCookies()
         {
-            Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDrive");
+            Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
             Instance.Manage().Window.Maximize();
             ReadConfig();
             Instance.Navigate().GoToUrl(testUrl);
@@ -248,13 +248,36 @@ namespace Common.Driver
                 return WaitForPageElementToLoad(By.XPath(xpath), driver).FindElement(By.ClassName(className));
             }
         }
+        public static void TakeScreenShot(string filePath, string fileName)
+        {
+            try
+            {
+                Thread.Sleep(2 * 1000);
+                //string timeStamp = string.Format("{0}_{1}_{2}_{3}{4}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute);
+                Screenshot ss = ((ITakesScreenshot)Instance).GetScreenshot();
+                //string path = filePath + @"\" + fileName;
+                //if (Directory.Exists(path))
+                //{
+                //    Directory.Delete(path, true);
+                //}
+                //Directory.CreateDirectory(path);
+                ss.SaveAsFile(filePath + "\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to take screenshot.Error:" + e.ToString());
+            }
+
+        }
+
         public static void TakeScreenShot(string fileName)
         {
             try
             {
                 Thread.Sleep(2 * 1000);
                 //string timeStamp = string.Format("{0}_{1}_{2}_{3}{4}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute);
-                string filePath = @"D:\TestResult\";
+                string str = Environment.CurrentDirectory;
+                string filePath = str+ @"\TestResults\";
                 Screenshot ss = ((ITakesScreenshot)Instance).GetScreenshot();
                 string path = filePath + fileName;
                 if (Directory.Exists(path))
@@ -269,6 +292,14 @@ namespace Common.Driver
                 Console.WriteLine("Failed to take screenshot.Error:" + e.ToString());
             }
 
+        }
+
+        public static string CreateFolder(string path)
+        {
+            //string filePath = @"D:\TestResult\";
+            string str = Environment.CurrentDirectory;
+            string filePath = str + @"\TestResults\";
+            return Directory.CreateDirectory(filePath+path).FullName.ToString();
         }
 
         public static void Wait(TimeSpan timeSpan)

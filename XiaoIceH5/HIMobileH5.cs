@@ -28,7 +28,7 @@ namespace CSH5
             }
             catch (Exception e)
             {
-                MobileAndroidDriver.GetScreenshot("H5.2.删除设置的关键词，是否还能触发人工客服card");
+               
                 return false;
             }
         }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Portal.UIElement;
+using Common;
 
 namespace Portal.Pages
 {
@@ -102,7 +103,7 @@ namespace Portal.Pages
             }
             catch (Exception e)
             {
-                //加log
+                throw new Exception(e.Message);
             }         
         }
 
@@ -127,6 +128,7 @@ namespace Portal.Pages
             }
             catch (Exception e)
             {
+                throw new Exception(e.Message);
             }           
         }
 
@@ -159,7 +161,7 @@ namespace Portal.Pages
             }
             catch (Exception e)
             {
-                
+                throw new Exception(e.Message);
             }         
         }
 
@@ -570,7 +572,7 @@ namespace Portal.Pages
         {
             try
             {
-                for (int i = 1; i < 7; i++)
+                for (int i = 1; i < 9; i++)
                 {
                     var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
                     if (user.Text == "chrysanthemum")
@@ -588,7 +590,7 @@ namespace Portal.Pages
         {
             try
             {
-                for (int i = 1; i < 7; i++)
+                for (int i = 1; i < 9; i++)
                 {
                     var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
                     if (user.Text == "xun")
@@ -614,6 +616,7 @@ namespace Portal.Pages
                 inputBox.SendKeys(text);
                 var sendButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.msgSendBtn);
                 sendButton.Click();
+                Thread.Sleep(1000);
             }
             catch (Exception e)
             {                
@@ -773,6 +776,19 @@ namespace Portal.Pages
             { }
            
            
+        }
+
+        public static void FakeUserSendMessage()
+        {
+            try
+            {
+                FakeUser user = new FakeUser("of5NLw1GqtagLg7ON0Ytc7PLhOIs", "tdeytlii","李能能");
+                user.GetResponse(user.url,user.content);
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }
