@@ -44,7 +44,7 @@ namespace Portal.UIElement
         public static string LoginCodeText= "//*[@id='tabbody_instructions']/div/div/div[1]/div[3]/div/ul/li[2]/p[2]/input";
         public static string msgBox = "/html/body/div/div[2]/div[2]/div[2]/div/div[1]/div[2]";
         public static string ChatBody= "//*[@id='page_bodyo9CrYwU3juCHvh-BaVSQiiivpLl4']";
-        public static string addimg_hidden_input="//*[@id='addimg-hidden-input']";
+        public static string addimg_hidden_input= "//*[@id='imageInput']";
         public static string msgInputBox = "//*[@id='msgInputBox']";
         public static string msgSendBtn="//*[@id='msgSendBtn']";
         public static string Alert_Trigger = "//*[@id='alertbox_wrapper']/div/div[1]/div[2]";
@@ -53,6 +53,7 @@ namespace Portal.UIElement
         public static string HaveBindStaff= "//*[@id='tabbody_instructions']/div/div/div[2]/h3";
         public static string TurnOnDialog = "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
         public static string TurnOnDialogCancle= "//*[@id='confirmbox_wrapper']/div/div[1]/div[1]";
-        public static string TopUser = "//*[@id='msgListDiv']/div[1]/div[2]/div[1]/div[1]";
+        public static string TopUser = "//*[@id='infoCard_of5NLw3-cVZ0Xn14jQ3gssqS6XD4']/div[2]/div[1]/div[1]";
+        public static string LoadingMore= "//*[@id='loadingMore']";
     }
 }

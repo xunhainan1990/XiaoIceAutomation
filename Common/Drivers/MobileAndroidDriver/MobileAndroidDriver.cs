@@ -32,6 +32,41 @@ namespace Common
 
             androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
         }
+        public static void AndroidInitializeWithoutChangingKeyboard()
+        {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.SetCapability("device", "Android");
+            capabilities.SetCapability(CapabilityType.Platform, "Windows");
+            capabilities.SetCapability("deviceName", "MI 4W");
+            capabilities.SetCapability("platformName", "Android");
+            capabilities.SetCapability("platformVersion", "23");
+            //WeChat
+            capabilities.SetCapability("appPackage", "com.tencent.mm");
+            capabilities.SetCapability("appActivity", "com.tencent.mm.ui.LauncherUI");
+            capabilities.SetCapability("unicodeKeyboard", "False");
+            capabilities.SetCapability("resetKeyboard", "True");
+            capabilities.SetCapability("newCommandTimeout", 120);
+
+            androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
+        }
+        public static void AndroidWeiboInitialize()
+        {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.SetCapability("device", "Android");
+            capabilities.SetCapability(CapabilityType.Platform, "Windows");
+            capabilities.SetCapability("deviceName", "MI 4W");
+            capabilities.SetCapability("platformName", "Android");
+            capabilities.SetCapability("platformVersion", "23");
+            //WeChat
+            capabilities.SetCapability("appPackage", "com.sina.weibo");
+            capabilities.SetCapability("appActivity", "com.tencent.mm.ui.LauncherUI");
+            capabilities.SetCapability("unicodeKeyboard", "True");
+            capabilities.SetCapability("resetKeyboard", "True");
+            capabilities.SetCapability("newCommandTimeout", 120);
+
+            androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
+        }
+       
 
         public static void AndroidMmsInitialize()
         {
@@ -52,11 +87,20 @@ namespace Common
             androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
         }
 
-        public static AppiumWebElement WaitForPageElementToLoad(By by, IWebDriver driver, int timeInSeconds=20)
+        public static AppiumWebElement WaitForPageElementToLoad(By by, IWebDriver driver, int timeInSeconds = 25, bool conti= false)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
-            wait.Until(ExpectedConditions.ElementExists(by));
-            return (AppiumWebElement)(driver.FindElement(by));
+            if (conti)
+            {
+                return (AppiumWebElement)(driver.FindElement(by));
+            }
+            else
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
+                wait.Until(ExpectedConditions.ElementExists(by));
+                return (AppiumWebElement)(driver.FindElement(by));
+           
+            }
+
         }
         public static List<AppiumWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds=20)
         {
@@ -70,13 +114,13 @@ namespace Common
             }
             return appiumElements;
         }
-        public static AppiumWebElement GetElementByName(string name)
+        public static AppiumWebElement GetElementByName(string name, bool conti = false)
         { 
-            return WaitForPageElementToLoad(By.Name(name), androidDriver);
+            return WaitForPageElementToLoad(By.Name(name), androidDriver,25, conti);
         }
-        public static AppiumWebElement GetElementByXpath(string xpath)
+        public static AppiumWebElement GetElementByXpath(string xpath, bool conti = false)
         {
-            return WaitForPageElementToLoad(By.XPath(xpath), androidDriver);
+            return WaitForPageElementToLoad(By.XPath(xpath), androidDriver,25, conti);
         }
         public static AppiumWebElement GetElementByClassName(string className)
         {
@@ -95,6 +139,7 @@ namespace Common
 
         public static void GetScreenshot(string filePath, string fileName)
         {
+            Thread.Sleep(4 * 1000);
             try
             {
                 //string filePath = @"D:\TestResult\";
@@ -110,12 +155,62 @@ namespace Common
             catch(Exception e)
             { }
            
+        }
 
+        public static void LongPress(AppiumWebElement appiumElement)
+        {
+            try
+            {
+                androidDriver.Tap(1, appiumElement,5*1000);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void Swipe(AppiumWebElement appiumElement)
+        {
+            try
+            {
+                var a = appiumElement.Location;
+                androidDriver.Swipe(a.X+1000,a.Y+1000,a.X,a.Y,1000);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public static void AndroidCleanUp()
         {
             androidDriver.Dispose();
+        }
+
+        public static void ClickElemnetPerName(string name)
+        {
+            try
+            {
+                MobileAndroidDriver.GetElementByName(name).Click();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static bool IsAt(string path,string value)
+        {
+            try
+            {
+                if (MobileAndroidDriver.GetElementByXpath(path).Text.Contains(value))
+                    return true;
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

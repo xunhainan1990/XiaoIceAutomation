@@ -8,6 +8,6 @@ namespace Common
 {
     public class CommonElement
     {
-        
+        public static string AllSkills = "/html/body/div/div[2]/div[2]/div[2]/div/div/h3/a";
     }
 }

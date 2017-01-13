@@ -11,21 +11,22 @@ namespace TestCases.PortalTests
         [TestInitialize]
         public void Inti()
         {
-            if (PortalChromeDriver.Instance!= null)
+            if (PortalChromeDriver.Instance== null)
             {
-                PortalChromeDriver.Instance.Close();
-                PortalChromeDriver.Instance.Dispose();
+                PortalChromeDriver.ChromeInitializeWithNoCookies();
             }
-            PortalChromeDriver.ChromeInitializeWithNoCookies();
-            MobileAndroidDriver.AndroidMmsInitialize();
+            LoginPage.GoTo();
             //MobileAndroidDriver
         }
         [TestCleanup]
         public void CleanUp()
         {
-            PortalChromeDriver.Instance.Close();
-            PortalChromeDriver.Instance.Dispose();
-            MobileAndroidDriver.androidDriver.Dispose();
+            //if (PortalChromeDriver.Instance != null)
+            //{
+                PortalChromeDriver.Instance.Close();
+                PortalChromeDriver.Instance.Dispose();
+            //}
+            if(MobileAndroidDriver.androidDriver!=null) MobileAndroidDriver.androidDriver.Dispose();
         }
     }
 }

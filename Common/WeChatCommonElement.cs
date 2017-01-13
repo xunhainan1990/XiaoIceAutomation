@@ -11,5 +11,6 @@ namespace Common
         public static string ContactList = "通讯录";
         public static string OfficialAccount = "公众号";
         public static string TestAccout = "平台测试账号2";
+        public static string ShareUser = "chrysanthemum";
     }
 }

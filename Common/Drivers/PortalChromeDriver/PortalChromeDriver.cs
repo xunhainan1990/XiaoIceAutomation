@@ -20,6 +20,7 @@ namespace Common.Driver
     {
         public static IWebDriver Instance { get; set; }
         public static IWebDriver WechatInstance { get; set; }
+        public static IWebDriver NewInstance { get; set; }
         public static string testUrl = "";
         public static string cookiePath = "";
         public static string wechatUrl = "https://mp.weixin.qq.com/";
@@ -32,6 +33,13 @@ namespace Common.Driver
             string line;
             ReadConfig();
             Instance.Navigate().GoToUrl(testUrl);
+            //var loginInput = WaitForPageElementToLoad(By.Id("phoneNumber"), PortalChromeDriver.Instance);
+            //loginInput.SendKeys("18613881880");
+            ////Send Verification
+            //var sendVrificationButton = GetElementByID("sendverification");
+            //sendVrificationButton.Click();
+            //var allCookie = Instance.Manage().Cookies.AllCookies;
+
             StreamReader sr = new StreamReader(cookiePath);
             while ((line = sr.ReadLine()) != null)
             {
@@ -61,6 +69,16 @@ namespace Common.Driver
                 WechatInstance.Manage().Cookies.AddCookie(cookie);
             }
             WechatInstance.Navigate().GoToUrl(wechatUrl);
+        }
+
+        public static ChromeDriver ChromeInitializeNewWindow(string url)
+        {
+            NewInstance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
+
+            NewInstance.Manage().Window.Maximize();
+            ReadConfig();
+            NewInstance.Navigate().GoToUrl(url);
+            return (ChromeDriver)NewInstance;
         }
 
         public static void ChromeInitializeWithNoCookies()
@@ -114,10 +132,15 @@ namespace Common.Driver
                     testUrl = PortalChromeDriver.BaseProductAddress;
                     cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
                 }
-                else
+                else if(para=="int")
                 {
                     testUrl = PortalChromeDriver.BaseIntAddress;
                     cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\IntCookies.txt";
+                }
+                else
+                {
+                    testUrl = PortalChromeDriver.StagingAddress;
+                    cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
                 }
             }
         }
@@ -126,7 +149,15 @@ namespace Common.Driver
         {
             get
             {
-                return "http://csint.trafficmanager.cn";
+                return "https://csint.trafficmanager.cn";
+            }
+        }
+
+        public static string StagingAddress
+        {
+            get
+            {
+                return "https://prod-cswechat-websites-0-staging.chinacloudsites.cn";
             }
         }
 
@@ -134,7 +165,7 @@ namespace Common.Driver
         {
             get
             {
-                return "http://e.msxiaobing.com";
+                return "https://e.msxiaobing.com";
             }
         }
 
@@ -153,6 +184,19 @@ namespace Common.Driver
                 return WaitForPageElementToLoad(By.Id(id), driver);
             }
          
+        }
+
+        public static List<IWebElement> GetElementsByID(string id, IWebDriver driver = null)
+        {
+            if (driver == null)
+            {
+                return WaitForPageElementsToLoad(By.Id(id), Instance);
+            }
+            else
+            {
+                return WaitForPageElementsToLoad(By.Id(id), driver);
+            }
+
         }
         public static IWebElement GetElementByName(string name, IWebDriver driver=null)
         {
@@ -253,7 +297,6 @@ namespace Common.Driver
             try
             {
                 Thread.Sleep(2 * 1000);
-                //string timeStamp = string.Format("{0}_{1}_{2}_{3}{4}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute);
                 Screenshot ss = ((ITakesScreenshot)Instance).GetScreenshot();
                 //string path = filePath + @"\" + fileName;
                 //if (Directory.Exists(path))
@@ -265,7 +308,7 @@ namespace Common.Driver
             }
             catch (Exception e)
             {
-                Console.WriteLine("Failed to take screenshot.Error:" + e.ToString());
+               
             }
 
         }
@@ -275,11 +318,9 @@ namespace Common.Driver
             try
             {
                 Thread.Sleep(2 * 1000);
-                //string timeStamp = string.Format("{0}_{1}_{2}_{3}{4}", DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute);
-                string str = Environment.CurrentDirectory;
-                string filePath = str+ @"\TestResults\";
+                string filePath = Environment.CurrentDirectory;
                 Screenshot ss = ((ITakesScreenshot)Instance).GetScreenshot();
-                string path = filePath + fileName;
+                string path = filePath+"\\" + fileName;
                 if (Directory.Exists(path))
                 {
                     Directory.Delete(path, true);
@@ -289,22 +330,84 @@ namespace Common.Driver
             }
             catch (Exception e)
             {
-                Console.WriteLine("Failed to take screenshot.Error:" + e.ToString());
+               
             }
-
         }
 
         public static string CreateFolder(string path)
         {
             //string filePath = @"D:\TestResult\";
-            string str = Environment.CurrentDirectory;
-            string filePath = str + @"\TestResults\";
+            string filePath = Environment.CurrentDirectory+"\\";
             return Directory.CreateDirectory(filePath+path).FullName.ToString();
         }
 
         public static void Wait(TimeSpan timeSpan)
         {
             Thread.Sleep((int)(timeSpan.TotalSeconds * 1000));
+        }
+
+        public static void ClickElementPerXpath(string xpath)
+        {
+            try
+            {
+                PortalChromeDriver.GetElementByXpath(xpath).Click(); ;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void SendKeysPerXpath(string xpath,string content)
+        {
+            try
+            {
+                PortalChromeDriver.GetElementByXpath(xpath).SendKeys(content); 
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void ClearPerXpath(string xpath)
+        {
+            try
+            {
+                PortalChromeDriver.GetElementByXpath(xpath).Clear();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
+        public static void ClickElementsPerClassName(string className)
+        {
+            try
+            {
+                foreach (var item in GetElementsByClassName(className))
+                {
+                    item.Click();
+                } 
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void ClickElementPerClassName(string className)
+        {
+            try
+            {
+                GetElementByClassName(className).Click();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
     }

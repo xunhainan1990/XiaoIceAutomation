@@ -53,15 +53,25 @@
   <ItemGroup>
     <Compile Include="Pages\AutoReplyPage.cs" />
     <Compile Include="Pages\DocChatPage.cs" />
+    <Compile Include="Pages\FollowedAutoReplyPage.cs" />
     <Compile Include="Pages\HIPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\FaceRankingPage.cs" />
+    <Compile Include="Pages\SecretRelationshipPage.cs" />
+    <Compile Include="UIElement\FollowedAutoReplyElement.cs" />
+    <Compile Include="UIElement\LoginElement.cs" />
+    <Compile Include="UIElement\SecertRelationshipElement.cs" />
+    <Compile Include="Pages\MenuPage.cs" />
     <Compile Include="Pages\WeChatManagermentPage.cs" />
+    <Compile Include="PhotoFileElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIElement\AutoReplyElement.cs" />
     <Compile Include="UIElement\DocChatElement.cs" />
     <Compile Include="UIElement\HIPortalPageUIElement.cs" />
     <Compile Include="UIElement\HomePageElement.cs" />
+    <Compile Include="UIElement\FaceRankingElement.cs" />
+    <Compile Include="UIElement\MenuElement.cs" />
     <Compile Include="UIElement\WeChatManagermentPageUIElement.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,10 +13,13 @@ using Portal.UIElement;
 using System.Collections;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
+using XiaoIcePortal.UIElement;
+using XiaoIcePortal;
+using XiaoIceH5;
 
 namespace CSH5
 {
-    public class HIMobileH5
+    public class MobileH5
     {
 
         public static bool IsAt(string selector)
@@ -32,7 +35,20 @@ namespace CSH5
                 return false;
             }
         }
+        public static bool IsAtPerName(string selector,string compare)
+        {
+            try
+            {
+                if (MobileAndroidDriver.GetElementByName(selector).GetAttribute("name").Contains(compare))
+                return true;
+                return false;
+            }
+            catch (Exception e)
+            {
 
+                return false;
+            }
+        }
         public static bool IsAtPerXpath(string xpathSelector)
         {
             try
@@ -45,6 +61,20 @@ namespace CSH5
                 return false;
             }
         }
+
+        public static bool IsAtPerXpath(string xpathSelector,string compare)
+        {
+            try
+            {
+                if(MobileAndroidDriver.GetElementByXpath(xpathSelector).GetAttribute("name").Contains(compare))
+                return true;
+                return false; 
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }      
 
         public static void ClearAllRecord()
         {
@@ -85,6 +115,7 @@ namespace CSH5
 
                 var testAccout = MobileAndroidDriver.GetElementByName(WeChatCommonElement.TestAccout);
                 testAccout.Click();
+                Thread.Sleep(1*1000);
             }
             catch(Exception e)
             {
@@ -96,6 +127,9 @@ namespace CSH5
         public static void SendMessage(string text)
         {
             try {
+                var textInputSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.TextInput);
+                textInputSwich.Click();
+                
                 var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
                 keyBoardSwich.Click();
 
@@ -104,6 +138,7 @@ namespace CSH5
 
                 var sendButton = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.SendButtonXpath);
                 sendButton.Click();
+                Thread.Sleep(2*1000);
 
             }
             catch (Exception e) {
@@ -120,8 +155,11 @@ namespace CSH5
         {
             try
             {
-                //var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
-                //keyBoardSwich.Click();
+                var textInputSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.TextInput);
+                textInputSwich.Click();
+
+                var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
+                keyBoardSwich.Click();
 
                 var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
                 sendMessage.SendKeys(text);
@@ -134,6 +172,15 @@ namespace CSH5
             }
             catch (Exception e)
             {
+                var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
+                sendMessage.Click();
+                sendMessage.SendKeys(text);
+
+                var sendButton = MobileAndroidDriver.GetElementByName(HIMobileH5Element.SendButtonXpath);
+                sendButton.Click();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
+                ClickHICard();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(20));
             }
         }
 
@@ -194,24 +241,15 @@ namespace CSH5
            
         }
 
-        public static void XB_SendPhotoPerXiangCe()
+        public static void XB_SendPhotoPerXiangCe(string fileName)
         {
             try
             {
-                var xb_addimg_image = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.xb_addimg_image);
-                xb_addimg_image.Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
-
-                var xiangce = MobileAndroidDriver.GetElementByName("文档");
-                xiangce.Click();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-
-                var documentSelect = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.DocumentSelect);
-                MobileAndroidDriver.androidDriver.Pinch(documentSelect);
-                MobileAndroidDriver.androidDriver.Swipe(10, 10, 0, 0, 5);
-                documentSelect.Tap(1, 2);
-                documentSelect.Zoom();
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
+                MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.xb_addimg_image).Click() ;
+                MobileAndroidDriver.GetElementByName("文档").Click();
+                MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
+                MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
+                MobileAndroidDriver.GetElementByName(fileName, true).Click();
             }
             catch(Exception e)
             { }
@@ -243,6 +281,21 @@ namespace CSH5
             }          
         }
 
+        public static bool GetVoiceMessage()
+        {
+            try
+            {
+                if (MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/ib')]").Text.Contains("60"))
+                    return true;
+                return false;
+                      
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public static bool GetMagnifyImage()
         {
 
@@ -263,6 +316,46 @@ namespace CSH5
             catch (Exception e)
             {
                 return false;
+            }
+        }
+
+        public static AppiumWebElement GetLatestMessage()
+        {
+
+            try
+            {
+                var textMessageBefore = MobileAndroidDriver.GetElementsByXpath("//android.widget.TextView[@index='0']");
+                List<AppiumWebElement> elements = new List<AppiumWebElement>();
+                foreach (var item in textMessageBefore)
+                {
+                    elements.Add(item);
+                }
+                return elements[elements.Count - 3];
+               
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static AppiumWebElement GetLatestMessageWithMenu()
+        {
+
+            try
+            {
+                var textMessageBefore = MobileAndroidDriver.GetElementsByXpath("//android.widget.TextView[@index='0']");
+                List<AppiumWebElement> elements = new List<AppiumWebElement>();
+                foreach (var item in textMessageBefore)
+                {
+                    elements.Add(item);
+                }
+                return elements[elements.Count - 4];
+
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
 
@@ -365,13 +458,70 @@ namespace CSH5
             try
             {
                 MobileAndroidDriver.GetElementByName(HIMobileH5Element.ReplyCardFromHI).Click();
-                Thread.Sleep(2*1000);
+                Thread.Sleep(5*1000);
             }
             catch(Exception e)
             {
 
             }
 
+        }
+
+        public static void UnFollowWeChatOffcialAccount()
+        {
+            try
+            {
+                MobileAndroidDriver.GetElementByName(WeChatCommonElement.ContactList).Click();
+                MobileAndroidDriver.GetElementByName(WeChatCommonElement.OfficialAccount).Click();    
+                MobileAndroidDriver.GetElementByName(WeChatCommonElement.TestAccout).Click();
+                //MobileAndroidDriver.GetElementByXpath("com.tencent.mm:id/qa").Click();
+                //MobileAndroidDriver.GetElementByXpath(FollowedAutoReplyElement.H5OfficialAccount).Click();
+                MobileAndroidDriver.GetElementByName("聊天信息").Click();
+                MobileAndroidDriver.GetElementByName("更多").Click();
+                MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='3']").Click();
+                MobileAndroidDriver.GetElementByXpath("//android.widget.Button[contains(@resource-id,'com.tencent.mm:id/a_y')]").Click(); 
+            }
+            catch (Exception e)
+            {
+                MobileH5.BackButtonClick();
+            }
+        }
+
+        public static void FollowWeChatOffcialAccount()
+        {
+            try
+            {
+                ResetKeyboard();
+                MobileAndroidDriver.GetElementByName(WeChatCommonElement.ContactList).Click();
+                MobileAndroidDriver.GetElementByName(WeChatCommonElement.OfficialAccount).Click();
+                //MobileAndroidDriver.GetElementByXpath("com.tencent.mm:id/qa").Click();
+                //MobileAndroidDriver.GetElementByXpath(FollowedAutoReplyElement.H5OfficialAccount).Click();
+                MobileAndroidDriver.GetElementByName("添加").Click();
+                MobileAndroidDriver.GetElementByXpath("//android.widget.EditText[contains(@resource-id,'com.tencent.mm:id/gn')]").SendKeys("cstest-2");
+                Thread.Sleep(5*1000);
+                MobileAndroidDriver.androidDriver.PressKeyCode(AndroidKeyCode.KeycodeNumpad_ENTER);
+                MobileAndroidDriver.androidDriver.PressKeyCode(AndroidKeyCode.Enter);
+                MobileAndroidDriver.GetElementByName("平台测试账号2").Click();
+                Thread.Sleep(3 * 1000);
+                MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='6']").Click(); 
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        public static void ResetKeyboard()
+        {
+            MobileH5.BackToHome();
+            MobileAndroidDriver.GetElementByXpath("//android.widget.FrameLayout[contains(@content-desc,'设置')]").Click();
+            //MobileAndroidDriver.GetElementByName("设置").Click();
+            FaceRankingH5Page.SwipeSetting();
+            MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='2']").Click();
+            MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='4']").Click();
+            MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='1']").Click();
+            //MobileH5.BackToHome();
+            MobileH5.BackToHome();
+            MobileH5.OpenWeChatFromHome();
         }
 
     }

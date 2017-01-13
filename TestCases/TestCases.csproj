@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -55,15 +59,24 @@
     <Reference Include="WebDriver">
       <HintPath>D:\Android\AndroidTest\AndroidTest\packages\Selenium.WebDriver.2.53.1\lib\net40\WebDriver.dll</HintPath>
     </Reference>
+    <Reference Include="XiaoIcePortal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\XiaoIcePortal\bin\Debug\XiaoIcePortal.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PortalAndH5Tests\ChatWithCustomerService.cs" />
+    <Compile Include="PortalAndH5Tests\HIPortalAndH5Test.cs" />
     <Compile Include="PortalAndH5Tests\PortalAndH5TestInit.cs" />
+    <Compile Include="PortalTests\AutoReplyTest.cs" />
     <Compile Include="PortalTests\DocChatTests.cs" />
+    <Compile Include="PortalTests\FollowedAutoReplyTests.cs" />
     <Compile Include="PortalTests\HITest.cs" />
     <Compile Include="PortalTests\LoginTest.cs" />
+    <Compile Include="PortalTests\FaceRankingTest.cs" />
+    <Compile Include="PortalTests\MenuTest.cs" />
     <Compile Include="PortalTests\PortalTestInit.cs" />
     <Compile Include="PortalTests\PortalTestInitNoCookies.cs" />
+    <Compile Include="PortalTests\SecertRelationshipTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +91,12 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\XiaoIceH5\H5.csproj">
       <Project>{56e8e736-1136-4c44-8b2c-74f00da70039}</Project>
       <Name>H5</Name>
@@ -86,9 +105,6 @@
       <Project>{1e7679db-1c5b-4f27-aa66-d56110899883}</Project>
       <Name>Portal</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

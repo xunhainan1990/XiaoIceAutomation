@@ -388,18 +388,13 @@ namespace Portal.Pages
         {
             try
             {
-                for (int i = 1; i < 6; i++)
-                {
-                    var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
-                    if (user.Text == "chrysanthemum")
-                    {
-                        var smallTip = PortalChromeDriver.GetElementByClassName("hichat_msg_tip");
-                        return true;
-                    }
-                }
+                var smallTipClass = PortalChromeDriver.GetElementByXpath("//*[@id='conversationList']/div[1]/div[1]/span").GetAttribute("class");
+                
+                if (smallTipClass== "msgTip hichat_msg_tip")
+                return true;
                 return false;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return false;
             }
@@ -504,7 +499,7 @@ namespace Portal.Pages
 
                 foreach (var item in elementChatBody)
                 {
-                    if (item.FindElement(By.TagName("img")).GetAttribute("class") == "xb_sendimg")
+                    if (item.FindElement(By.TagName("img")).GetAttribute("width") == "250")
                     {
                         return true;
                     }            
@@ -572,14 +567,30 @@ namespace Portal.Pages
         {
             try
             {
-                for (int i = 1; i < 9; i++)
+                if (PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoadingMore).GetAttribute("style")=="")
                 {
-                    var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
-                    if (user.Text == "chrysanthemum")
-                    {
-                        user.Click();
-                    }
+                    HIPage.ClickLoadingMore();
                 }
+
+                var userNames = PortalChromeDriver.GetElementsByClassName("userName");
+                foreach (var userName in userNames)
+                {
+                    if (userName.Text == "chrysanthemum")
+                    {
+                        userName.Click();
+                        Thread.Sleep(2*1000);
+                        SendMessage("Hi,chrysanthemum");
+                    }
+
+                }
+                //for (int i = 1; i < 12; i++)
+                //{
+                //    var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
+                //    if (user.Text == "chrysanthemum")
+                //    {
+                //        user.Click();
+                //    }
+                //}
             }
             catch(Exception e)
             {
@@ -590,16 +601,22 @@ namespace Portal.Pages
         {
             try
             {
-                for (int i = 1; i < 9; i++)
+                if(HIPage.IsAt(HIPortalPageUIElement.LoadingMore))
                 {
-                    var user = PortalChromeDriver.GetElementByXpath("//*[@id='msgListDiv']/div[" + i + "]/div[2]/div[1]/div[1]");
-                    if (user.Text == "xun")
-                    {
-                        user.Click();
-                        SendMessage("我是xun");
-                        return;
-                    }
+                    HIPage.ClickLoadingMore();
                 }
+                var userNames = PortalChromeDriver.GetElementsByClassName("userName");
+                foreach (var userName in userNames)
+                {
+                    if(userName.Text=="xun")
+                    {
+                        userName.Click();
+                        Thread.Sleep(5*1000);
+                        SendMessage("Hi,xun");
+                    }
+
+                }
+
             }
             catch (Exception e)
             {
@@ -630,10 +647,9 @@ namespace Portal.Pages
             {
                 PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.addimg_hidden_input).Click();
                 AutoItX3 au3 = new AutoItX3();
+                PortalChromeDriver.Wait(TimeSpan.FromSeconds(10));
                 au3.ControlFocus("Open", "", "Edit1");
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-                PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
-                au3.ControlSetText("Open", "", "Edit1", "Test.png");
+                au3.ControlSetText("Open", "", "Edit1", @"C:\Users\v-haxun\Desktop\Test.png");
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(2));
                 au3.ControlClick("Open", "", "Button1");
                 PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
@@ -650,7 +666,7 @@ namespace Portal.Pages
             try
             {
                 LoginPage.GoTo();
-                HomePage.ClickWeChatApp();
+                HomePage.ClickWeChatApp("平台测试账号2");
                 //Go to AI Page
                 WeChatManagermentPage.GoToHIPage();
                 //click settings
@@ -691,7 +707,7 @@ namespace Portal.Pages
         public static IWebElement GetTheLastMsg()
         {
             try {
-                var elementChatBody = PortalChromeDriver.GetElementsByXpath("//*[@id='page_bodyof5NLw3-cVZ0Xn14jQ3gssqS6XD4']/div");
+                var elementChatBody = PortalChromeDriver.GetElementsByClassName("conv_wrap_right");
                 List<IWebElement> eleList = new List<IWebElement>();
                 foreach (var item in elementChatBody)
                 {
@@ -748,11 +764,13 @@ namespace Portal.Pages
 
         public static bool CheckTheTopUser()
         {
-            try
+        try
             {
                 //判断置顶的客户为发送消息的客户
-                var userName = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TopUser).Text;
-                if (userName == "chrysanthemum") return true;
+                var userName = PortalChromeDriver.GetElementsByClassName("userName");
+
+                    if (userName[0].Text == "chrysanthemum")
+                    return true;
                 return false;
             }
             catch(Exception e)
@@ -778,14 +796,46 @@ namespace Portal.Pages
            
         }
 
-        public static void FakeUserSendMessage()
+        public static void FakeUserSendMessage(int userCount,string direction)
+        {
+            User[] user = UserInfo.ReadUsersFromFile().Users;
+            try
+            {
+                for (int i = 0; i < userCount; i++)
+                {
+                    Thread.Sleep(20*1000);
+                    UserInfo fakeUser = new UserInfo(user[i].UserID, user[i].Sign, user[i].UserNickname,direction);
+                    fakeUser.GetResponse(fakeUser.url, fakeUser.content);
+                }
+               
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+       public static bool IsAt(string xpath)
         {
             try
             {
-                FakeUser user = new FakeUser("of5NLw1GqtagLg7ON0Ytc7PLhOIs", "tdeytlii","李能能");
-                user.GetResponse(user.url,user.content);
+                var element = PortalChromeDriver.GetElementByXpath(xpath);
+                return true;
             }
             catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void ClickLoadingMore()
+        {
+            try
+            {
+                var element = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.LoadingMore);
+                element.Click();
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }

@@ -10,19 +10,22 @@ namespace TestCases.PortalTests
         [TestInitialize]
         public void Inti()
         {
-            if (PortalChromeDriver.Instance == null)
-            {
-                PortalChromeDriver.ChromeInitialize();
-            }
+            //    if (PortalChromeDriver.Instance == null)
+            //    {
+            PortalChromeDriver.ChromeInitialize();
+            //}
             LoginPage.GoTo();
-            HomePage.ClickWeChatApp();
+            HomePage.ClickWeChatApp("平台测试账号2");
         }
 
         [TestCleanup]
         public void CleanUp()
         {
             LoginPage.GoTo();
-            //PortalChromeDriver.Instance.Close();
+            if (PortalChromeDriver.Instance != null)
+            {
+                PortalChromeDriver.Instance.Dispose();
+            }
             //Thread.Sleep(60*1000);
         }
     }

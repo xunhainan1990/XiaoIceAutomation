@@ -13,9 +13,9 @@ namespace Portal.Pages
                 var HIPage = PortalChromeDriver.GetElementByXpath(WeChatManagermentPageUIElement.HILinkXpath);
                 HIPage.Click();
             }
-            catch
+            catch (Exception e)
             {
-              
+                throw new Exception(e.Message);
             }
            
         }
@@ -29,7 +29,7 @@ namespace Portal.Pages
             }
             catch(Exception e)
             {
-
+                throw new Exception(e.Message);
             }
         }
 
@@ -41,7 +41,37 @@ namespace Portal.Pages
                 autoReply.Click();
             }
             catch(Exception e)
-            { }
+            {
+                throw new Exception(e.Message);
+            }
         }
+
+        public static void GoTo_Menu_Page_FaceRanking()
+        {
+            try
+            {
+                var autoReply = PortalChromeDriver.GetElementByXpath(WeChatManagermentPageUIElement.Menu_FaceRanking);
+                autoReply.Click();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void GoTo_Menu_Page()
+        {
+            try
+            {
+                var autoReply = PortalChromeDriver.GetElementByXpath(WeChatManagermentPageUIElement.Menu);
+                autoReply.Click();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
     }
 }
