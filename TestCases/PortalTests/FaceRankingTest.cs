@@ -16,43 +16,17 @@ namespace TestCases.PortalTests
     public class FaceRankingTest : PortalTestInit
     {
         [TestMethod]
-        [TestCategory("1")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestCategory("FaceRanking")]
-        [TestProperty("description", "1.检查'拼颜值'功能是否显示在技能插件的页面上")]
-        public void Is_FaceRanking_Show()
-        {
-            //Go to AI Page
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            PortalChromeDriver.TakeScreenShot(@"拼颜值\1.检查'拼颜值'功能是否显示在技能插件的页面上");
-            Assert.IsTrue(Utility.IsAt(FaceRankingElement.FaceRanking),"拼颜值显示在技能插件页面上");
-            
-        }
-
-        [TestMethod]
-        [TestCategory("1")]
-        [TestCategory("FaceRanking")]
-        [TestProperty("description", "2.进入功能界面，核实界面相关信息")]
-        public void Is_FaceRanking_TurnOnButton_Show()
-        {
-            //Go to AI Page
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            FaceRankingPage.ClickFaceRanking();
-            PortalChromeDriver.TakeScreenShot(@"拼颜值\2.进入功能界面，核实界面相关信息");
-            Assert.IsTrue(Utility.IsAt(FaceRankingElement.FaceRankingTurnOnButton),"拼颜值打开按钮正常显示");           
-        }
-
-        [TestMethod]
-        [TestCategory("FaceRanking")]
-        [TestCategory("1")]
         [TestProperty("description", "3.是否可以正常开启'拼颜值'功能")]
-        public void Can_FaceRanking_TurnOn()
-        {
-            
+        public void FaceRanking_TurnOn()
+        {            
             HomePage.ClickWeChatApp("平台测试账号2");
             //Go to AI Page
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             Assert.IsTrue(Utility.IsAt(FaceRankingElement.IsTurnOn),"拼颜值正确开启");
             string filePath=PortalChromeDriver.CreateFolder(@"拼颜值\3.是否可以正常开启'拼颜值'功能");
             PortalChromeDriver.TakeScreenShot(filePath,"拼颜值正确开启");
@@ -69,22 +43,21 @@ namespace TestCases.PortalTests
         
         [TestMethod]
         [TestCategory("FaceRanking")]
-        [TestCategory("1")]
+        [TestCategory("BVT")]
         [TestProperty("description", "4.检查复制的链接是否可以设置到菜单里;5检查在手机端”拼颜值“功能是否可以正常使用；16测试结果是否可以分享")]
-        public void Is_FaceRanking_Link_Available()
+        public void FaceRanking_Link_Available()
         {
             //Go to FaceRanking Page
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
 
             WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
             MenuPage.DeleteMenuItem();
      
-            MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link(link);
-            //Thread.Sleep(300 * 1000);
+            MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link_Wait(link);
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\4.检查复制的链接是否可以设置到菜单里");
@@ -124,51 +97,51 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("FaceRanking")]
-        [TestCategory("1")]
+        [TestCategory("BVT")]
         [TestProperty("description", "9.检查上传明星图片的效果")]
-        public void Is_FaceRanking_Celebrity()
+        public void FaceRanking_Celebrity()
         {
             //Go to FaceRanking Page
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
             WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
             if (!Utility.IsAt(MenuElement.FaceRankingMenu,"拼颜值"))
             {
                 MenuPage.DeleteMenuItem();
-                MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link(link);
-                //Thread.Sleep(300 * 1000);
+                MenuPage.AddMenu("拼颜值");
+                MenuPage.AddMenu_Link_Wait(link);
             }
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
-            FaceRankingH5Page.ClickFaceRanking();
-            FaceRankingH5Page.FaceRankingFromFile("1480498437278.jpg");
+            MobileH5.GetToTestAccount(); 
+            FaceRankingH5Page.ClickFaceRanking(); 
+            FaceRankingH5Page.FaceRankingFromFile("mmexport1484563134540.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\9.检查上传明星图片的效果");
             MobileAndroidDriver.GetScreenshot(filePath,"9.检查上传明星图片的效果");
-            Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment,"林丹"), "未显示明星名字，当前case为林丹");
+            Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment,"杨洋"), "未显示明星名字，当前case为林丹");
         }
 
 
         [TestMethod]
         [TestCategory("FaceRanking")]
-        [TestCategory("1")]
+        [TestCategory("BVT")]
         [TestProperty("description", "10.检查上传政治人物图片的效果")]
-        public void Is_FaceRanking_Political()
+        public void FaceRanking_Political()
         {
             //Go to FaceRanking Page
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
             WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
             if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
             {
-                MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link(link);
-                Thread.Sleep(300 * 1000);
+                MenuPage.AddMenu("拼颜值");
+                MenuPage.AddMenu_Link_Wait(link);
             }
 
             MobileAndroidDriver.AndroidInitialize();
@@ -183,27 +156,27 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("FaceRanking")]
-        [TestCategory("1")]
+        [TestCategory("BVT")]
         [TestProperty("description", "11.检查上传非人物图片的效果")]
-        public void Is_FaceRanking_NoneHuman()
+        public void FaceRanking_NoneHuman()
         {
             //Go to FaceRanking Page
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
             WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
             if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
             {
-                MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link(link);
-                Thread.Sleep(300 * 1000);
+                MenuPage.AddMenu("拼颜值");
+                MenuPage.AddMenu_Link_Wait(link);
             }
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            FaceRankingH5Page.ClickFaceRanking();
-            FaceRankingH5Page.FaceRankingFromFile("IMG_20161222_110551.jpg");
+            FaceRankingH5Page.ClickFaceRanking(); 
+            FaceRankingH5Page.FaceRankingFromFile("mmexport1463116029472.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\11.检查上传非人物图片的效果");
             MobileAndroidDriver.GetScreenshot(filePath, "11.检查上传非人物图片的效果");
             Assert.IsFalse(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment, "公众号颜值"), "Comment不出现评分");
@@ -211,21 +184,20 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("FaceRanking")]
-        [TestCategory("1")]
         [TestProperty("description", "12.检查多次上传测试后，平均值是否被拉高或拉低了")]
-        public void Is_FaceRanking_ChangeTheAverage()
+        public void FaceRanking_ChangeTheAverage()
         {
             //Go to FaceRanking Page
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
             WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
             if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
             {
-                MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link(link);
-                Thread.Sleep(300 * 1000);
+                MenuPage.AddMenu("拼颜值");
+                MenuPage.AddMenu_Link_Wait(link);
             }
 
             MobileAndroidDriver.AndroidInitialize();
@@ -257,26 +229,26 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("FaceRanking")]
-        [TestCategory("1")]
+        [TestCategory("BVT")]
         [TestProperty("description", "14.检查是否可以正常关闭”拼颜值“的功能;19.是否可以停用'拼颜值'功能")]
-        public void Is_FaceRanking_TurnOff()
+        public void FaceRanking_TurnOff()
         {
             //Go to FaceRanking Page
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
             WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
             if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
             {
-                MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link(link);
-                Thread.Sleep(300 * 1000);
+                MenuPage.AddMenu("拼颜值");
+                MenuPage.AddMenu_Link_Wait(link);
             }
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             FaceRankingH5Page.ClickFaceRanking();
-            FaceRankingH5Page.FaceRankingFromFile("1480498437278.jpg");
+            FaceRankingH5Page.FaceRankingFromFile("mmexport1484563134540.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\14.检查是否可以正常关闭”拼颜值“的功能");
             MobileAndroidDriver.GetScreenshot(filePath, "关闭前拼颜值正常使用，图片显示描述语");
             Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment), "关闭前拼颜值正常使用，图片显示描述语");      
@@ -297,16 +269,16 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("FaceRanking")]
-        [TestCategory("1")]
+        [TestCategory("BVT")]
         [TestProperty("description", "17.检查手机端拼颜值页面下面的二位码是否可以正常使用")]
-        public void Is_FaceRanking_QRCode_Available()
+        public void FaceRanking_QRCode_Available()
         {
             //Go to FaceRanking Page
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\17.检查手机端拼颜值页面下面的二位码是否可以正常使用");
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
 
-            Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+            Utility.TurnOn();
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
             WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
@@ -317,8 +289,8 @@ namespace TestCases.PortalTests
             }
             catch
             {
-                MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link(link);
-                Thread.Sleep(300 * 1000);
+                MenuPage.AddMenu("拼颜值");
+                MenuPage.AddMenu_Link_Wait(link);
             }           
 
             MobileAndroidDriver.AndroidInitialize();
@@ -329,10 +301,141 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.GetScreenshot(filePath, "点击二维码是否进入公众号");
             Assert.IsTrue(MobileH5.IsAt(CSH5.UIElement.FaceRankingH5Element.FaceRanking));
             FaceRankingH5Page.ClickFaceRanking();
-            FaceRankingH5Page.FaceRankingFromFile("IMG_20161215_154530.jpg");
+            FaceRankingH5Page.FaceRankingFromFile("mmexport1460546134950.jpg");
             MobileAndroidDriver.GetScreenshot(filePath, "二维码进去公众号后是否能正常使用拼颜值");
             Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment), "二维码进去公众号后是否能正常使用拼颜值");
         }
+
+        //[TestMethod]
+        //[TestCategory("FaceRanking")]
+        //[TestCategory("1")]
+        //[TestProperty("description", "检查输入以下trigger，是否会触发拼颜值功能：")]
+        //public void FaceRanking_Trigger()
+        //{
+        //    //Go to FaceRanking Page
+        //    string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\检查输入以下trigger，是否会触发拼颜值功能：");
+        //    WeChatManagermentPage.GoToCS_Skill_Page();
+        //    FaceRankingPage.ClickFaceRanking();
+
+        //    Utility.TurnOn(FaceRankingElement.FaceRankingTurnOnButton);
+
+            
+        //    MobileAndroidDriver.AndroidInitialize();
+        //    MobileH5.GetToTestAccount();
+        //    string[] trigger_a = { "群里谁最丑", "群里谁最美" };
+        //    string[] trigger_b_1 = {"谁","哪个","哪位" };
+        //    string[] trigger_b_2 = { "拉低", "降低" };
+        //    string trigger_b_3 =  "颜值" ;
+        //    string[] trigger_c_1 = { "提升", "拉高" ,"拔高","拉升","提高","带动"};
+        //    string[] trigger_d = { "拼颜值", "比拼颜值" };
+        //    string[] trigger_e = { "比拼", "大比拼","比较","排序" };
+        //    string[] trigger_e_1 = { "颜值最高 ", " 颜值最低 ", " 最美 ", " 最好看 ", " 最漂亮 ", " 最美 ", " 最帅 ", " 最丑 ", " 最难看" };
+
+        //    foreach (var trigger in trigger_a)
+        //    {
+        //        IsValidatorTurnOn(trigger);               
+        //    }
+
+        //    foreach (var item1 in trigger_b_1)
+        //    {
+        //        foreach (var item2 in trigger_b_2)
+        //        {
+        //            IsValidatorTurnOn(item1+item2+trigger_b_3);
+        //        }
+        //    }
+
+        //    foreach (var item1 in trigger_b_1)
+        //    {
+        //        foreach (var item2 in trigger_c_1)
+        //        {
+        //            IsValidatorTurnOn(item1 + item2 + trigger_b_3);
+        //        }
+        //    }
+
+        //    foreach (var item1 in trigger_e)
+        //    {
+        //        IsValidatorTurnOn(item1  + trigger_b_3);
+        //    }
+        //    foreach (var item in trigger_d)
+        //    {
+        //        IsValidatorTurnOn(item);
+        //    }
+
+
+        //    foreach (var item1 in trigger_b_1)
+        //    {
+        //        foreach (var item2 in trigger_e_1)
+        //        {
+        //            IsValidatorTurnOn(item1 + item2);
+        //        }
+        //    }
+
+        //    FaceRankingPage.TurnOffFaceRanking();
+        //    foreach (var trigger in trigger_a)
+        //    {
+        //        IsValidatorTurnOff(trigger);
+        //    }
+
+        //    foreach (var item1 in trigger_b_1)
+        //    {
+        //        foreach (var item2 in trigger_b_2)
+        //        {
+        //            IsValidatorTurnOff(item1 + item2 + trigger_b_3);
+        //        }
+        //    }
+
+        //    foreach (var item1 in trigger_b_1)
+        //    {
+        //        foreach (var item2 in trigger_c_1)
+        //        {
+        //            IsValidatorTurnOff(item1 + item2 + trigger_b_3);
+        //        }
+        //    }
+
+        //    foreach (var item1 in trigger_e)
+        //    {
+        //        IsValidatorTurnOff(item1 + trigger_b_3);
+        //    }
+        //    foreach (var item in trigger_d)
+        //    {
+        //        IsValidatorTurnOff(item);
+        //    }
+
+
+        //    foreach (var item1 in trigger_b_1)
+        //    {
+        //        foreach (var item2 in trigger_e_1)
+        //        {
+        //            IsValidatorTurnOff(item1 + item2);
+        //        }
+        //    }
+
+        //}
+
+        //public static void IsValidatorTurnOn(string trigger)
+        //{
+        //    MobileH5.SendMessage(trigger);
+        //    string[] validators = { "来这试试", "进来试试", "戳这看结果", "点这里", "看这里", "点我吧", "点我","来测测呗" };
+           
+        //        foreach (var validator in validators)
+        //        {
+        //            if (MobileH5.GetLatestMessage().Text.Contains(validator))
+        //            {
+        //                Assert.IsTrue(true, "Trigger:" + trigger + "Validator:" + MobileH5.GetLatestMessage().Text);
+        //                break;
+        //            }
+        //        }           
+        //}
+
+        //public static void IsValidatorTurnOff(string trigger)
+        //{
+        //    MobileH5.SendMessage(trigger);
+        //    string validator = "关闭";
+        //    if (MobileH5.GetLatestMessage().Text.Contains(validator))
+        //    {
+        //        Assert.IsTrue(true, "Trigger:" + trigger + "Validator:" + MobileH5.GetLatestMessage().Text);
+        //    }
+        //}
 
         [TestCleanup]
         public void AndroidCleanUp()

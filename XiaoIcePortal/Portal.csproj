@@ -58,9 +58,15 @@
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\FaceRankingPage.cs" />
+    <Compile Include="Pages\MaterialPage.cs" />
+    <Compile Include="Pages\MessageBoardPage.cs" />
+    <Compile Include="Pages\MomentsSnapPage.cs" />
     <Compile Include="Pages\SecretRelationshipPage.cs" />
     <Compile Include="UIElement\FollowedAutoReplyElement.cs" />
     <Compile Include="UIElement\LoginElement.cs" />
+    <Compile Include="UIElement\MaterialElement.cs" />
+    <Compile Include="UIElement\MessageBoardElement.cs" />
+    <Compile Include="UIElement\MomentsSnapshotElement.cs" />
     <Compile Include="UIElement\SecertRelationshipElement.cs" />
     <Compile Include="Pages\MenuPage.cs" />
     <Compile Include="Pages\WeChatManagermentPage.cs" />
@@ -72,6 +78,7 @@
     <Compile Include="UIElement\HomePageElement.cs" />
     <Compile Include="UIElement\FaceRankingElement.cs" />
     <Compile Include="UIElement\MenuElement.cs" />
+    <Compile Include="UIElement\SettingElement.cs" />
     <Compile Include="UIElement\WeChatManagermentPageUIElement.cs" />
   </ItemGroup>
   <ItemGroup>

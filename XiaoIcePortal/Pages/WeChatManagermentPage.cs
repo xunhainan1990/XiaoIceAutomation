@@ -33,6 +33,21 @@ namespace Portal.Pages
             }
         }
 
+        public static void GoToCS_Skill_Page_WithHiOff()
+        {
+            try
+            {
+                var CS_Skill_Page = PortalChromeDriver.GetElementByXpath(WeChatManagermentPageUIElement.AllSlillsWithHiOFF);
+                CS_Skill_Page.Click();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        
+
         public static void GoTo_AutoReply_Page()
         {
             try
@@ -71,6 +86,42 @@ namespace Portal.Pages
                 throw new Exception(e.Message);
             }
         }
+
+        public static void GoTo_Setting_Page()
+        {
+            try
+            {
+                PortalChromeDriver.ClickElementPerXpath(WeChatManagermentPageUIElement.Setting);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public static void GoTo_Material_Page()
+        {
+            try
+            {
+                PortalChromeDriver.ClickElementPerXpath(WeChatManagermentPageUIElement.Material);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void GoTo_MomentsSnapshot_Page()
+        {
+            try
+            {
+                PortalChromeDriver.ClickElementPerXpath(WeChatManagermentPageUIElement.MomentsSnapshot);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
 
 
     }

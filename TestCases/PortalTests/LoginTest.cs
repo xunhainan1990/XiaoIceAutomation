@@ -9,10 +9,11 @@ using XiaoIcePortal.UIElement;
 namespace TestCases.PortalTests
 {
     [TestClass]
-    public class LoginTest : PortalTestInitNoCookies
+    public class ZLoginTest : PortalTestInitNoCookies
     {
         [TestCategory("LoginWith_PhoneNumber")]
         [TestMethod]
+        [TestCategory("BVT")]
         public void LoginWith_PhoneNumber()
         {
             LoginPage.LoginWithPhoneNumber("13269120258");
@@ -23,17 +24,16 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt("/html/body/div/div[2]/div/div[1]/div/div[2]/a/span", "添加账号"));
         }
 
-
-        //[TestCategory("LoginWith_WrongPhoneNumber")]
-        //[TestMethod]
-        //public void LoginWith_WrongPhoneNumber()
-        //{
-        //    LoginPage.LoginWithPhoneNumber("fsfsdf34234234");
-        //    Assert.IsTrue(Utility.IsAt(LoginElement.warp_phoneNumber_tips, "输入中包含不合法字符，请修改后重试"));
-        //    PortalChromeDriver.GetElementByXpath("//*[@id='verification']").SendKeys("123456");
-        //    PortalChromeDriver.ClickElementPerClassName("sbtn");
-        //    Assert.IsTrue(Utility.IsAt(LoginElement.warp_verification_tips, "用户名或验证码不正确"));
-        //}
+        [TestCategory("LoginWith_WrongPhoneNumber")]
+        [TestMethod]
+        public void LoginWith_WrongPhoneNumber()
+        {
+            LoginPage.LoginWithPhoneNumber("fsfsdf34234234");
+            Assert.IsTrue(Utility.IsAt(LoginElement.warp_phoneNumber_tips, "输入中包含不合法字符，请修改后重试"));
+            PortalChromeDriver.GetElementByXpath("//*[@id='verification']").SendKeys("123456");
+            PortalChromeDriver.ClickElementPerClassName("sbtn");
+            Assert.IsTrue(Utility.IsAt(LoginElement.warp_verification_tips, "用户名或验证码不正确"));
+        }
 
         ////[TestCategory("BVT")]
         ////[TestCategory("Login")]

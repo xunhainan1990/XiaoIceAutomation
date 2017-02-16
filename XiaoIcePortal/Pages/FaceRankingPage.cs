@@ -32,9 +32,9 @@ namespace XiaoIcePortal.Pages
                 if (turnOff.Text == "停用")
                 {
                     turnOff.Click();
-                    Thread.Sleep(1*1000);
+                    System.Threading.Thread.Sleep(1*1000);
                     PortalChromeDriver.GetElementByXpath(FaceRankingElement.TurnOffConfirm).Click();
-                    Thread.Sleep(1 * 1000);
+                    System.Threading.Thread.Sleep(1 * 1000);
                 }
 
             }
@@ -67,6 +67,8 @@ namespace XiaoIcePortal.Pages
                 throw new Exception(e.Message);
             }
         }
+
+      
 
         
     }

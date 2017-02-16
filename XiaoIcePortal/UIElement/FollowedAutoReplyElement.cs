@@ -14,17 +14,16 @@ namespace XiaoIcePortal.UIElement
         public static string tabimage ="//*[@id='tabimage']/i";
         public static string tabvideo= "//*[@id='tabvideo']/span/span";
         public static string autoreply_content= "//*[@id='autoreply_content']/div/a";
-        public static string Pic= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/div[2]/img";
-        public static string PicChoose= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/img";
-        public static string Next_Page= "//*[@id='choosetbox_wrapper']/div/div[3]/a[2]";
-        public static string Next_Page_Image= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/h4/a";
 
+        public static string ImageChoose= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[2]/span";
+        public static string EditImage= "//*[@id='choosetbox_wrapper']/div/div[2]/div[2]/div[1]/div[1]/img";
+        public static string NewsChoose= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/h4/a";
+        public static string EditNews= "//*[@id='choosetbox_wrapper']/div/div[2]/div[2]/div[1]/div[1]/h4/a";
         public static string Next_Page_Image_Input= "//*[@id='choosetbox_wrapper']/div/div[3]/input";
-        public static string Next_Page_Image_Input_Go= "//*[@id='choosetbox_wrapper']/div/div[3]/a[3]";
-        public static string VideoChoose = "//*[@id='choosetbox_wrapper']/div/div[2]/div/div[1]/div[3]";
-        
-        public static string VideoEdit = "//*[@id='choosetbox_wrapper']/div/div[2]/div[2]/div[1]/div[3]";
 
+        public static string Next_Page_Image_Input_Go= "//*[@id='choosetbox_wrapper']/div/div[3]/a[3]";
+        public static string VideoChoose = "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/h4";
+        public static string VideoEdit = "//*[@id='choosetbox_wrapper']/div/div[2]/div[2]/div[1]/div[3]";
 
         public static string Confirm= "//*[@id='choosetbox_wrapper']/div/div[5]/a[1]";
 
@@ -37,7 +36,6 @@ namespace XiaoIcePortal.UIElement
         public static string AddedImage= "//*[@id='autoreply_content']/div/div/div/div[1]/div[2]/span";
         public static string AddedVideo= "//*[@id='autoreply_content']/div/div/div/div[1]/div[1]/h4";
 
-        public static string Alert_Failure= "//*[@id='alertbox_wrapper']/div/div[2]/span[2]";
         public static string Alert_Failure_Confirm= "//*[@id='alertbox_wrapper']/div/div[3]/a";
 
 

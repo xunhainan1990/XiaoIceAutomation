@@ -74,7 +74,7 @@ namespace XiaoIcePortal.Pages
                 var regulationTextes = PortalChromeDriver.GetElementByClassName(AutoReplyElement.RegulationText);
                 regulationTextes.Clear();
                 regulationTextes.SendKeys(rule);
-                AddTrigger(trigger,1+"");
+                AddTrigger(trigger, 1 + "");
                 PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.AddReplyText);
                 var replyInput = PortalChromeDriver.GetElementByXpath(AutoReplyElement.EditReply.Replace("[{0}]", "[" + 1 + "]"));
                 replyInput.SendKeys(replyContent);
@@ -109,7 +109,7 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void AddReply_Text(string reply,string count)
+        public static void AddReply_Text(string reply, string count)
         {
             try
             {
@@ -126,26 +126,26 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                if(count>3)
+                if (count > 3)
                 {
                     for (int i = 1; i <= 3; i++)
                     {
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyPic);
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicLink.Replace("{1}", "1").Replace("{0}", i + ""));
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicConfirm);
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                     }
 
                     for (int i = 1; i <= count - 3; i++)
                     {
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyPic);
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicLink.Replace("{1}", 2 + "").Replace("{0}", i + ""));
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicConfirm);
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                     }
                 }
                 else
@@ -153,14 +153,14 @@ namespace XiaoIcePortal.Pages
                     for (int i = 1; i <= count; i++)
                     {
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyPic);
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicLink.Replace("{1}", "1").Replace("{0}", i + ""));
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicConfirm);
-                        Thread.Sleep(2 * 1000);
+                        System.Threading.Thread.Sleep(2 * 1000);
                     }
                 }
-               
+
 
             }
             catch (Exception e)
@@ -168,7 +168,7 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void AddTrigger(string trigger,string count)
+        public static void AddTrigger(string trigger, string count)
         {
             try
             {
@@ -186,10 +186,9 @@ namespace XiaoIcePortal.Pages
         {
             try
             {
-                var deleteButton = PortalChromeDriver.GetElementByXpath(AutoReplyElement.DeleteButtonXpath);
-                deleteButton.Click();
-                var ok_btn = PortalChromeDriver.GetElementByXpath(AutoReplyElement.ok_btn);
-                ok_btn.Click();
+                //PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.entity_expand);
+                PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.DeleteButtonXpath);
+                PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ok_btn);
                 Thread.Sleep(1 * 1000);
             }
             catch (Exception e)
@@ -224,7 +223,7 @@ namespace XiaoIcePortal.Pages
                 regulationTextes.Clear();
                 regulationTextes.SendKeys(rule);
                 PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.SaveButton);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
             }
             catch (Exception e)
             {
@@ -236,7 +235,7 @@ namespace XiaoIcePortal.Pages
             {
                 //PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.entity_expand); 
                 PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.EditTrigger);
-                var regulationTextes = PortalChromeDriver.GetElementByXpathByClassName(AutoReplyElement.AddTriggerParent.Replace("{0}", 1+""), AutoReplyElement.AddTriggerInput);
+                var regulationTextes = PortalChromeDriver.GetElementByXpathByClassName(AutoReplyElement.AddTriggerParent.Replace("{0}", 1 + ""), AutoReplyElement.AddTriggerInput);
                 regulationTextes.Click();
                 regulationTextes.Clear();
                 regulationTextes.SendKeys(trigger);
@@ -261,7 +260,7 @@ namespace XiaoIcePortal.Pages
             try
             {
                 //PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.entity_expand);
-                PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyContent.Replace("{0}","1"));
+                PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyContent.Replace("{0}", "1"));
                 PortalChromeDriver.GetElementByXpath(AutoReplyElement.EditReply.Replace("{0}", "1")).Clear();
                 PortalChromeDriver.GetElementByXpath(AutoReplyElement.EditReply.Replace("{0}", "1")).SendKeys(reply);
                 PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.SaveButton);
@@ -279,7 +278,7 @@ namespace XiaoIcePortal.Pages
             catch (Exception e)
             { }
         }
-        
+
         public static void AddEmoj()
         {
             try

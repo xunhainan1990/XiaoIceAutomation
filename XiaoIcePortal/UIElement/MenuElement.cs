@@ -22,19 +22,20 @@ namespace XiaoIcePortal.UIElement
         //public static string  "//*[@id="menuitem"]/div[2]/div[2]/div[2]/a";
         //*[@id="menuitem"]/div[2]/div[2]/div[2]/a
         public static string Confirm = "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
+        public static string confirmbox_Cancle = "//*[@id='confirmbox_wrapper']/div/div[3]/a[2]";
         public static string DeleteMenuButton= "//*[@id='bottom_del']";
         public static string DeleteMenuButtonConfirm="//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
         public static string FaceRankingMenu= "//*[@id='menu']/li/span[1]";
         public static string TextInput= "//*[@id='autoreply_content']/div/div[1]/div[2]/div[1]/textarea";
         public static string tabImage= "//*[@id='tabimage']/span";
         public static string tabNews= "//*[@id='tabnews']/span/span";
-        public static string tabVoice= "//*[@id='tabvoice']";
+        public static string tabAudio= "//*[@id='tabvoice']";
         public static string tabVideo= "//*[@id='tabvideo']/span";
         public static string ImageChoose= "//*[@id='autoreply_content']/div/a/div[1]";
         public static string ImageLink= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/img";
         public static string NewsLink = "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/div[2]/img";
 
-        public static string VoiceLink= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[2]/div[1]/span[2]";
+        public static string AudioLink= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[2]/div[1]/span[2]";
         public static string VideoLink= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]";
         public static string ChooseConfirm= "//*[@id='choosetbox_wrapper']/div/div[5]/a[1]";
         public static string validator_Link = "//android.widget.Image[contains(@resource-id,'hplogo')]";
@@ -60,7 +61,6 @@ namespace XiaoIcePortal.UIElement
         public static string SubMenu_SendMessage= "//*[@id='menuitem']/div[2]/div[2]/div[1]/a/div[1]";
 
         public static string Notification= "//*[@id='notification_wrapper']/div";
-
         //*[@id="choosetbox_wrapper"]/div/div[2]/div[1]/div[1]/div[1]/img
         //public static string Image_NextPage= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[1]/img";
 
@@ -69,5 +69,7 @@ namespace XiaoIcePortal.UIElement
         public static string Account_Arrow_Down= "/html/body/div/div[1]/div/div[1]/div[3]";
         public static string Logout= "/html/body/div/div[1]/div/div[1]/div[4]/div[3]/a[2]";
         public static string NoMaterial_Tip= "//*[@id='choosetbox_wrapper']/div/div[2]";
+
+        public static string Rename= "//*[@id='menuitem']/div[1]/a[2]";
     }
 }

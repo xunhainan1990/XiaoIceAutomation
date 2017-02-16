@@ -199,7 +199,7 @@ namespace Common
             }
         }
 
-        public static bool IsAt(string path,string value)
+        public static bool IsAt(string path,string value="")
         {
             try
             {

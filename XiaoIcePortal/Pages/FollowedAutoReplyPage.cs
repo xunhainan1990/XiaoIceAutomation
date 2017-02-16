@@ -23,96 +23,36 @@ namespace XiaoIcePortal.Pages
             PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.TextInput, text);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
         }
-        public static void EditAutoReplyText(string text)
-        {
-            PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.TextInput, text);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
-        }
 
-        public static void AddAutoReplyNews()
+        public static void AddAutoReplyNews(string newsPath)
         {
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabnews);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
             Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Pic);
-            Thread.Sleep(2 * 1000);
+            PortalChromeDriver.ClickElementPerXpath(newsPath);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
-            Thread.Sleep(2 * 1000);
+            Thread.Sleep(1 * 1000);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
+            Thread.Sleep(2 * 1000);
         }
 
-        public static void AddAutoReplyImage()
+        public static void AddAutoReplyImage(string picChoose)
         {
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabimage);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.PicChoose);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
-        }
+            try
+            {
+                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabimage);
+                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
+                Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(picChoose);
+                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
+                Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
+                Thread.Sleep(2 * 1000);
+            }
+            catch(Exception e)
+            {
 
-        public static void AddAutoReply_Image_NextPage()
-        {
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabimage);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input, "2");
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input_Go);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.PicChoose);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
-        }
-
-        public static void AddAutoReply_Image_NextPageInput()
-        {
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabimage);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input, "2");
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input_Go);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
-        }
-
-        public static void AddAutoReply_News_NextPage()
-        {
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabnews);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
-        }
-
-        public static void AddAutoReply_News_NextPageInput()
-        {
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabnews);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input,"2");
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input_Go);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
-            Thread.Sleep(2 * 1000);
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
+            }
         }
 
         public static void AddAutoReplyVideo(string video)
@@ -121,10 +61,10 @@ namespace XiaoIcePortal.Pages
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
             Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(video);
-            Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
-            Thread.Sleep(2 * 1000);
+            Thread.Sleep(1* 1000);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);
+            Thread.Sleep(2 * 1000);
         }
 
 
@@ -135,7 +75,7 @@ namespace XiaoIcePortal.Pages
             {
                 PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Delete);
                 PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Delete_Confirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
             }
             catch(Exception e)
             {
@@ -147,6 +87,7 @@ namespace XiaoIcePortal.Pages
         public static void Delete_Image()
         {
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.DeleteImage);
+            Thread.Sleep(2 * 1000);
         }
     }
 }

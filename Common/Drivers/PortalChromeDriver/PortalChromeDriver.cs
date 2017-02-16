@@ -32,12 +32,14 @@ namespace Common.Driver
             Instance.Manage().Window.Maximize();
             string line;
             ReadConfig();
+
             Instance.Navigate().GoToUrl(testUrl);
             //var loginInput = WaitForPageElementToLoad(By.Id("phoneNumber"), PortalChromeDriver.Instance);
             //loginInput.SendKeys("18613881880");
             ////Send Verification
             //var sendVrificationButton = GetElementByID("sendverification");
             //sendVrificationButton.Click();
+            //Instance.Navigate().GoToUrl(testUrl);
             //var allCookie = Instance.Manage().Cookies.AllCookies;
 
             StreamReader sr = new StreamReader(cookiePath);
@@ -292,6 +294,31 @@ namespace Common.Driver
                 return WaitForPageElementToLoad(By.XPath(xpath), driver).FindElement(By.ClassName(className));
             }
         }
+
+        public static IWebElement GetElementByXpathByCssSelector(string cssSelector,IWebDriver driver = null)
+        {
+            if (driver == null)
+            {
+                return WaitForPageElementToLoad(By.CssSelector(cssSelector), Instance);
+            }
+            else
+            {
+                return WaitForPageElementToLoad(By.CssSelector(cssSelector), driver);
+            }
+        }
+
+        public static List<IWebElement> GetElementsByCssSelector(string cssSelector, IWebDriver driver = null)
+        {
+            if (driver == null)
+            {
+                return WaitForPageElementsToLoad(By.CssSelector(cssSelector), Instance);
+            }
+            else
+            {
+                return WaitForPageElementsToLoad(By.CssSelector(cssSelector), driver);
+            }
+        }
+
         public static void TakeScreenShot(string filePath, string fileName)
         {
             try

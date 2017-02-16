@@ -17,6 +17,28 @@ namespace TestCases.PortalTests
     [TestClass]
     public class AutoReplyTest : PortalTestInit
     {
+        [TestCategory("AutoReply")]
+        [TestCategory("AddText_AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
+        [TestMethod]
+        [TestProperty("description", "添加关键词回复")]
+        public void AddText_AutoReply_BVT()
+        {
+            string filePath = PortalChromeDriver.CreateFolder(@"自动回复\添加关键词回复");
+            WeChatManagermentPage.GoTo_AutoReply_Page();
+            PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.KeyWordsReply);
+            AutoReplyPage.TurnOnAutoReply();
+            AutoReplyPage.ClearReply();
+            AutoReplyPage.AddAutoReply("A", "Hi", "第一个自动回复");
+            PortalChromeDriver.TakeScreenShot(filePath, "添加关键词回复");
+            Assert.IsTrue(Utility.IsAt(AutoReplyElement.RuleContent, "规则1：A"));
+
+            AutoReplyPage.ClearReply();
+            AutoReplyPage.AddAutoReply("", "Hi", "第一个自动回复");
+            PortalChromeDriver.TakeScreenShot(filePath, "规则名为空");
+            Assert.IsTrue(Utility.IsAt(CommonElement.notification), "规则名为空");
+        }
 
         [TestCategory("AutoReply")]
         [TestCategory("AddText_AutoReply")]
@@ -29,25 +51,15 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.KeyWordsReply);
             AutoReplyPage.TurnOnAutoReply();
             AutoReplyPage.ClearReply();
-            AutoReplyPage.AddAutoReply("A", "Hi", "第一个自动回复");
-            PortalChromeDriver.TakeScreenShot(filePath, "添加关键词回复");
-            Assert.IsTrue(Utility.IsAt(AutoReplyElement.RuleContent, "规则1：A"));
-            AutoReplyPage.ClearReply();
 
             AutoReplyPage.AddAutoReply("", "Hi", "第一个自动回复");
-            PortalChromeDriver.Refresh();
-            PortalChromeDriver.TakeScreenShot(filePath, "添加ruleName为空");
-            Assert.IsFalse(Utility.IsAt(AutoReplyElement.RuleContent, "规则"));
+            Assert.IsTrue(Utility.IsAt(CommonElement.notification), "规则名不能为空");
 
             AutoReplyPage.AddAutoReply("A", "", "第一个自动回复");
-            PortalChromeDriver.Refresh();
-            PortalChromeDriver.TakeScreenShot(filePath, "添加TriggerName为空");
-            Assert.IsFalse(Utility.IsAt(AutoReplyElement.RuleContent, "A"));
+            Assert.IsTrue(Utility.IsAt(CommonElement.notification), "关键词不能为空");
 
             AutoReplyPage.AddAutoReply("A", "Hi", "");
-            PortalChromeDriver.Refresh();
-            PortalChromeDriver.TakeScreenShot(filePath, "添加ReplyName为空");
-            Assert.IsFalse(Utility.IsAt(AutoReplyElement.RuleContent, "A"));
+            Assert.IsTrue(Utility.IsAt(CommonElement.notification), "回复文本不能为空");
 
             AutoReplyPage.AddAutoReply("012345678901234567890123456789012345678901234567890", "0123456789012345678901234567890", "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
             Thread.Sleep(2 * 1000);
@@ -59,6 +71,8 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestCategory("DeleteText_AutoReply")]
         [TestMethod]
         [TestProperty("description", "删除自动回复")]
@@ -68,6 +82,7 @@ namespace TestCases.PortalTests
             WeChatManagermentPage.GoTo_AutoReply_Page();
             PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.KeyWordsReply);
             AutoReplyPage.TurnOnAutoReply();
+            AutoReplyPage.ClearReply();
             AutoReplyPage.AddAutoReply("A", "Hi", "第一个自动回复");
             AutoReplyPage.DeleteReply();
             PortalChromeDriver.TakeScreenShot(filePath, "删除自动回复");
@@ -75,6 +90,8 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestCategory("DeleteText_AutoReply")]
         [TestMethod]
         [TestProperty("description", "删除Trigger")]
@@ -92,12 +109,14 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestCategory("DeleteText_AutoReply")]
         [TestMethod]
         [TestProperty("description", "删除reply")]
         public void DeleteReply_AutoReply()
         {
-            string filePath = PortalChromeDriver.CreateFolder(@"自动回复\删除Trigger");
+            string filePath = PortalChromeDriver.CreateFolder(@"自动回复\删除reply");
             WeChatManagermentPage.GoTo_AutoReply_Page();
             PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.KeyWordsReply);
             AutoReplyPage.TurnOnAutoReply();
@@ -109,6 +128,8 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestCategory("EditReply_AutoReply")]
         [TestMethod]
         [TestProperty("description", "编辑关键词回复")]
@@ -131,7 +152,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.TrigerContent.Replace("[{0}]", ""), "修改的Trigger"));
 
             AutoReplyPage.EditReply("修改的Reply");
-            PortalChromeDriver.TakeScreenShot(filePath, "修改的Trigger");
+            PortalChromeDriver.TakeScreenShot(filePath, "修改的Reply");
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", ""), "修改的Reply"));
         }
 
@@ -157,6 +178,8 @@ namespace TestCases.PortalTests
 
         [TestCategory("AutoReply")]
         [TestCategory("DeleteText_AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestMethod]
         [TestProperty("description", "添加10个关键词")]
         public void AddReply_AddTrigger_Total_10()
@@ -211,7 +234,6 @@ namespace TestCases.PortalTests
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", "[" + 6 + "]"), 6 + ""));
         }
 
-
         [TestCategory("AutoReply")]
         [TestCategory("DeleteText_AutoReply")]
         [TestMethod]
@@ -240,15 +262,44 @@ namespace TestCases.PortalTests
             AutoReplyPage.AddReply_Pic(3);
             PortalChromeDriver.TakeScreenShot(filePath, "添加2个问题关键词3个图文关键词");
             Thread.Sleep(3 * 1000);
-            Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator, "g"));
+            Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator, "h"));
         }
 
+        [TestCategory("AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
+        [TestCategory("Rule_Add_Delete_Response_News")]
+        [TestMethod]
+        [TestProperty("description", "添加1个图片素材")]
+        public void Rule_Add_Delete_Response_News()
+        {
+            string filePath = PortalChromeDriver.CreateFolder(@"自动回复\添加1个图片素材");
+            WeChatManagermentPage.GoTo_AutoReply_Page();
+            PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.KeyWordsReply);
+            AutoReplyPage.TurnOnAutoReply();
+            AutoReplyPage.ClearReply();
+            PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.AddAutoReply);
+            var regulationTextes = PortalChromeDriver.GetElementByClassName(AutoReplyElement.RegulationText);
+            regulationTextes.Clear();
+            regulationTextes.SendKeys("这是rule");
+            AutoReplyPage.AddTrigger(1 + "", 1 + "");
+
+            AutoReplyPage.AddReply_Pic(1);
+            Thread.Sleep(3 * 1000);
+            PortalChromeDriver.TakeScreenShot(filePath, "添加1个图片素材");
+            Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator1, "关于“东方万里行” 相关问题"));
+
+            filePath = PortalChromeDriver.CreateFolder(@"自动回复\删除图文");
+            AutoReplyPage.DeletePicReply(1);
+            PortalChromeDriver.TakeScreenShot(filePath, "删除图文");
+            Assert.IsFalse(Utility.IsAt(AutoReplyElement.PicValidator, "关于“东方万里行” 相关问题"));
+        }
 
         [TestCategory("AutoReply")]
-        [TestCategory("DeleteText_AutoReply")]
+        [TestCategory("Rule_Add_Delete_Response_AllNews")]
         [TestMethod]
         [TestProperty("description", "添加5个图片素材")]
-        public void AddReply_AddReply_Total_5_AllPic()
+        public void Rule_Add_Delete_Response_AllNews()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\添加5个图片素材");
             WeChatManagermentPage.GoTo_AutoReply_Page();
@@ -264,14 +315,16 @@ namespace TestCases.PortalTests
             AutoReplyPage.AddReply_Pic(5);
             Thread.Sleep(3 * 1000);
             PortalChromeDriver.TakeScreenShot(filePath, "添加5个图片素材");
-            Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator, "h"));
+            Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator, "i"));
         }
 
         [TestCategory("AutoReply")]
-        [TestCategory("DeleteText_AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
+        [TestCategory("Rule_Add_Response_Emoj")]
         [TestMethod]
         [TestProperty("description", "添加表情回复")]
-        public void AddAutoReply_AddReply_Emoj()
+        public void Rule_Add_Response_Emoj()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\添加表情回复");
             WeChatManagermentPage.GoTo_AutoReply_Page();
@@ -286,30 +339,6 @@ namespace TestCases.PortalTests
             AutoReplyPage.AddEmoj();
             PortalChromeDriver.TakeScreenShot(filePath, "添加表情回复");
             Assert.IsTrue(PortalChromeDriver.GetElementByXpath(AutoReplyElement.Emoj).GetAttribute("title") == "微笑");
-        }
-
-        [TestCategory("AutoReply")]
-        [TestCategory("AddAutoReply_DeletePicReply")]
-        [TestMethod]
-        [TestProperty("description", "删除图文")]
-        public void AddAutoReply_DeletePicReply()
-        {
-            string filePath = PortalChromeDriver.CreateFolder(@"自动回复\删除图文");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.KeyWordsReply);
-            AutoReplyPage.TurnOnAutoReply();
-            AutoReplyPage.ClearReply();
-            PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.AddAutoReply);
-            var regulationTextes = PortalChromeDriver.GetElementByClassName(AutoReplyElement.RegulationText);
-            regulationTextes.Clear();
-            regulationTextes.SendKeys("这是rule");
-            AutoReplyPage.AddTrigger(1 + "", 1 + "");
-
-            AutoReplyPage.AddReply_Pic(1);
-            Thread.Sleep(3 * 1000);
-            AutoReplyPage.DeletePicReply(1);
-            PortalChromeDriver.TakeScreenShot(filePath, "删除图文");
-            Assert.IsFalse(Utility.IsAt(AutoReplyElement.PicValidator, "jdw"));
         }
 
         [TestCategory("AutoReply")]
@@ -347,6 +376,8 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestCategory("TurnOff_AutoReply")]
         [TestMethod]
         [TestProperty("description", "关键词自动回复Mobile可用；停用关键词回复Mobile无关键词回复")]
@@ -375,10 +406,12 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
-        [TestCategory("TurnOff_AutoReply")]
+        [TestCategory("Rule_Add_Response_href_script")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestMethod]
         [TestProperty("description", "回复为超链接和脚本")]
-        public void AddAutoReply_AutoReply_href_script()
+        public void Rule_Add_Response_href_script()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\回复为超链接和脚本");
             WeChatManagermentPage.GoTo_AutoReply_Page();
@@ -401,10 +434,12 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
-        [TestCategory("TurnOff_AutoReply")]
+        [TestCategory("Rule_Trigger_SameWith_Material")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
         [TestMethod]
         [TestProperty("description", "如果设置关键词的内容跟素材的名称一致，优先回复关键词")]
-        public void AddAutoReply_AutoReply_SameWith_Material()
+        public void Rule_Trigger_SameWith_Material()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\如果设置关键词的内容跟素材的名称一致，优先回复关键词");
             WeChatManagermentPage.GoTo_AutoReply_Page();
@@ -423,10 +458,12 @@ namespace TestCases.PortalTests
         }
 
         [TestCategory("AutoReply")]
-        [TestCategory("TurnOff_AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
+        [TestCategory("Rule_Fuzzy_Matching")]
         [TestMethod]
         [TestProperty("description", "模糊匹配")]
-        public void AddAutoReply_AutoReply_Fuzzy_Matching()
+        public void Rule_Fuzzy_Matching()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\模糊匹配");
             WeChatManagermentPage.GoTo_AutoReply_Page();
@@ -439,15 +476,17 @@ namespace TestCases.PortalTests
             MobileH5.GetToTestAccount();
             MobileH5.SendMessage("abcdef123");
             Thread.Sleep(2 * 1000);
-            PortalChromeDriver.TakeScreenShot(filePath, "模糊匹配");
+            MobileAndroidDriver.GetScreenshot(filePath, "模糊匹配");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("我不是素材"));
         }
 
         [TestCategory("AutoReply")]
-        [TestCategory("TurnOff_AutoReply")]
+        [TestCategory("BVT")]
+        [TestCategory("Staging")]
+        [TestCategory("ARule_Exact_Match")]
         [TestMethod]
         [TestProperty("description", "关键词精确匹配")]
-        public void AddAutoReply_AutoReply_Exact_Match()
+        public void ARule_Exact_Match()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\关键词精确匹配");
             WeChatManagermentPage.GoTo_AutoReply_Page();

@@ -9,7 +9,6 @@ namespace XiaoIcePortal.UIElement
     public class FaceRankingElement
     {
         public static string FaceRanking = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[3]/div/div[1]/table/tbody/tr/td[2]/h4/span[2]";
-        public static string FaceRankingTurnOnButton = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";
         public static string FaceRankingTurnOff = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";
         public static string TurnOffConfirm= "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
         public static string IsTurnOn = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[2]/p[1]";

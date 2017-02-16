@@ -34,7 +34,6 @@ namespace XiaoIcePortal.UIElement
         public static string DeleteTrigger = "//*[@id='keywordsreplies']/div/div[3]/div/ul/li/div[2]/div[1]/a[3]";
         public static string entity_expand  ="//*[@id='keywordsreplies']/div/div[1]/a[1]";
         public static string EditReplyTrigger= "//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[1]/a[1]";
-        //*[@id="keywordsreplies"]/div/div[4]/div/ul/li/div[2]/div[2]/div/div[2]/div[2]
         public static string DeleteReply ="//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[1]/a[2]";
         public static string AddEmoj = "//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[2]/div/div[1]/div[2]/a";
         public static string SmileFace= "//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[2]/div/div[1]/div[2]/div/ul/li[1]/span/img";
@@ -43,6 +42,7 @@ namespace XiaoIcePortal.UIElement
         public static string PicLink= "//*[@id='choosetbox_wrapper']/div/div[2]/div[{1}]/div[{0}]/div[1]/div[2]/img";
         public static string PicConfirm ="//*[@id='choosetbox_wrapper']/div/div[5]/a[1]";
         public static string PicValidator = "//*[@id='keywordsreplies']/div/div[4]/div/ul/li[5]/div[2]/div[2]/div/div[1]/h4/a";
+       public static string PicValidator1="//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[2]/div/div[1]/h4/a";
         public static string DeletePicReply = "//*[@id='keywordsreplies']/div/div[4]/div/ul/li[{0}]/div[2]/div[1]/a";
         public static string Alert_Failure = "//*[@id='alertbox_wrapper']/div/div[2]/span[2]";
         public static string OK_btn= "//*[@id='alertbox_wrapper']/div/div[3]/a";

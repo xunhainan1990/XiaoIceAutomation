@@ -22,7 +22,7 @@ namespace XiaoIcePortal.Pages
             }
             catch (Exception e)
             {
-                PortalChromeDriver.GetElementByXpath(secretRelationshipElement.secretRelationshipLink).Click();
+                PortalChromeDriver.GetElementByXpath(secretRelationshipElement.AllSkillLink).Click();
                 PortalChromeDriver.GetElementByXpath(secretRelationshipElement.secretRelationship).Click();
             }
         }
@@ -39,38 +39,13 @@ namespace XiaoIcePortal.Pages
 
         public static void TurnOn()
         {
-            if (!IsTurnOn())
+            if (!Utility.IsTurnOn())
             {
-                PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.TurnOff);
+                PortalChromeDriver.ClickElementPerXpath(CommonElement.TurnOnAndOFF);
+                Thread.Sleep(1*1000);
                 PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.LaterSet);
             }
 
-        }
-
-        public static void TurnOff()
-        {
-
-            if (IsTurnOn())
-            {
-                PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.TurnOff);
-                PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.TurnOffConfirm);
-            }
-        }
-
-        public static bool IsTurnOn()
-        {
-            try
-            {
-                var turnOn = PortalChromeDriver.GetElementByXpath(secretRelationshipElement.SecretRelationshipTurnOn);
-
-                if (turnOn.Text == "停用") return true;
-                return false;
-
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
         }
 
         public static void CancleButtonClick()
@@ -93,12 +68,12 @@ namespace XiaoIcePortal.Pages
               
             }           
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.cs_awards_edit_ongoing);
-            Thread.Sleep(1 * 1000);
+            System.Threading.Thread.Sleep(1 * 1000);
         }
 
         public static void InputAwardNumber(string award_Number_Input,string award_Rate_Input)
         {
-            Thread.Sleep(2* 1000);
+            System.Threading.Thread.Sleep(2* 1000);
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.cs_awards_edit);
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.MaxAwardNumble);
             Utility.Input(secretRelationshipElement.MaxAwardNumble, award_Number_Input);

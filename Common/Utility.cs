@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Common
@@ -36,17 +37,27 @@ namespace Common
             try
             {
                 var element = PortalChromeDriver.GetElementByClassName(className);
-                if (element.Text == expected) return true;
+                if (element.Text .Contains(expected)) return true;
                 return false;
             }
             catch (Exception e) { return false; }
         }
 
-        public static void TurnOn(string Xpath)
+        public static bool IsAtPerCssSelector(string className)
         {
             try
             {
-                var turnOn = PortalChromeDriver.GetElementByXpath(Xpath);
+                var element = PortalChromeDriver.GetElementByXpathByCssSelector(className);
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
+
+        public static void TurnOn()
+        {
+            try
+            {
+                var turnOn = PortalChromeDriver.GetElementByXpath(CommonElement.TurnOnAndOFF);
 
                 if (turnOn.Text == "开启")
                     turnOn.Click();
@@ -56,17 +67,31 @@ namespace Common
                 throw new Exception(e.Message);
             }
         }
-
-        public static void TurnOff(string Xpath,string confirm)
+        public static bool IsTurnOn()
         {
             try
             {
-                var turnOn = PortalChromeDriver.GetElementByXpath(Xpath);
+                var setting = PortalChromeDriver.GetElementByXpath(CommonElement.TurnOnAndOFF);
+                if (setting.Text.ToString().Equals("停用"))
+                    return true;
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static void TurnOff()
+        {
+            try
+            {
+                var turnOn = PortalChromeDriver.GetElementByXpath(CommonElement.TurnOnAndOFF);
 
                 if (turnOn.Text == "停用")
                 {
                     turnOn.Click();
-                    PortalChromeDriver.GetElementByXpath(confirm).Click();
+                    PortalChromeDriver.GetElementByXpath(CommonElement.Confirm).Click();
                 }
                     
             }
@@ -74,6 +99,49 @@ namespace Common
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        public static void NextPage()
+        {
+            try
+            {
+                PortalChromeDriver.ClickElementPerXpath(CommonElement.Next_Page);
+                Thread.Sleep(2 * 1000);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+        public static void NextPageInput(string page_input)
+        {
+            PortalChromeDriver.SendKeysPerXpath(CommonElement.Next_Page_Input, page_input);
+            PortalChromeDriver.ClickElementPerXpath(CommonElement.Next_Page_Input_Go);
+            Thread.Sleep(2 * 1000);
+        }
+
+        public static void PreviousPage()
+        {
+            try
+            {
+                PortalChromeDriver.ClickElementPerXpath(CommonElement.Previous_Page);
+                Thread.Sleep(2 * 1000);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        public static void DisTurnOnDialogByClickOK()
+        {
+            try
+            {
+                var turnOnDialog = PortalChromeDriver.GetElementByXpath(CommonElement.Confirm);
+                turnOnDialog.Click();
+            }
+            catch (Exception e) { }
+
         }
 
         public static void BackToAllSkill()

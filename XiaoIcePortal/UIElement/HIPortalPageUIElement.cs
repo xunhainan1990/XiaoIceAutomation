@@ -13,7 +13,6 @@ namespace Portal.UIElement
         public static string IsSetting = "/html/body/div/div[2]/div[2]/div[2]/div/div/h3[1]";
         public static string HITurnOnButton = "/html/body/div/div[2]/div[2]/div[2]/div/div/div/div[3]";
         public static string HITurnOffButton = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";
-        public static string HITurnOffConfirm = "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
         public static string AlertButton= "//*[@id='alertbox_wrapper']/div/div[3]/a";
         public static string HIIsOn = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";
         public static string HIIsOff = "/html/body/div/div[2]/div[2]/div[2]/div/div/div/div[3]";
@@ -50,8 +49,7 @@ namespace Portal.UIElement
         public static string Alert_Trigger = "//*[@id='alertbox_wrapper']/div/div[1]/div[2]";
         public static string ModifyButton="//*[@id='alertbox_wrapper']/div/div[3]/a";
         public static string SomewhereToSave = "/html/body/div/div[2]/div[2]/div[2]/div/div/h3[1]";
-        public static string HaveBindStaff= "//*[@id='tabbody_instructions']/div/div/div[2]/h3";
-        public static string TurnOnDialog = "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
+        public static string HaveBindStaff = "//*[@id='tabbody_instructions']/div/div/div[2]/h3";
         public static string TurnOnDialogCancle= "//*[@id='confirmbox_wrapper']/div/div[1]/div[1]";
         public static string TopUser = "//*[@id='infoCard_of5NLw3-cVZ0Xn14jQ3gssqS6XD4']/div[2]/div[1]/div[1]";
         public static string LoadingMore= "//*[@id='loadingMore']";

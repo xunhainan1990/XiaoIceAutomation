@@ -49,36 +49,6 @@ namespace Portal.Pages
             }
         }
 
-        public static void TurnOn()
-        {
-            try
-            {
-                var turnOn = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOnButton);
-                turnOn.Click();
-            }
-            catch (Exception e)
-            {
-                PortalChromeDriver.TakeScreenShot(System.Reflection.MethodBase.GetCurrentMethod().Name);
-            }
-        }
-
-        public static void TurnOff()
-        {
-            try
-            {
-                var turnOff = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffButton);
-                turnOff.Click();
-                PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffConfirm);
-                var confirmButton = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.HITurnOffConfirm);
-                confirmButton.Click();
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Failed to Turn Off HI.Error" + e.ToString());
-            }
-        }
-
         public static void ByPassAlert()
         {
             try
@@ -671,23 +641,13 @@ namespace Portal.Pages
                 WeChatManagermentPage.GoToHIPage();
                 //click settings
                 ClickSettings();
-                //Turn on HI
-                if (isOff()) { TurnOn(); DisTurnOnDialogByClickOK(); }
+                //Turn on H
+                Utility.TurnOn();
+                Utility.DisTurnOnDialogByClickOK();
             }
             catch(Exception e)
             { }
 
-        }
-
-        public static void DisTurnOnDialogByClickOK()
-        {
-            try
-            {
-                var turnOnDialog = PortalChromeDriver.GetElementByXpath(HIPortalPageUIElement.TurnOnDialog);
-                turnOnDialog.Click();
-            }
-            catch (Exception e) { }
-           
         }
 
         public static void DisTurnOnDialogByCancle()
@@ -744,7 +704,7 @@ namespace Portal.Pages
 
                 foreach (var item in elementChatBody)
                 {
-                    if (item.Text == "这里是测试账号")
+                    if (item.Text == "我是客户")
                         return true;
                 }
                 return false;

@@ -9,13 +9,11 @@ namespace XiaoIcePortal.UIElement
     public static class secretRelationshipElement
     {
         public static string secretRelationship= "/html/body/div/div[2]/div[2]/div[2]/div/div/div[3]/div/div[4]/table/tbody/tr/td[2]/h4/span[2]";
-        public static string secretRelationshipLink= "/html/body/div/div[2]/div[2]/div[2]/div/div/h3[1]/a";
-        public static string SecretRelationshipTurnOn= "/html/body/div/div[2]/div[2]/div[2]/div/div/div/div[3]";
+        public static string AllSkillLink= "/html/body/div/div[2]/div[2]/div[2]/div/div/h3[1]/a";
         public static string SetNow= "//*[@id='confirmbox_wrapper']/div/div[3]/a[1]";
-        public static string RewartSetting = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[2]/div[3]/a";
-        public static string SkillSetting = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[2]/div[1]/a";
-        
+        public static string RewartSetting = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[3]/div[3]/a";
 
+        public static string SkillSetting = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[2]/div[1]/a";
         public static string IsTurnOff = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";
         public static string LaterSet= "//*[@id='confirmbox_wrapper']/div/div[3]/a[2]";
         public static string TurnOff= "/html/body/div/div[2]/div[2]/div[2]/div/div/div[1]/div[3]";

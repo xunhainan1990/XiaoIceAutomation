@@ -31,7 +31,22 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.GetElementByXpath(MenuElement.JumpLinkInput).SendKeys(link);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
-                //Thread.Sleep(300*1000);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void AddMenu_Link_Wait(string link)
+        {
+            try
+            {
+                PortalChromeDriver.GetElementByXpath(MenuElement.Jump_Page_Button).Click();
+                PortalChromeDriver.GetElementByXpath(MenuElement.JumpLinkInput).SendKeys(link);
+                PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
+                PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
+                Thread.Sleep(120* 1000);
             }
             catch (Exception e)
             {
@@ -64,7 +79,7 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
 
-                Thread.Sleep(300 * 1000);
+  
             }
             catch (Exception e)
             {
@@ -79,13 +94,27 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabImage);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
-                Thread.Sleep(300 * 1000);
+                System.Threading.Thread.Sleep(300 * 1000);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public static void RenameOneLevelMenu(string menuName)
+        {
+            try
+            {
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.Rename);
+                PortalChromeDriver.GetElementByXpath(MenuElement.MenuInputBox).SendKeys(menuName);
+                PortalChromeDriver.GetElementByXpath(MenuElement.MenuAddConfirm).Click();
             }
             catch (Exception e)
             {
@@ -98,10 +127,10 @@ namespace XiaoIcePortal.Pages
             PortalChromeDriver.ClickElementPerXpath(MenuElement.SubMenu_Send_Message);
             PortalChromeDriver.ClickElementPerXpath(MenuElement.tabImage);
             PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-            Thread.Sleep(2 * 1000);
+            System.Threading.Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageLink);
             PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-            Thread.Sleep(2 * 1000);
+            System.Threading.Thread.Sleep(2 * 1000);
             PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
             PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
         }
@@ -113,13 +142,13 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabNews);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.NewsLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
-                Thread.Sleep(300 * 1000);
+                System.Threading.Thread.Sleep(300 * 1000);
             }
             catch (Exception e)
             {
@@ -127,20 +156,20 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void AddMenu_Voice()
+        public static void AddMenu_Audio()
         {
             try
             {
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVoice);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabAudio);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.VoiceLink);
+                System.Threading.Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.AudioLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(5 * 1000);
+                System.Threading.Thread.Sleep(5 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
-                //Thread.Sleep(300 * 1000);
+                System.Threading.Thread.Sleep(300 * 1000);
             }
             catch (Exception e)
             {
@@ -148,17 +177,17 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void SubMenu_AddVoice()
+        public static void SubMenu_AddAudio()
         {
             try
             {
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.SubMenu_Send_Message);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVoice);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabAudio);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.VoiceLink);
+                System.Threading.Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.AudioLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(5 * 1000);
+                System.Threading.Thread.Sleep(5 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -176,10 +205,10 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVideo);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.VideoLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(5 * 1000);
+                System.Threading.Thread.Sleep(5 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -196,10 +225,10 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.SubMenu_Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVideo);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.VideoLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(5 * 1000);
+                System.Threading.Thread.Sleep(5 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -239,9 +268,9 @@ namespace XiaoIcePortal.Pages
             try
             {
                 PortalChromeDriver.GetElementByXpath(MenuElement.DeleteMenuButton).Click();
-                Thread.Sleep(1 * 1000);
+                System.Threading.Thread.Sleep(1 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.DeleteMenuButtonConfirm).Click();
-                Thread.Sleep(1 * 1000);
+                System.Threading.Thread.Sleep(1 * 1000);
             }
             catch (Exception e)
             {
@@ -313,10 +342,10 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.SubMenu_SendMessage);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabNews);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.NewsLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -327,12 +356,14 @@ namespace XiaoIcePortal.Pages
         }
 
 
-        public static void ClickFirstLevelMenu()
+        public static void ClickFirstLevelMenu(string menuName)
         {
             try
             {
-                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a2g')]").Click();
-                Thread.Sleep(10 * 1000);
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.backFromHI).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.TestAccout).Click();
+                MobileAndroidDriver.ClickElemnetPerName(menuName);
+                System.Threading.Thread.Sleep(10 * 1000);
             }
             catch (Exception e)
             {
@@ -346,7 +377,7 @@ namespace XiaoIcePortal.Pages
             {
                 MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a2g')]").Click();
                 MobileAndroidDriver.GetElementByXpath("//android.widget.TextView").Click();
-                Thread.Sleep(10 * 1000);
+                System.Threading.Thread.Sleep(10 * 1000);
             }
             catch (Exception e)
             {
@@ -361,8 +392,8 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabImage);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page);
+                Thread.Sleep(5 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(CommonElement.Next_Page);
                 Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageLink);
                 Thread.Sleep(2 * 1000);
@@ -384,15 +415,15 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabImage);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(5 * 1000);
                 PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input, "2");
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input_Go);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageLink);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -409,9 +440,9 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabNews);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page);
-                Thread.Sleep(2 * 1000);
+                Thread.Sleep(5* 1000);
+                PortalChromeDriver.ClickElementPerXpath(CommonElement.Next_Page);
+                Thread.Sleep(5 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.NewsLink);
                 Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
@@ -432,15 +463,15 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabNews);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input, "2");
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input_Go);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.NewsLink);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -450,19 +481,19 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void AddVoice_NextPage()
+        public static void AddAudio_NextPage()
         {
             try
             {
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVoice);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabAudio);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.VoiceLink);
+                System.Threading.Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(CommonElement.Next_Page);
+                System.Threading.Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.AudioLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(5 * 1000);
+                System.Threading.Thread.Sleep(5 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -472,22 +503,22 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void AddVoice_NextPageInput()
+        public static void AddAudio_NextPageInput()
         {
             try
             {
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVoice);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.tabAudio);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input, "2");
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input_Go);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(MenuElement.VoiceLink);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(MenuElement.AudioLink);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -504,12 +535,12 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVideo);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
-                PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
+                PortalChromeDriver.ClickElementPerXpath(CommonElement.Next_Page);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.VideoLink);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(5 * 1000);
+                System.Threading.Thread.Sleep(5 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }
@@ -526,15 +557,15 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.Send_Message);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.tabVideo);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ImageChoose);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.SendKeysPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input, "2");
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Next_Page_Image_Input_Go);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.VideoLink);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.ClickElementPerXpath(MenuElement.ChooseConfirm);
-                Thread.Sleep(2 * 1000);
+                System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
             }

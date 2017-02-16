@@ -35,17 +35,16 @@ namespace CSH5
                 return false;
             }
         }
-        public static bool IsAtPerName(string selector,string compare)
+        public static bool IsAtPerName(string selector)
         {
             try
             {
-                if (MobileAndroidDriver.GetElementByName(selector).GetAttribute("name").Contains(compare))
+                MobileAndroidDriver.GetElementByName(selector);
                 return true;
-                return false;
+
             }
             catch (Exception e)
             {
-
                 return false;
             }
         }
@@ -54,6 +53,19 @@ namespace CSH5
             try
             {
                 MobileAndroidDriver.GetElementByXpath(xpathSelector);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsAtPerClassName(string className)
+        {
+            try
+            {
+                MobileAndroidDriver.GetElementByClassName(className);
                 return true;
             }
             catch (Exception e)
@@ -107,13 +119,13 @@ namespace CSH5
         {
             try
             {
-                var contactlist = MobileAndroidDriver.GetElementByName(WeChatCommonElement.ContactList);
+                var contactlist = MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList);
                 contactlist.Click();
 
-                var officialaccount = MobileAndroidDriver.GetElementByName(WeChatCommonElement.OfficialAccount);
+                var officialaccount = MobileAndroidDriver.GetElementByName(MobileCommonElement.OfficialAccount);
                 officialaccount.Click();
 
-                var testAccout = MobileAndroidDriver.GetElementByName(WeChatCommonElement.TestAccout);
+                var testAccout = MobileAndroidDriver.GetElementByName(MobileCommonElement.TestAccout);
                 testAccout.Click();
                 Thread.Sleep(1*1000);
             }
@@ -134,6 +146,7 @@ namespace CSH5
                 keyBoardSwich.Click();
 
                 var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
+               
                 sendMessage.SendKeys(text);
 
                 var sendButton = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.SendButtonXpath);
@@ -241,20 +254,41 @@ namespace CSH5
            
         }
 
-        public static void XB_SendPhotoPerXiangCe(string fileName)
+        public static void XB_SendPhotoFromFile(string fileName)
         {
             try
             {
                 MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.xb_addimg_image).Click() ;
                 MobileAndroidDriver.GetElementByName("文档").Click();
-                MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
-                MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
                 MobileAndroidDriver.GetElementByName(fileName, true).Click();
             }
             catch(Exception e)
             { }
            
         }
+
+        public static void SendPhotoFromFileWithMenu(string fileName)
+        {
+            try
+            {
+                MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.TextInput).Click();
+                //MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.xb_addimg_image).Click();
+                MobileAndroidDriver.GetElementByName("更多功能按钮，已折叠").Click();
+                MobileAndroidDriver.GetElementByName("相册").Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
+                MobileAndroidDriver.GetElementByName(fileName, true).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.Send).Click();
+
+            }
+            catch (Exception e)
+            {
+            }
+
+        }
+
 
         public static bool GetImageMessage(bool isMagnify)
         {
@@ -281,14 +315,12 @@ namespace CSH5
             }          
         }
 
-        public static bool GetVoiceMessage()
+        public static bool GetAudioMessage()
         {
             try
             {
-                if (MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/ib')]").Text.Contains("60"))
-                    return true;
-                return false;
-                      
+                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a72')]");
+                    return true;                   
             }
             catch (Exception e)
             {
@@ -471,15 +503,17 @@ namespace CSH5
         {
             try
             {
-                MobileAndroidDriver.GetElementByName(WeChatCommonElement.ContactList).Click();
-                MobileAndroidDriver.GetElementByName(WeChatCommonElement.OfficialAccount).Click();    
-                MobileAndroidDriver.GetElementByName(WeChatCommonElement.TestAccout).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.OfficialAccount).Click();    
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.TestAccout).Click();
                 //MobileAndroidDriver.GetElementByXpath("com.tencent.mm:id/qa").Click();
                 //MobileAndroidDriver.GetElementByXpath(FollowedAutoReplyElement.H5OfficialAccount).Click();
                 MobileAndroidDriver.GetElementByName("聊天信息").Click();
                 MobileAndroidDriver.GetElementByName("更多").Click();
                 MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='3']").Click();
-                MobileAndroidDriver.GetElementByXpath("//android.widget.Button[contains(@resource-id,'com.tencent.mm:id/a_y')]").Click(); 
+                Thread.Sleep(3*1000);
+                MobileAndroidDriver.GetElementByName("不再关注").Click();
+                //MobileAndroidDriver.GetElementByXpath("//android.widget.Button[contains(@resource-id,'com.tencent.mm:id/a_y')]").Click(); 
             }
             catch (Exception e)
             {
@@ -492,27 +526,26 @@ namespace CSH5
             try
             {
                 ResetKeyboard();
-                MobileAndroidDriver.GetElementByName(WeChatCommonElement.ContactList).Click();
-                MobileAndroidDriver.GetElementByName(WeChatCommonElement.OfficialAccount).Click();
-                //MobileAndroidDriver.GetElementByXpath("com.tencent.mm:id/qa").Click();
-                //MobileAndroidDriver.GetElementByXpath(FollowedAutoReplyElement.H5OfficialAccount).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.OfficialAccount).Click();
                 MobileAndroidDriver.GetElementByName("添加").Click();
-                MobileAndroidDriver.GetElementByXpath("//android.widget.EditText[contains(@resource-id,'com.tencent.mm:id/gn')]").SendKeys("cstest-2");
+                MobileAndroidDriver.GetElementByName("搜索公众号").SendKeys("cstest-2");
                 Thread.Sleep(5*1000);
                 MobileAndroidDriver.androidDriver.PressKeyCode(AndroidKeyCode.KeycodeNumpad_ENTER);
-                MobileAndroidDriver.androidDriver.PressKeyCode(AndroidKeyCode.Enter);
                 MobileAndroidDriver.GetElementByName("平台测试账号2").Click();
                 Thread.Sleep(3 * 1000);
-                MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='6']").Click(); 
+                MobileAndroidDriver.GetElementByName("进入公众号").Click();
+                Thread.Sleep(5 * 1000);
             }
             catch (Exception e)
             {
+                MobileAndroidDriver.GetElementByName("关注").Click();
             }
         }
 
         public static void ResetKeyboard()
         {
-            MobileH5.BackToHome();
+            BackToHome();
             MobileAndroidDriver.GetElementByXpath("//android.widget.FrameLayout[contains(@content-desc,'设置')]").Click();
             //MobileAndroidDriver.GetElementByName("设置").Click();
             FaceRankingH5Page.SwipeSetting();
@@ -520,9 +553,20 @@ namespace CSH5
             MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='4']").Click();
             MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='1']").Click();
             //MobileH5.BackToHome();
-            MobileH5.BackToHome();
-            MobileH5.OpenWeChatFromHome();
+            BackToHome();
+            OpenWeChatFromHome();
         }
+
+        //public static void Moments()
+        //{
+        //    MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.Discover);
+        //    MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.Moments);
+        //    MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.More);
+        //    MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.ChoosePhoto);
+        //    MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.MomentShare_Photo);
+        //    MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.Done);
+        //    MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.Send);
+        //}
 
     }
 }

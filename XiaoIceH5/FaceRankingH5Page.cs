@@ -18,8 +18,7 @@ namespace XiaoIceH5
         {
             try
             {
-                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a2g')]").Click();
-                Thread.Sleep(10*1000);
+                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a35')]").Click();
             }
             catch (Exception e)
             {
@@ -52,8 +51,11 @@ namespace XiaoIceH5
                 //MobileAndroidDriver.GetElementByName("拼颜值").Click();
                 MobileAndroidDriver.GetElementByClassName("android.widget.Button").Click();
                 MobileAndroidDriver.GetElementByName("文档").Click();
-                MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
-                MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
+                MobileAndroidDriver.GetElementByName("显示根目录").Click();
+                MobileAndroidDriver.GetElementByName("图片").Click();
+                MobileAndroidDriver.GetElementByName("WeiXin").Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
                 MobileAndroidDriver.GetElementByName(fileName,true).Click();
                 Thread.Sleep(5*1000);
             }
@@ -103,7 +105,7 @@ namespace XiaoIceH5
                             return;
                         }                            
                     }
-                    MobileAndroidDriver.Swipe(MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='11')]"));
+                    MobileAndroidDriver.Swipe(MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='11']"));
                 }  
             }
             catch (Exception e)
@@ -148,8 +150,8 @@ namespace XiaoIceH5
  
                 BackWards();
                 BackWards();
-                MobileAndroidDriver.GetElementByName(WeChatCommonElement.ContactList).Click();
-                MobileAndroidDriver.GetElementByName(WeChatCommonElement.ShareUser).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.ShareUser).Click();
                 Thread.Sleep(2*1000);
                 MobileAndroidDriver.GetElementByName(FaceRankingH5Element.ChatWith).Click();
                 MobileH5.GetLatestMessage().Click();

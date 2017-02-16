@@ -14,7 +14,7 @@ namespace TestCases.PortalTests
             //    {
             PortalChromeDriver.ChromeInitialize();
             //}
-            LoginPage.GoTo();
+            //LoginPage.GoTo();
             HomePage.ClickWeChatApp("平台测试账号2");
         }
 

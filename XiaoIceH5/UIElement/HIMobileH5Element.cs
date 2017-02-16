@@ -10,7 +10,7 @@ namespace CSH5.UIElement
     {
         public static string TextInput = "//android.widget.ImageView[contains(@content-desc,'消息')]";
         public static string KeyBoardSwichXpath = "//android.widget.ImageButton[contains(@content-desc,'切换到键盘')]";
-        public static string EditTextXpath = "//android.widget.EditText[contains(@resource-id,'com.tencent.mm:id/a27')]";
+        public static string EditTextXpath = "//android.widget.EditText[contains(@resource-id,'com.tencent.mm:id/a2v')]";
         public static string SendButtonXpath = "发送";
         public static string HiCardXpath = "接入人工客服";
         public static string xb_inputboxXpath = "//android.widget.EditText[contains(@resource-id,'xb_inputbox')]";

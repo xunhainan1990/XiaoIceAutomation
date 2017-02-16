@@ -2,6 +2,7 @@
 using Common.Driver;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace XiaoIcePortal.Pages
 {
@@ -16,18 +17,6 @@ namespace XiaoIcePortal.Pages
             }
             catch(Exception e)
             { }
-        }
-         
-        public static void TurnOn_Docchat()
-        {
-            try
-            {
-                var turnOn_Docchat = PortalChromeDriver.GetElementByXpath(DocChatElement.TurnOn_DocChat_Skill,PortalChromeDriver.WechatInstance);
-                turnOn_Docchat.Click();
-                var gotItDocChat_btn = PortalChromeDriver.GetElementByXpath(DocChatElement.GotItDocChat_btn,PortalChromeDriver.WechatInstance);
-                gotItDocChat_btn.Click();
-            }
-            catch(Exception e) { }
         }
 
         public static void AddMaterialFromWechat()
@@ -50,6 +39,21 @@ namespace XiaoIcePortal.Pages
                 PortalChromeDriver.WechatInstance.SwitchTo();
             }
             catch(Exception e) { }
+        }
+
+        public static void TurnToNextPage_Input(string page_Input)
+        {
+            try
+            {
+                PortalChromeDriver.GetElementByXpath(DocChatElement.Next_Page_Input).Clear();
+                PortalChromeDriver.SendKeysPerXpath(DocChatElement.Next_Page_Input, page_Input);
+                PortalChromeDriver.ClickElementPerXpath(DocChatElement.pagejump_btn);
+                System.Threading.Thread.Sleep(3 * 1000);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
     }

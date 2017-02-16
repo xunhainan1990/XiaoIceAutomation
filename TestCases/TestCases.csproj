@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PortalTests\MomentsSnapshotTest.cs" />
     <Compile Include="PortalAndH5Tests\HIPortalAndH5Test.cs" />
     <Compile Include="PortalAndH5Tests\PortalAndH5TestInit.cs" />
     <Compile Include="PortalTests\AutoReplyTest.cs" />
@@ -73,10 +74,13 @@
     <Compile Include="PortalTests\HITest.cs" />
     <Compile Include="PortalTests\LoginTest.cs" />
     <Compile Include="PortalTests\FaceRankingTest.cs" />
+    <Compile Include="PortalTests\MaterialTest.cs" />
     <Compile Include="PortalTests\MenuTest.cs" />
+    <Compile Include="PortalTests\MessageBoardTests.cs" />
     <Compile Include="PortalTests\PortalTestInit.cs" />
     <Compile Include="PortalTests\PortalTestInitNoCookies.cs" />
     <Compile Include="PortalTests\SecertRelationshipTest.cs" />
+    <Compile Include="PortalTests\SettingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
