@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\AutoReplyPage.cs" />
+    <Compile Include="Pages\ChitChatSkillPage.cs" />
     <Compile Include="Pages\DocChatPage.cs" />
     <Compile Include="Pages\FollowedAutoReplyPage.cs" />
     <Compile Include="Pages\HIPage.cs" />
@@ -62,6 +63,9 @@
     <Compile Include="Pages\MessageBoardPage.cs" />
     <Compile Include="Pages\MomentsSnapPage.cs" />
     <Compile Include="Pages\SecretRelationshipPage.cs" />
+    <Compile Include="Pages\Weibo\LoginPage_Weibo.cs" />
+    <Compile Include="Pages\Weibo\MebuPage_Weibo.cs" />
+    <Compile Include="UIElement\ChitChatSkillElement.cs" />
     <Compile Include="UIElement\FollowedAutoReplyElement.cs" />
     <Compile Include="UIElement\LoginElement.cs" />
     <Compile Include="UIElement\MaterialElement.cs" />
@@ -80,6 +84,7 @@
     <Compile Include="UIElement\MenuElement.cs" />
     <Compile Include="UIElement\SettingElement.cs" />
     <Compile Include="UIElement\WeChatManagermentPageUIElement.cs" />
+    <Compile Include="UIElement\Weibo\LoginElement_Weibo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

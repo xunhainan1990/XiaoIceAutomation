@@ -19,6 +19,12 @@ namespace TestCases.PortalTests
     [TestClass]
     public class MaterialTest : PortalTestInit
     {
+        [TestInitialize]
+        public void IntiMomentsSnapshot()
+        {
+            WeChatManagermentPage.GoTo_Material_Page();
+        }
+
         [TestCategory("Material")]
         [TestCategory("Material_News")]
         [TestMethod]
@@ -26,7 +32,6 @@ namespace TestCases.PortalTests
         public void Material_News()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"素材管理\当有图文素材的时候，检查图文消息界面是否显示正确");
-            WeChatManagermentPage.GoTo_Material_Page();
 
             Assert.IsTrue(PortalChromeDriver.GetElementsByClassName("cs_appmsg_delete_area").Count == 10, "每个素材下面有“删除”按钮");
 
@@ -61,7 +66,6 @@ namespace TestCases.PortalTests
         public void Material_Image()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"素材管理\当有图片素材的时候，检查图片库界面是否显示正确");
-            WeChatManagermentPage.GoTo_Material_Page();
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.ImageTab);
             Assert.IsTrue(PortalChromeDriver.GetElementsByClassName("cs_appmsg_delete_area").Count == 10, "每个素材下面有“删除”按钮");
 
@@ -98,7 +102,6 @@ namespace TestCases.PortalTests
         public void Material_Audio()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"素材管理\当有图文素材的时候，检查图文消息界面是否显示正确");
-            WeChatManagermentPage.GoTo_Material_Page();
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.AudioTab);
             Assert.IsTrue(PortalChromeDriver.GetElementsByClassName("cs_appmsg_delete_area").Count == 10, "每个素材下面有“删除”按钮");
 
@@ -132,7 +135,6 @@ namespace TestCases.PortalTests
         public void Material_Video()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"素材管理\当有视频素材的时候，检查视频界面是否显示正确");
-            WeChatManagermentPage.GoTo_Material_Page();
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.Video);
             Assert.IsTrue(PortalChromeDriver.GetElementsByClassName("cs_appmsg_delete_area").Count == 10, "每个素材下面有“删除”按钮");
 
@@ -168,7 +170,6 @@ namespace TestCases.PortalTests
         public void Material_Article_Button()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"素材管理\”设置推荐” 功能是否可用");
-            WeChatManagermentPage.GoTo_Material_Page();
             MaterialPage.Set_All();
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.Article_Button);
             //Assert.IsTrue(MaterialPage.IsFlaged() == 10, "”设置推荐” 功能是否可用");
@@ -187,7 +188,6 @@ namespace TestCases.PortalTests
         public void Material_Set_All()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"素材管理\“设置推荐”中的全选框只能设置当前素材页的内容");
-            WeChatManagermentPage.GoTo_Material_Page();
             //重置
             MaterialPage.Set_All();
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.Article_Button);
@@ -214,7 +214,6 @@ namespace TestCases.PortalTests
         public void Material_Select_NoSave()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"素材管理\选择多个图文推荐后没有保存，切换到其他页面，被选中的图文不会被保存");
-            WeChatManagermentPage.GoTo_Material_Page();
             //重置
             MaterialPage.Set_All();
             MaterialPage.Set_All();

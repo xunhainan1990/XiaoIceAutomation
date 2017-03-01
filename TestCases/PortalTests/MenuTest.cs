@@ -26,14 +26,13 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_Link()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单_链接");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一级菜单");
             MenuPage.AddMenu_Link_Wait("https://www.google.com");
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MenuPage.ClickFirstLevelMenu("一级菜单");
+            MobileH5.ClickFirstLevelMenu("一级菜单");
             MobileAndroidDriver.GetScreenshot(filePath, "是否能成功添加一个一级菜单;在一级菜单里是否能成功设置一个跳转网页;是否能够成功删除所有菜单，点击界面下方的”删除”按钮");
             Assert.IsTrue(MobileH5.IsAtPerName("Google"));
 
@@ -51,8 +50,7 @@ namespace TestCases.PortalTests
         public void Rename_OneLevelMenu()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单中，是否可以删除已输入的菜单名称");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             //MenuPage.AddMenu("一级菜单");
             PortalChromeDriver.GetElementByXpath(MenuElement.add_menu_item_btn).Click();
             PortalChromeDriver.GetElementByXpath(MenuElement.MenuInputBox).SendKeys("一级菜单");
@@ -84,14 +82,13 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_Text()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单_文本");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一");
             MenuPage.AddMenu_Text("这里是一级菜单");
             Thread.Sleep(300 * 1000);
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MenuPage.ClickFirstLevelMenu("一");
+            MobileH5.ClickFirstLevelMenu("一");
             MobileAndroidDriver.GetScreenshot(filePath, "是否能成功添加一个一级菜单_文本");
             Assert.IsTrue(MobileH5.GetLatestMessageWithMenu().Text == "这里是一级菜单");
         }
@@ -105,15 +102,14 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_Image()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单——文本");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一级图片");
             MenuPage.AddMenu_Image();
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.ClearAllRecord();
-            MenuPage.ClickFirstLevelMenu("一级图片");
+            MobileH5.ClickFirstLevelMenu("一级图片");
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "添加一级菜单");
             Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.FrameLayout[contains(@resource-id,'com.tencent.mm:id/a4w')]", ""));
@@ -134,14 +130,13 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_News()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单_图文");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一级图文");
             MenuPage.AddMenu_News();
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MenuPage.ClickFirstLevelMenu("一级图文");
+            MobileH5.ClickFirstLevelMenu("一级图文");
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "添加一级菜单_图文");
             Assert.IsTrue((MobileH5.GetLatestMessageWithMenu().Text.Contains("关于“东方万里行” 相关问题")));
@@ -162,15 +157,13 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_Audio()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单_语音");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
             MenuPage.AddMenu("一级语音");
             MenuPage.AddMenu_Audio();
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.ClearAllRecord();
-            MenuPage.ClickFirstLevelMenu("一级语音");
+            MobileH5.ClickFirstLevelMenu("一级语音");
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "添加一级菜单_语音");
             Assert.IsTrue(MobileH5.GetAudioMessage());
@@ -191,14 +184,13 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_Video()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单_视频");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一级视频");
             MenuPage.AddMenu_Video();
             Thread.Sleep(300*1000);
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MenuPage.ClickFirstLevelMenu("一级视频");
+            MobileH5.ClickFirstLevelMenu("一级视频");
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "添加一级菜单_视频");
             Assert.IsTrue((MobileH5.GetLatestMessageWithMenu().Text.Contains("测试视频11")));
@@ -219,8 +211,7 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_SendMessage_GoBack()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\发送消息是否能成功返回到上一级界面，当点击“重设菜单内容");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一级菜单");
             MenuPage.AddMenu_Text("一级菜单");
             MenuPage.AddMenu_GoBack();
@@ -238,8 +229,7 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_JumpPage_GoBack()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\跳转到页面：是否能成功返回到上一级界面，当点击“重设菜单内容");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一级菜单");
             MenuPage.AddMenu_Link("https://www.google.com");
             MenuPage.AddMenu_GoBack();
@@ -254,8 +244,7 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_Limited()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单中输入大于4个汉字或8个字母，是否会有提示");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一级图文菜单");
             PortalChromeDriver.TakeScreenShot(filePath, "添加一级菜单中输入大于4个汉字，是否会有提示");
             Assert.IsTrue(Utility.IsAt(MenuElement.Error, "菜单名称名字不多于4个汉字或8个字母"));
@@ -287,8 +276,7 @@ namespace TestCases.PortalTests
         public void AddOneLevelMenu_More()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\是否能成功添加一个一级菜单");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("一");
             MenuPage.AddMenu_Link("https://www.google.com");
 
@@ -325,8 +313,7 @@ namespace TestCases.PortalTests
         public void AddSubMenu()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\是否能够成功在第一个一级菜单下添加第一个二级菜单，并且添加一个图文信息");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddSubMenu("1.1");
             MenuPage.AddSubMenu_News();
@@ -405,8 +392,7 @@ namespace TestCases.PortalTests
         public void AddSubMenu_WithFirstLevelMenuContent()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\是否能够成功添加一个二级菜单，当一级菜单有内容设置的时候");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddMenu_Link("https://www.google.com");
 
@@ -429,8 +415,7 @@ namespace TestCases.PortalTests
         public void AddMenu_AddImage_NextPage()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\检查图片 选择素材 对话框");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddImage_NextPage();
             PortalChromeDriver.TakeScreenShot(filePath, "检查图片选择素材对话框");
@@ -446,8 +431,7 @@ namespace TestCases.PortalTests
         public void AddMenu_AddImage_NextPage_Input()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\添加一级菜单_视频");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddImage_NextPageInput();
             PortalChromeDriver.TakeScreenShot(filePath, "检查图片选择素材对话框");
@@ -463,8 +447,7 @@ namespace TestCases.PortalTests
         public void AddMenu_AddNews_NextPage()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\检查图文选择素材对话框");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddNews_NextPage();
    
@@ -481,8 +464,7 @@ namespace TestCases.PortalTests
         public void AddMenu_AddNews_NextPage_Input()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\检查图文选择素材对话框");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddNews_NextPageInput();
 
@@ -500,8 +482,7 @@ namespace TestCases.PortalTests
         public void AddMenu_Audio_NextPage()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\检查语音选择素材对话框");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddAudio_NextPage();
             Thread.Sleep(2 * 1000);
@@ -517,8 +498,7 @@ namespace TestCases.PortalTests
         public void AddMenu_Audio_NextPage_Input()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\检查语音选择素材对话框");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddAudio_NextPageInput();
 
@@ -536,8 +516,7 @@ namespace TestCases.PortalTests
         public void AddMenu_Video_NextPage()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\检查视频选择素材对话框");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddVideo_NextPage();
             PortalChromeDriver.TakeScreenShot(filePath, "检查视频选择素材对话框");
@@ -553,8 +532,7 @@ namespace TestCases.PortalTests
         public void AddMenu_Video_NextPage_Input()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\检查视频选择素材对话框");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddVideo_NextPageInput();
             PortalChromeDriver.TakeScreenShot(filePath, "检查视频选择素材对话框");
@@ -570,8 +548,7 @@ namespace TestCases.PortalTests
         public void AddAllMenu()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\是否能够成功添加3个一级菜单，并且每个一级菜单中创建5个二级菜单");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddSubMenu("1.1");
             MenuPage.AddSubMenu_News();
@@ -631,8 +608,7 @@ namespace TestCases.PortalTests
         public void EditOneLevelMenu_Text()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\是否能够成功修改一级菜单内容");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddMenu_Text("这里是一级菜单");
 
@@ -652,8 +628,7 @@ namespace TestCases.PortalTests
         public void EditSubMenu_Text()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\是否能够成功修改二级菜单内容");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddSubMenu("1.1");
             MenuPage.AddSubMenu_Text("文本");
@@ -674,8 +649,7 @@ namespace TestCases.PortalTests
         public void TipsForNoContentMenu()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\是否会自动跳到第一个没有的菜单下，当有菜单没有被设置内容的时候点 保存发布");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             MenuPage.AddMenu("1");
             MenuPage.AddMenu("2");
             PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
@@ -700,6 +674,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(MenuElement.Logout);
             LoginPage.LoginWithPhoneNumber("13269120258");
             Thread.Sleep(10 * 1000);
+
             MobileAndroidDriver.AndroidMmsInitialize();
             MobileH5.GetLoginCode();
 

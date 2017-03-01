@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="MobileH5.cs" />
     <Compile Include="FaceRankingH5Page.cs" />
+    <Compile Include="Mobile_Weibo.cs" />
+    <Compile Include="UIElement\Element_Weibo.cs" />
     <Compile Include="UIElement\SMSElement.cs" />
     <Compile Include="UIElement\HIMobileH5Element.cs" />
     <Compile Include="UIElement\PinYanZhiH5Element.cs" />
@@ -64,6 +66,7 @@
       <Name>Portal</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

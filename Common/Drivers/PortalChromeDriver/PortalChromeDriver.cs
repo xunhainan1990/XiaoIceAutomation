@@ -51,8 +51,6 @@ namespace Common.Driver
             }
             Instance.Navigate().GoToUrl(testUrl);
          
-
-
         }
 
         public static void ChromeInitializeWithWechat()

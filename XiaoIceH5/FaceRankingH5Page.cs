@@ -19,10 +19,12 @@ namespace XiaoIceH5
             try
             {
                 MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a35')]").Click();
+
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                MobileAndroidDriver.ClickElemnetPerName("服务按钮");
+                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a35')]").Click();
             }
         }
 

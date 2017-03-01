@@ -16,15 +16,21 @@ namespace TestCases.PortalTests
     [TestClass]
     public class SettingTests : PortalTestInit
     {
+        [TestInitialize]
+        public void IntiMomentsSnapshot()
+        {
+            WeChatManagermentPage.GoTo_Setting_Page();
+        }
+
         [TestCategory("Setting")]
         [TestCategory("AddText_AutoReply")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "检查公众号文章推介级别设置默认显示平衡")]
-        public void Setting_Article_Level()
+        public static void Setting_Article_Level()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\检查公众号文章推介级别设置默认显示平衡");
-            WeChatManagermentPage.GoTo_Setting_Page();
+
             Assert.IsTrue(Utility.IsAtPerClass(SettingElement.CheckedRadio, "平衡：觉得贴切才推荐"));
 
             PortalChromeDriver.ClickElementPerXpath(SettingElement.RadioCheck_2);
@@ -51,11 +57,10 @@ namespace TestCases.PortalTests
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "检查聊天风格设置默认显示保守")]
-        public void Setting_Chat_Style()
+        public static void Setting_Chat_Style()
         {
 
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\检查聊天风格设置默认显示保守");
-            WeChatManagermentPage.GoTo_Setting_Page();
             Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("保守：聊天语言较为谨慎（系统默认）"));
             //Assert.IsTrue(Utility.IsAt(SettingElement.Chat_Style_Conservative, "保守：聊天语言较为谨慎（系统默认）"));
 

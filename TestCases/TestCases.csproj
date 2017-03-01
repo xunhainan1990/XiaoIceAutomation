@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PortalTests\ChitChatSkillTests.cs" />
     <Compile Include="PortalTests\MomentsSnapshotTest.cs" />
     <Compile Include="PortalAndH5Tests\HIPortalAndH5Test.cs" />
     <Compile Include="PortalAndH5Tests\PortalAndH5TestInit.cs" />
@@ -76,11 +77,16 @@
     <Compile Include="PortalTests\FaceRankingTest.cs" />
     <Compile Include="PortalTests\MaterialTest.cs" />
     <Compile Include="PortalTests\MenuTest.cs" />
-    <Compile Include="PortalTests\MessageBoardTests.cs" />
     <Compile Include="PortalTests\PortalTestInit.cs" />
     <Compile Include="PortalTests\PortalTestInitNoCookies.cs" />
     <Compile Include="PortalTests\SecertRelationshipTest.cs" />
     <Compile Include="PortalTests\SettingTests.cs" />
+    <Compile Include="PortalTests\Weibo\AutoReplyTest_Weibo.cs" />
+    <Compile Include="PortalTests\Weibo\FollowedAutoReplyTest_Weibo.cs" />
+    <Compile Include="PortalTests\Weibo\LoginTest_Weibo.cs" />
+    <Compile Include="PortalTests\Weibo\MenuTest_Weibo.cs" />
+    <Compile Include="PortalTests\Weibo\PortalTestInit_Weibo.cs" />
+    <Compile Include="PortalTests\Weibo\SettingTest_Weibo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +107,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XiaoIceH5\H5.csproj">
+    <ProjectReference Include="..\XiaoIceH5\Mobile.csproj">
       <Project>{56e8e736-1136-4c44-8b2c-74f00da70039}</Project>
-      <Name>H5</Name>
+      <Name>Mobile</Name>
     </ProjectReference>
     <ProjectReference Include="..\XiaoIcePortal\Portal.csproj">
       <Project>{1e7679db-1c5b-4f27-aa66-d56110899883}</Project>

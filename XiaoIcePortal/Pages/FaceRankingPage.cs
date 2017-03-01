@@ -23,26 +23,6 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void TurnOffFaceRanking()
-        {
-
-            try
-            {
-                var turnOff = PortalChromeDriver.GetElementByXpath(FaceRankingElement.FaceRankingTurnOff);
-                if (turnOff.Text == "停用")
-                {
-                    turnOff.Click();
-                    System.Threading.Thread.Sleep(1*1000);
-                    PortalChromeDriver.GetElementByXpath(FaceRankingElement.TurnOffConfirm).Click();
-                    System.Threading.Thread.Sleep(1 * 1000);
-                }
-
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
         public static string CopyLink()
         {
             try

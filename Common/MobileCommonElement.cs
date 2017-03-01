@@ -21,5 +21,6 @@ namespace Common
         //public static string MomentShare_Photo= "图片 1, 2017-02-03 16:00";
         //public static string Done= "完成(1/9)";
         public static string Send = "发送";
+        public static string Cancle = "取消";
     }
 }

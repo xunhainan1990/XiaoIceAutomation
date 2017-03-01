@@ -1,12 +1,15 @@
 ﻿using Common.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Portal.Pages;
-using System.Threading;
-using XiaoIcePortal.Pages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace TestCases.PortalTests
+namespace TestCases.PortalTests.Weibo
 {
-    public class PortalTestInit
+    public class PortalTestInit_Weibo
     {
         [TestInitialize]
         public void Inti()
@@ -16,9 +19,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ChromeInitialize();
             //}
             //LoginPage.GoTo();
-            HomePage.ClickWeChatApp("平台测试账号2");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+            HomePage.ClickWeChatApp("啊_荀");
         }
 
         [TestCleanup]

@@ -88,11 +88,15 @@ namespace TestCases.PortalAndH5Tests
 
         [TestCategory("Hi")]
         [TestCategory("Can_StaffBind_IfTimeOut")]
+        [TestCategory("BVT")]
         [TestMethod]
-        [TestProperty("description", "29.[客服人员设定]是否可以正常使用，当登陆密码有效期超过60s时")]
+        [TestProperty("description", "29.[客服人员设定]是否可以正常使用，当登陆密码有效期超过60s时;30.[客服人员设定]是否可以正常使用，当登陆密码过期后重新获取")]
         public void Can_StaffBind_IfTimeOut()
         {
-            PortalChromeDriver.CreateFolder(@"HI\29.[客服人员设定]是否可以正常使用，当登陆密码有效期超过60s时");
+            string foler = PortalChromeDriver.CreateFolder(@"HI\29.[客服人员设定]是否可以正常使用，当登陆密码有效期超过60s时");
+
+            WeChatManagermentPage.GoTo_Menu_Page();
+            MenuPage.DeleteMenuItem();
             //确保HI是Turn on的状态
             HIPage.TurnOnSetup();
             //切换到Hi的设置Tab页
@@ -106,37 +110,20 @@ namespace TestCases.PortalAndH5Tests
             Thread.Sleep(60 * 1000);
             //H5页面进入平台测试账号对话窗口     
             MobileH5.GetToTestAccount();
-
+            MobileH5.ClearAllRecord();
             //发送验证码
             MobileH5.SendMessage(value);
             MobileAndroidDriver.GetScreenshot(foler, "验证H5是否正确输入验证码");
             PortalChromeDriver.TakeScreenShot(foler, "验证Portal端客服是否绑定成功");
             Assert.IsFalse(MobileH5.IsStaffBind());
-
-        }
-
-        [TestMethod]
-        [TestCategory("Hi")]
-        [TestProperty("description", "30.[客服人员设定]是否可以正常使用，当登陆密码过期后重新获取")]
-        public void Staff_RetainCode_IfTimeOut()
-        {
-            PortalChromeDriver.CreateFolder(@"HI\30.[客服人员设定]是否可以正常使用，当登陆密码过期后重新获取");
-            //确保HI是Turn on的状态
-            HIPage.TurnOnSetup();
-            //切换到Hi的设置Tab页
-            HIPage.SwichHISettingTab(HIPortalPageUIElement.SubTabHIStaff);
-            //判断是否已经绑定客服，如果绑定，则删除客服
-            HIPage.DeleteStaff();
-            //获取绑定客服验证码
-            var value = HIPage.GetLoginCode();
-            Thread.Sleep(60 * 1000);
-            //H5页面进入平台测试账号对话窗口     
-            MobileH5.GetToTestAccount();
+            
+            foler = PortalChromeDriver.CreateFolder(@"HI\30.[客服人员设定]是否可以正常使用，当登陆密码过期后重新获取");
+            value = HIPage.GetLoginCode();    
             //删除聊天记录
             MobileH5.ClearAllRecord();
-            value = HIPage.GetLoginCode();
             //发送验证码
             MobileH5.SendMessage(value);
+            //MobileH5.SendMessageWithMenu(value);
             Thread.Sleep(5 * 1000);
 
             PortalChromeDriver.TakeScreenShot(foler, "验证登陆密码过期后重新获取是否正常绑定");
@@ -148,7 +135,7 @@ namespace TestCases.PortalAndH5Tests
         [TestCategory("BVT")]
         [TestCategory("CheckCodeAvailableIfTimeOut")]
         [TestProperty("description", "31.[客服人员设定]是否可以正常使用，当登陆密码有效期内(首次绑定)")]
-        public void CheckCodeAvailableIfTimeOut()
+        public void Check_Bind_CodeAvailable()
         {
             PortalChromeDriver.CreateFolder(@"HI\31.[客服人员设定]是否可以正常使用，当登陆密码有效期内(首次绑定)");
             //确保HI是Turn on的状态
@@ -159,7 +146,6 @@ namespace TestCases.PortalAndH5Tests
             HIPage.DeleteStaff();
             //获取绑定客服验证码
             var value = HIPage.GetLoginCode();
-            Thread.Sleep(60 * 1000);
             //H5页面进入平台测试账号对话窗口     
             MobileH5.GetToTestAccount();
             //删除聊天记录
@@ -167,12 +153,14 @@ namespace TestCases.PortalAndH5Tests
             //发送验证码
             MobileH5.SendMessage(value);
             //验证网页版是否成功绑定
-            Assert.IsFalse(HIPage.IsStaffBindOnPortal());
+            Assert.IsTrue(!HIPage.IsStaffBindOnPortal());
 
             //验证Mobile是否有绑定成功提示
             PortalChromeDriver.TakeScreenShot(foler, "验证过期验证码是否能正常使用");
-            Assert.IsFalse(MobileH5.IsStaffBind());
+            Assert.IsTrue(MobileH5.IsStaffBind());
 
+            MobileH5.SendMessage(value);
+            Assert.IsFalse(MobileH5.GetLatestMessage().Text.Equals("客服接入成功"));
         }
 
         [TestMethod]
@@ -604,46 +592,55 @@ namespace TestCases.PortalAndH5Tests
         [TestCategory("H5")]
         [TestCategory("Hi")]
         [TestCategory("BVT")]
-        [TestProperty("description", "12.对话窗口是否可以分享 和发送给朋友")]
+        [TestProperty("description", "12.对话窗口是否可以分享和发送给朋友")]
         [TestMethod]
         public void Can_ShareWin_ToFriend()
         {
             //Portal确保HI是Turn on的状态
             HIPage.TurnOnSetup();
+
             //H5页面进入平台测试账号对话窗口   
             MobileH5.GetToTestAccount();
             //H5呼叫客服
             MobileH5.GetHiCard("客服");
-            string foler = PortalChromeDriver.CreateFolder(@"HI\H5.12.对话窗口是否可以分享 和发送给朋友");
+            string foler = PortalChromeDriver.CreateFolder(@"HI\H5.12.对话窗口是否可以分享和发送给朋友");
             MobileAndroidDriver.GetScreenshot(foler, "H5");
             Assert.IsTrue(MobileH5.GetMoreItmes());
             MobileH5.BackButtonClick();
         }
-        /// <summary>
-        /// 17.	客服是否可以回复用户的客服请求（需要另一个账号，暂时自己和自己聊）
-        /// </summary>
+
+        //[TestProperty("description", "客服是否可以回复用户的客服请求（需要另一个账号，暂时自己和自己聊")]
         //[TestMethod]
         //public void RelyTo()
         //{
         //    //Portal确保HI是Turn on的状态
         //    HIPage.TurnOnSetup();
         //    //绑定客服
-        //    HI.BindStaff();
-        //    //H5页面进入平台测试账号对话窗口   
-        //    HI.GetToTestAccount();
-        //    //H5呼叫客服
-        //    HI.SendMessage("客服");
+        //    var value = HIPage.GetLoginCode();
+        //    Thread.Sleep(60 * 1000);
+        //    //H5页面进入平台测试账号对话窗口     
+        //    MobileH5.GetToTestAccount();
+        //    //删除聊天记录
+        //    MobileH5.ClearAllRecord();
+        //    value = HIPage.GetLoginCode();
+        //    //发送验证码
+        //    MobileH5.SendMessage(value);
+
+        //    MobileH5.BackButtonClick();
+        //    MobileH5.BackButtonClick();
+        //    MobileAndroidDriver.ClickElemnetPerName("chrysanthemum");
+        //    MobileAndroidDriver.ClickElemnetPerName("发消息");
+        //    MobileH5.SendMessage("客服");
         //    //点击HICard
-        //    var HICard = AndroidDriver.GetElmentByXpath(HIMobileH5Element.HiCardXpath);
+        //    var HICard = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.HiCardXpath);
         //    HICard.Click();
         //    PortalChromeDriver.Wait(TimeSpan.FromSeconds(15));
-        //    HI.XB_SendMessage("这里是测试账号");
+        //    MobileH5.XB_SendMessage("这里是测试账号");
 
 
-        //    AndroidDriver.GetElementByName(HIMobileH5Element.HIMessageFromCustom).Click();
+        //    MobileAndroidDriver.GetElementByName(HIMobileH5Element.HIMessageFromCustom).Click();
 
-
-        //    HI.XB_SendPhotoPerXiangJi();
+        //    MobileH5.XB_SendPhotoPerXiangJi();
         //    PortalChromeDriver.Wait(TimeSpan.FromSeconds(5));
         //    Assert.IsTrue(HIPage.Can_ReceiveImageFromMobile());
         //}

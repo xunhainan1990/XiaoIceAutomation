@@ -16,6 +16,12 @@ namespace TestCases.PortalTests
     {
         string folder = string.Empty;
 
+        [TestInitialize]
+        public void Inti_Hi()
+        {
+            WeChatManagermentPage.GoToHIPage();
+        }
+
         [TestCategory("Hi")]
         [TestCategory("Portal")]
         [TestCategory("Can_ClickSetting")]        
@@ -24,8 +30,6 @@ namespace TestCases.PortalTests
         public void Can_ClickSetting()
         {
             folder= PortalChromeDriver.CreateFolder(@"HI\1.是否能够成功切换到人工客服功能的“设置” 界面");
-            //Go to AI Page
-            WeChatManagermentPage.GoToHIPage();
             //Click settings
             HIPage.ClickSettings();
             PortalChromeDriver.TakeScreenShot(folder, "1.是否能够成功切换到人工客服功能的“设置” 界面");
@@ -506,8 +510,6 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("Hi")]
-        [TestCategory("BVT")]
-        [TestCategory("Staging")]
         [TestProperty("description", "49.[对话窗口]聊天对话窗是否保存聊天历史记录（1）")]
         public void Check_Msg_History_Refresh()
         {
@@ -525,8 +527,6 @@ namespace TestCases.PortalTests
 
         [TestMethod]
         [TestCategory("Hi")]
-        [TestCategory("BVT")]
-        [TestCategory("Staging")]
         [TestProperty("description", "50.[对话窗口]聊天对话窗是否保存聊天历史记录（2）")]
         public void Check_Msg_History_TurnOff()
         {

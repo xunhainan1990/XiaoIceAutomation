@@ -100,7 +100,7 @@ namespace XiaoIcePortal.Pages
                 System.Threading.Thread.Sleep(2 * 1000);
                 PortalChromeDriver.GetElementByXpath(MenuElement.bottom_save).Click();
                 PortalChromeDriver.GetElementByXpath(MenuElement.Confirm).Click();
-                System.Threading.Thread.Sleep(300 * 1000);
+                //System.Threading.Thread.Sleep(300 * 1000);
             }
             catch (Exception e)
             {

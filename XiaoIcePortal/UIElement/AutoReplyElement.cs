@@ -38,7 +38,7 @@ namespace XiaoIcePortal.UIElement
         public static string AddEmoj = "//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[2]/div/div[1]/div[2]/a";
         public static string SmileFace= "//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[2]/div/div[1]/div[2]/div/ul/li[1]/span/img";
         public static string Emoj= "//*[@id='keywordsreplies']/div/div[4]/div/ul/li/div[2]/div[2]/div/div[2]/div[2]/img";
-        public static string ReplyPic = "//*[@id='keywordsreplies']/div/div[4]/div/div[1]/div[3]";
+        public static string ReplyNews = "//*[@id='keywordsreplies']/div/div[4]/div/div[1]/div[3]";
         public static string PicLink= "//*[@id='choosetbox_wrapper']/div/div[2]/div[{1}]/div[{0}]/div[1]/div[2]/img";
         public static string PicConfirm ="//*[@id='choosetbox_wrapper']/div/div[5]/a[1]";
         public static string PicValidator = "//*[@id='keywordsreplies']/div/div[4]/div/ul/li[5]/div[2]/div[2]/div/div[1]/h4/a";

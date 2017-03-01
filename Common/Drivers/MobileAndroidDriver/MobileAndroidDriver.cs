@@ -32,6 +32,26 @@ namespace Common
 
             androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
         }
+
+        public static void AndroidInitialize_Weibo()
+        {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.SetCapability("device", "Android");
+            capabilities.SetCapability(CapabilityType.Platform, "Windows");
+            capabilities.SetCapability("deviceName", "MI 4W");
+            capabilities.SetCapability("platformName", "Android");
+            capabilities.SetCapability("platformVersion", "23");
+            //WeChat
+            capabilities.SetCapability("appPackage", "com.sina.weibo");
+            capabilities.SetCapability("appActivity", "com.sina.weibo.SplashActivity");
+            capabilities.SetCapability("unicodeKeyboard", "True");
+            capabilities.SetCapability("resetKeyboard", "True");
+            capabilities.SetCapability("newCommandTimeout", 120);
+
+            androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
+        }
+
+
         public static void AndroidInitializeWithoutChangingKeyboard()
         {
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -102,7 +122,7 @@ namespace Common
             }
 
         }
-        public static List<AppiumWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds=20)
+        public static List<AppiumWebElement> WaitForPageElementsToLoad(By by, IWebDriver driver, int timeInSeconds=20,bool conti=false)
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeInSeconds));
             wait.Until(ExpectedConditions.ElementExists(by));
@@ -117,6 +137,10 @@ namespace Common
         public static AppiumWebElement GetElementByName(string name, bool conti = false)
         { 
             return WaitForPageElementToLoad(By.Name(name), androidDriver,25, conti);
+        }
+        public static List<AppiumWebElement> GetElementsByName(string name, bool conti = false)
+        {
+            return WaitForPageElementsToLoad(By.Name(name), androidDriver, 25, conti);
         }
         public static AppiumWebElement GetElementByXpath(string xpath, bool conti = false)
         {
@@ -139,7 +163,7 @@ namespace Common
 
         public static void GetScreenshot(string filePath, string fileName)
         {
-            Thread.Sleep(4 * 1000);
+            Thread.Sleep(5 * 1000);
             try
             {
                 //string filePath = @"D:\TestResult\";

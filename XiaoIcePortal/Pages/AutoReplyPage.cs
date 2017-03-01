@@ -122,7 +122,7 @@ namespace XiaoIcePortal.Pages
             }
         }
 
-        public static void AddReply_Pic(int count)
+        public static void AddReply_News(int count)
         {
             try
             {
@@ -130,34 +130,36 @@ namespace XiaoIcePortal.Pages
                 {
                     for (int i = 1; i <= 3; i++)
                     {
-                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyPic);
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyNews);
+                        Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicLink.Replace("{1}", "1").Replace("{0}", i + ""));
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicConfirm);
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        Thread.Sleep(2 * 1000);
                     }
 
                     for (int i = 1; i <= count - 3; i++)
                     {
-                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyPic);
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyNews);
+                        Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicLink.Replace("{1}", 2 + "").Replace("{0}", i + ""));
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicConfirm);
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        Thread.Sleep(2 * 1000);
+                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.SaveButton);
                     }
                 }
                 else
                 {
                     for (int i = 1; i <= count; i++)
                     {
-                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyPic);
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.ReplyNews);
+                        Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicLink.Replace("{1}", "1").Replace("{0}", i + ""));
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        Thread.Sleep(2 * 1000);
                         PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.PicConfirm);
-                        System.Threading.Thread.Sleep(2 * 1000);
+                        Thread.Sleep(2 * 1000);
+                        PortalChromeDriver.ClickElementPerXpath(AutoReplyElement.SaveButton);
                     }
                 }
 

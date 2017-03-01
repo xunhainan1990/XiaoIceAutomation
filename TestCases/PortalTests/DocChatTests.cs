@@ -16,14 +16,12 @@ namespace TestCases.PortalTests
     [TestClass]
     public class DocChatTests : PortalTestInit
     {
-        [TestMethod]
-        [TestCategory("DocChat")]
-        [TestProperty("description", "1.检查'自主学习技能'功能是否显示在技能插件的页面上")]
-        public void Is_Doc_Chat_Show()
+        [TestInitialize]
+        public void IntiDoc_Chat()
         {
             WeChatManagermentPage.GoToCS_Skill_Page();
-            PortalChromeDriver.TakeScreenShot("1.检查'自主学习技能'功能是否显示在技能插件的页面上");
-            Assert.IsTrue(Utility.IsAt(DocChatElement.cs_skills_doc_chat));
+            DocChatPage.Click_Doc_Chat_Skill();
+            Utility.TurnOn();
         }
 
         [TestMethod]
@@ -34,10 +32,6 @@ namespace TestCases.PortalTests
         public void Doc_Chat_TurnOn()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
             PortalChromeDriver.TakeScreenShot("1.检查'自主学习技能'功能是否显示在技能插件的页面上");
             Assert.IsTrue(Utility.IsAt(DocChatElement.TurnOn_validator));
         }
@@ -50,10 +44,6 @@ namespace TestCases.PortalTests
         public void AllSelect()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-            Utility.TurnOn();;
-
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             Assert.IsTrue(Utility.IsAt(DocChatElement.CurrentSelectNum, "10"));
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
@@ -66,7 +56,6 @@ namespace TestCases.PortalTests
 
         }
 
-
         [TestMethod]
         [TestCategory("DocChat")]
         [TestCategory("BVT")]
@@ -75,12 +64,6 @@ namespace TestCases.PortalTests
         public void Select_AcrossPages()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-            if (!HIPage.IsOn())
-            {
-                Utility.TurnOn();
-            }
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
@@ -97,14 +80,7 @@ namespace TestCases.PortalTests
         [TestProperty("description", "在技能设置页面，检查更新时间按钮是否可用")]
         public void Sort()
         {
-            //PortalChromeDriver.ChromeInitializeWithWechat();
-            //DocChatPage.AddMaterialFromWechat();
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
-
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
@@ -121,14 +97,7 @@ namespace TestCases.PortalTests
         [TestProperty("description", "检查技能设置页面是否显示翻页和跳转按钮，当文章数大于10篇")]
         public void TurnTo_NextPage()
         {
-            //PortalChromeDriver.ChromeInitializeWithWechat();
-            //DocChatPage.AddMaterialFromWechat();
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
-
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.Page_Next);
             Thread.Sleep(2*1000);
             Assert.IsTrue(Utility.IsAt(DocChatElement.FirstArticle, "b"));
@@ -144,13 +113,7 @@ namespace TestCases.PortalTests
         [TestProperty("description", "检查技能设置页面是否显示翻页和跳转按钮，当文章数大于10篇")]
         public void TurnTo_NextPage_Input()
         {
-            //PortalChromeDriver.ChromeInitializeWithWechat();
-            //DocChatPage.AddMaterialFromWechat();
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
 
             DocChatPage.TurnToNextPage_Input("2");
             Thread.Sleep(2 * 1000);
@@ -176,13 +139,7 @@ namespace TestCases.PortalTests
         [TestProperty("description", "是否可以设置一篇或几篇未学习的文章为已学习状态")]
         public void Study()
         {
-            //PortalChromeDriver.ChromeInitializeWithWechat();
-            //DocChatPage.AddMaterialFromWechat();
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
 
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
@@ -205,13 +162,7 @@ namespace TestCases.PortalTests
         [TestProperty("description", "已学习的文章是否可以重复学习")]
         public void ReStudy()
         {
-            //PortalChromeDriver.ChromeInitializeWithWechat();
-            //DocChatPage.AddMaterialFromWechat();
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
 
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
@@ -230,10 +181,6 @@ namespace TestCases.PortalTests
         public void NotStudy()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
 
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
@@ -250,10 +197,6 @@ namespace TestCases.PortalTests
         public void Set_HasStudy_TwoArticle()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
 
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
@@ -278,10 +221,6 @@ namespace TestCases.PortalTests
         public void Set_NotStudy_TwoArticle()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
 
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
@@ -305,12 +244,6 @@ namespace TestCases.PortalTests
         public void Set_All_HasStudy()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
-
-
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.HasStudy);
@@ -331,17 +264,12 @@ namespace TestCases.PortalTests
         public void Set_All_NotStudy()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
             Thread.Sleep(1 * 1000);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.NotStudy);
             Assert.IsTrue(Utility.IsAt(DocChatElement.Confirm, "为保证使用效果，请至少保证已学习10篇以上的图文素材"));
         }
-
 
         [TestMethod]
         [TestCategory("DocChat")]
@@ -351,10 +279,6 @@ namespace TestCases.PortalTests
         public void Set_AllPage_HasStudy()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
             Thread.Sleep(1 * 1000);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.SelectAllPages);
@@ -382,10 +306,6 @@ namespace TestCases.PortalTests
         public void Set_AllPage_NotStudy()
         {
             //默认有>=10条素材
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            DocChatPage.Click_Doc_Chat_Skill();
-
-            Utility.TurnOn();
             Thread.Sleep(1 * 1000);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.SelectAllPages);

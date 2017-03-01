@@ -635,10 +635,6 @@ namespace Portal.Pages
         {
             try
             {
-                LoginPage.GoTo();
-                HomePage.ClickWeChatApp("平台测试账号2");
-                //Go to AI Page
-                WeChatManagermentPage.GoToHIPage();
                 //click settings
                 ClickSettings();
                 //Turn on H

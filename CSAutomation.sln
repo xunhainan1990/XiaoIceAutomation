@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "XiaoIcePortal\Portal.csproj", "{1E7679DB-1C5B-4F27-AA66-D56110899883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "H5", "XiaoIceH5\H5.csproj", "{56E8E736-1136-4C44-8B2C-74F00DA70039}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile", "XiaoIceH5\Mobile.csproj", "{56E8E736-1136-4C44-8B2C-74F00DA70039}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCases", "TestCases\TestCases.csproj", "{30A3CFF9-3CF5-48CE-844B-DC0D6F99F371}"
 EndProject

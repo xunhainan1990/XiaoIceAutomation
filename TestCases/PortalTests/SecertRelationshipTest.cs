@@ -35,6 +35,14 @@ namespace TestCases.PortalTests
         string 美女美女 = "mmexport1481102839261.jpg";
         string 小孩小孩 = "mmexport1482217944394.jpg";
         string 一男一女 = "mmexport1482395212867.jpg";
+        string filePath = string.Empty;
+        [TestInitialize]
+        public void IntiSecretRelationship()
+        {
+            WeChatManagermentPage.GoToCS_Skill_Page();
+            SecretRelationshipPage.ClickSecretRelationship();
+            SecretRelationshipPage.TurnOn();
+        }
 
         [TestCategory("secretRelationship")]
         [TestCategory("Can_secretRelationship_TurnOn")]
@@ -44,11 +52,6 @@ namespace TestCases.PortalTests
         [TestProperty("description", "1.检查'关系识别'功能是否显示在技能插件的页面上;3.是否可以正常开启'关系识别'功能")]
         public void Can_secretRelationship_TurnOn()
         {
-            string filePath = PortalChromeDriver.CreateFolder(@"关系识别\1.检查'关系识别'功能是否显示在技能插件的页面上");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            PortalChromeDriver.TakeScreenShot(filePath,@"1.检查'关系识别'功能是否显示在技能插件的页面上");
-            Assert.IsTrue(Utility.IsAt(secretRelationshipElement.secretRelationship, "关系识别"), "检查'关系识别'功能是否显示在技能插件的页面上");
-            SecretRelationshipPage.ClickSecretRelationship();
             Utility.TurnOff();
             Thread.Sleep(2*1000);
             if (!Utility.IsTurnOn())
@@ -89,9 +92,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_KeepSharing()
      {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\4.检查'技能设置'页面的功能按钮是否正常工作");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -210,9 +211,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_RewardSetting_Work2_BVT()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\7.检查'奖项设置'页面的功能按钮是否正常工作(2)");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+          
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
             Thread.Sleep(1 * 1000);
@@ -238,9 +237,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_RewardSetting_Work2()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\7.检查'奖项设置'页面的功能按钮是否正常工作(2)");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+          
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
             Thread.Sleep(1 * 1000);
@@ -283,9 +280,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_SwitchTab()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\8.“技能设置”，“奖项设置”和“使用说明” Tab是否可以相互切换)");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             PortalChromeDriver.TakeScreenShot(filePath, "点击稍后设置后，是否focus在技能设置上");
             Assert.IsTrue(Utility.IsAt(FaceRankingElement.copiedLink), "点击稍后设置后，是否focus在技能设置上");
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
@@ -300,9 +295,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Single()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\15.在没有设置奖项的情况下上传一张单个人物的照片");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();           
@@ -347,9 +340,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Celebrity()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\16.在没有设置奖项的情况下上传一张明星图片");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -390,9 +381,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Political()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\17.在没有设置奖项的情况下上传一张政治人物图片");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -436,9 +425,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_NoneHuman()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\18.在没有设置奖项的情况下上传一张非人物图片");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();        
@@ -481,9 +468,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Humanvague()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\19.在没有设置奖项的情况下上传人物面部不清晰的图片");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();       
@@ -528,9 +513,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Couple()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\20.是否可以获得“公众号最亲密恋人”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -566,9 +549,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Friend()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\21.是否可以获得“公众号最纯真友谊”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -591,9 +572,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Parent_Child()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\22.是否可以获得“公众号最佳亲子组合”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -635,9 +614,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Sisters()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\23.是否可以获得“公众号最佳姐妹淘”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -686,9 +663,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Brothers()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\24.是否可以获得“公众号最佳兄弟组合”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -723,12 +698,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Angle()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\25.是否可以获得“公众号最萌小天使”奖项");
-            PortalChromeDriver.ChromeInitialize();
-            LoginPage.GoTo();
-            HomePage.ClickWeChatApp("平台测试账号2");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -752,9 +722,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_GoodLook()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\26.是否可以获得“公众号最高颜值组合”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -793,9 +761,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_TravelPartners()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\是否可以获得“公众号最佳旅行拍档”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -834,9 +800,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_Bro_Sis()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\26.是否可以获得“公众号最配阿哥阿妹”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -875,9 +839,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_MiaoZhai()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\是否可以获得“公众号最帅苗寨女婿”奖项");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
+
             //设置奖励中奖概率
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
             SecretRelationshipPage.ClearAllAward();
@@ -904,8 +866,7 @@ namespace TestCases.PortalTests
            
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\27.设置最高发奖数量为1,中奖机率为100%,检查发送第1张有效图片的时候就能中奖（所有奖项都试一遍）");
             string filePath28 = PortalChromeDriver.CreateFolder(@"关系识别\28.设置最高发奖数量为1,中奖机率为100%.检查发送第2张有效图片的时候能否中奖（所有奖项都试一遍）");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
+
             //添加关系识别菜单
             string link = FaceRankingPage.CopyLink();
             FaceRankingPage.CopyAlertConfirm();
@@ -1000,8 +961,6 @@ namespace TestCases.PortalTests
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\29.设置最高发奖数量为5， 中奖机率为100%， 检查发送的前5张有效图片都能中奖（所有奖项都试一遍）");
             string filePath30 = PortalChromeDriver.CreateFolder(@"关系识别\30.设置最高发奖数量为5， 中奖机率为100%， 检查发送的第6张有效图片能否中奖（所有奖项都试一遍）");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
            
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
@@ -1108,8 +1067,6 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_1_100_DiffPhoto()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\32.只选中任一一个奖项后，上传一张跟该奖项无关的人物图片，是否会中奖（所有奖项都试一遍）");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
           
             for (int i = 1; i < 8; i++)
             {
@@ -1168,16 +1125,20 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_TurnOff()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\停用'关系识别'功能后，输入含有'关系识别'的文本消息或点击相应link，是否能够触发该功能");
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            SecretRelationshipPage.ClickSecretRelationship();
+
             Utility.TurnOff();
             Thread.Sleep(2 * 1000);
             Assert.IsTrue(!Utility.IsTurnOn());
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
+
+            MobileH5.SendMessage("拼颜值");
+            Thread.Sleep(2 * 1000);
+            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("关闭"),"'拼颜值trigger'");
+
             FaceRankingH5Page.ClickFaceRanking();
-            Assert.IsTrue(!MobileH5.IsAtPerClassName("android.widget.Button"));
+            Assert.IsTrue(!MobileH5.IsAtPerClassName("android.widget.Button"),"点击拼颜值menu");
         }
 
         [TestCleanup]

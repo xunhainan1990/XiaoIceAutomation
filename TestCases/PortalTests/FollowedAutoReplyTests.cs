@@ -18,6 +18,13 @@ namespace TestCases.PortalTests
     [TestClass]
     public class FollowedAutoReplyTests : PortalTestInit
     {
+        [TestInitialize]
+        public void IntiMomentsSnapshot()
+        {
+            WeChatManagermentPage.GoTo_AutoReply_Page();
+            FollowedAutoReplyPage.Delete();
+        }
+
         [TestCategory("FollowedAutoReply")]
         [TestCategory("AddText_FollowedAutoReply")]
         [TestCategory("BVT")]
@@ -27,8 +34,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_AddText_BVT()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加文字关键词回复");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             FollowedAutoReplyPage.AddAutoReplyText("hello，谢谢关注");
             Thread.Sleep(2 * 1000);
@@ -61,8 +66,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_AddText()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加文字关键词回复");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             FollowedAutoReplyPage.AddAutoReplyText("");
             PortalChromeDriver.Refresh();
@@ -102,8 +105,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_AddText_Illegal()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加非法字符");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             FollowedAutoReplyPage.AddAutoReplyText("法轮功");
             Thread.Sleep(2 * 1000);
@@ -121,8 +122,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_AddText_href()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加超链接");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             FollowedAutoReplyPage.AddAutoReplyText("<a href='http://www.sina.com.cn'>新浪</a>");
             Thread.Sleep(2 * 1000);
@@ -139,8 +138,7 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_AddText_script()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加脚本");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
+
             FollowedAutoReplyPage.AddAutoReplyText("<script type='text/javascript'>document.write('< h1 > Hello World!</ h1 >')</script>");
             Thread.Sleep(2 * 1000);
             PortalChromeDriver.TakeScreenShot(filePath, "添加脚本");
@@ -156,8 +154,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_AddText_href_Image()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\是否能打开一张图片");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             FollowedAutoReplyPage.AddAutoReplyText("<a href='http://www.sinaimg.cn/dy/deco/2013/0604/loader.gif'>图片</a>");
             Thread.Sleep(2 * 1000);
@@ -174,8 +170,7 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_Add_Delete_Edit_News()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加删除修改图文回复并在Mobile端验证");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
+
             FollowedAutoReplyPage.AddAutoReplyNews(FollowedAutoReplyElement.NewsChoose);
             PortalChromeDriver.TakeScreenShot(filePath, "Portal添加图文回复");
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImageAndText, "关于“东方万里行” 相关问题"));
@@ -185,6 +180,7 @@ namespace TestCases.PortalTests
             MobileH5.FollowWeChatOffcialAccount();
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile check");
+            MobileAndroidDriver.ClickElemnetPerName("关于“东方万里行” 相关问题");
             Assert.IsTrue((MobileH5.GetLatestMessageWithMenu().Text.Contains("关于“东方万里行” 相关问题")));
   
             FollowedAutoReplyPage.Delete();
@@ -205,8 +201,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_News_NextPage()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加图文回复_翻页");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabnews);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
@@ -233,8 +227,7 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_Add_Delete_Edit_Image()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加图片回复");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
+
             FollowedAutoReplyPage.AddAutoReplyImage(FollowedAutoReplyElement.ImageChoose);
             PortalChromeDriver.TakeScreenShot(filePath, "添加");
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImage, "u=115503548,1566568049&fm=23&gp=0.jpg"));
@@ -266,8 +259,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_Image_NextPage()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加图文回复_翻页");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabimage);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
@@ -295,8 +286,7 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_Add_Delete_Edit_Video()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加删除修改视频回复");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
+
             FollowedAutoReplyPage.AddAutoReplyVideo(FollowedAutoReplyElement.VideoChoose);
             PortalChromeDriver.TakeScreenShot(filePath, "添加");
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedVideo, "测试视频11"), "添加视频回复");
@@ -327,8 +317,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_Video_NextPage()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\添加图文回复_翻页");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabvideo);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
@@ -356,8 +344,6 @@ namespace TestCases.PortalTests
         public void FollowedAutoReply_AddedAll_VideoFirst()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\同时添加文本图文图片和语音自动回复信息，当前选中的素材被保存并发布到微信公众号上");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
 
             FollowedAutoReplyPage.AddAutoReplyText("hello，谢谢关注");
             FollowedAutoReplyPage.AddAutoReplyImage(FollowedAutoReplyElement.ImageChoose);
@@ -380,7 +366,7 @@ namespace TestCases.PortalTests
         [TestProperty("description", "当没有有图文素材的时候，检查图片消息界面是否显示正确")]
         public void FollowedAuto_Reply_NoMaterial_Tips()
         {
-            string filePath = PortalChromeDriver.CreateFolder(@"自定义菜单\当没有有图文素材的时候，检查图片消息界面是否显示正确");
+            string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\当没有有图文素材的时候，检查图片消息界面是否显示正确");
             PortalChromeDriver.ClickElementPerXpath(MenuElement.Account_Arrow_Down);
             PortalChromeDriver.ClickElementPerXpath(MenuElement.Logout);
             LoginPage.LoginWithPhoneNumber("13269120258");
@@ -406,8 +392,7 @@ namespace TestCases.PortalTests
         public void FollowedAuto_Reply_Delete_null()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\当回复素材（文本图文图片语音 ）为空的时候，点击“删除回复”");
-            WeChatManagermentPage.GoTo_AutoReply_Page();
-            FollowedAutoReplyPage.Delete();
+
             Thread.Sleep(10*1000);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Delete);
             Assert.IsTrue(Utility.IsAt(MenuElement.Notification, "空内容无法删除"));            

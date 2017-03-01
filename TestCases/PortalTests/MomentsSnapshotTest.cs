@@ -190,6 +190,7 @@ namespace TestCases
         [TestProperty("description", "是否支持微信相册截图")]
         public void CheckOnMobile_Album()
         {
+
             string folder = PortalChromeDriver.CreateFolder(@"朋友圈截图\是否支持微信相册截图");
             Utility.TurnOn();
             MomentsSnapPage.DeleteCampain();
@@ -199,7 +200,8 @@ namespace TestCases
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.SendPhotoFromFileWithMenu("图片 3, 2017-02-03 18:06");
-            Thread.Sleep(5*1000);
+            Thread.Sleep(5 * 1000);
+            MobileAndroidDriver.GetScreenshot(folder, "是否支持微信相册截图");
             Assert.IsTrue(MobileH5.GetLatestMessageWithMenu().Text.Contains("[平台测试账号2] 说:ok"));
         }
 

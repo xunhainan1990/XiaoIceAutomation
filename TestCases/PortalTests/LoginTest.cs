@@ -47,21 +47,6 @@ namespace TestCases.PortalTests
         ////    PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
         ////}
 
-        ////[TestCategory("BVT")]
-        ////[TestCategory("Login")]
-        ////[TestMethod]
-        ////public void LoginWith_Outer_AddWeibo()
-        ////{
-        ////    LoginPage.Unbundling();
-        ////    LoginPage.WeiboRegister();
-        ////    MobileAndroidDriver.AndroidMmsInitialize();
-        ////    LoginPage.LoginWithPhoneNumber("13269120258");
-        ////    Thread.Sleep(10 * 1000);
-        ////    CSH5.MobileH5.GetLoginCode();
-        ////    PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
-        ////    Assert.IsTrue(LoginPage.GetApp("啊_荀"));
-        ////}
-
         //[TestCategory("BVT")]
         //[TestCategory("Login")]
         //[TestMethod]
@@ -73,20 +58,6 @@ namespace TestCases.PortalTests
         //    Assert.IsTrue(Utility.IsAt("/html/body/div/div[2]/div/div[1]/div/div[2]/a/span", "添加账号"));
         //}
 
-        //[TestCategory("BVT")]
-        //[TestCategory("Login")]
-        //[TestMethod]
-        //public void LoginWith_Inner_AddWeibo()
-        //{
-        //    LoginPage.Unbundling();
-        //    MobileAndroidDriver.AndroidMmsInitialize();
-        //    LoginPage.LoginWithPhoneNumber("13269120258");
-        //    Thread.Sleep(10 * 1000);
-        //    CSH5.MobileH5.GetLoginCode();
-        //    LoginPage.AddWeiboAccount();
-        //    PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
-        //    Assert.IsTrue(Utility.IsAt(HomePageElement.WeiboApp, "啊_荀"));
-        //}
 
         [TestCleanup]
         public void AndroidCleanUp()

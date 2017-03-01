@@ -119,14 +119,10 @@ namespace CSH5
         {
             try
             {
-                var contactlist = MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList);
-                contactlist.Click();
-
-                var officialaccount = MobileAndroidDriver.GetElementByName(MobileCommonElement.OfficialAccount);
-                officialaccount.Click();
-
-                var testAccout = MobileAndroidDriver.GetElementByName(MobileCommonElement.TestAccout);
-                testAccout.Click();
+                MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.ContactList);
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList).Click();
+                MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.OfficialAccount);
+                MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement.TestAccout);
                 Thread.Sleep(1*1000);
             }
             catch(Exception e)
@@ -136,31 +132,50 @@ namespace CSH5
            
         }
 
-        public static void SendMessage(string text)
+        public static void SendMessageWithMenu(string text)
         {
-            try {
+            try
+            {
                 var textInputSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.TextInput);
                 textInputSwich.Click();
-                
+
                 var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
                 keyBoardSwich.Click();
 
                 var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
-               
+
                 sendMessage.SendKeys(text);
 
                 var sendButton = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.SendButtonXpath);
                 sendButton.Click();
-                Thread.Sleep(2*1000);
+                Thread.Sleep(2 * 1000);
 
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
                 sendMessage.Click();
                 sendMessage.SendKeys(text);
 
                 var sendButton = MobileAndroidDriver.GetElementByName(HIMobileH5Element.SendButtonXpath);
                 sendButton.Click();
+            }
+        }
+
+        public static void SendMessage(string text)
+        {
+            try {
+
+                var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
+               
+                sendMessage.SendKeys(text);
+
+                var sendButton = MobileAndroidDriver.GetElementByName(HIMobileH5Element.SendButtonXpath);
+               sendButton.Click();
+                Thread.Sleep(2*1000);
+
+            }
+            catch (Exception e) {
             }
         }
 
@@ -421,6 +436,24 @@ namespace CSH5
 
         }
 
+        public static void GetLoginCode_Bind()
+        {
+            try
+            {
+                MobileAndroidDriver.GetElementByName(SMSElement.TextMessage).Click();
+                Thread.Sleep(5 * 1000);
+                var text = MobileAndroidDriver.GetElementByXpath(SMSElement.messageContent).Text;
+                string[] texts = text.Split('，', '：');
+                PortalChromeDriver.GetElementsByXpath("//*[@id='verification']")[1].Click();
+                PortalChromeDriver.GetElementsByXpath("//*[@id='verification']")[1].SendKeys(texts[2]);
+                //Click SendButton
+                var loginButton = PortalChromeDriver.GetElementByClassName("sbtn");
+                loginButton.Click();
+            }
+            catch (Exception e) { }
+
+        }
+
         public static void BackButtonClick()
         {
             try
@@ -555,6 +588,22 @@ namespace CSH5
             //MobileH5.BackToHome();
             BackToHome();
             OpenWeChatFromHome();
+        }
+
+        public static void ClickFirstLevelMenu(string menuName)
+        {
+            try
+            {
+                //确保Menu已经更新过来了
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.backFromHI).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement.TestAccout).Click();
+                MobileAndroidDriver.ClickElemnetPerName(menuName);
+                System.Threading.Thread.Sleep(10 * 1000);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         //public static void Moments()
