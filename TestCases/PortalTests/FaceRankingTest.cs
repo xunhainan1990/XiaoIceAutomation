@@ -46,7 +46,7 @@ namespace TestCases.PortalTests
         [TestMethod]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
         [TestProperty("description", "3.是否可以正常开启'拼颜值'功能")]
         public void FaceRanking_TurnOn()
         {            
@@ -66,7 +66,7 @@ namespace TestCases.PortalTests
         }
         
         [TestMethod]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
         [TestCategory("BVT")]
         [TestProperty("description", "4.检查复制的链接是否可以设置到菜单里;5检查在手机端”拼颜值“功能是否可以正常使用；16测试结果是否可以分享")]
         public void FaceRanking_Link_Available()
@@ -109,7 +109,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
         [TestCategory("BVT")]
         [TestProperty("description", "9.检查上传明星图片的效果")]
         public void FaceRanking_Celebrity()
@@ -126,7 +126,7 @@ namespace TestCases.PortalTests
 
 
         [TestMethod]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
         [TestCategory("BVT")]
         [TestProperty("description", "10.检查上传政治人物图片的效果")]
         public void FaceRanking_Political()
@@ -142,7 +142,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
         [TestCategory("BVT")]
         [TestProperty("description", "11.检查上传非人物图片的效果")]
         public void FaceRanking_NoneHuman()
@@ -189,7 +189,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
         [TestCategory("BVT")]
         [TestProperty("description", "14.检查是否可以正常关闭”拼颜值“的功能;19.是否可以停用'拼颜值'功能")]
         public void FaceRanking_TurnOff()
@@ -215,7 +215,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
         [TestCategory("BVT")]
         [TestProperty("description", "17.检查手机端拼颜值页面下面的二位码是否可以正常使用")]
         public void FaceRanking_QRCode_Available()
@@ -235,7 +235,8 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("FaceRanking")]
+        [TestCategory("FaceRanking_BVT")]
+        [TestCategory("BVT")]
         [TestCategory("1")]
         [TestProperty("description", "检查输入以下trigger，是否会触发拼颜值功能：")]
         public void FaceRanking_Trigger()

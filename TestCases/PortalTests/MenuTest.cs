@@ -24,7 +24,7 @@ namespace TestCases.PortalTests
             MenuPage.DeleteMenuItem();
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("AddOneLevelMenu_Link")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -48,7 +48,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(Utility.IsAt(MenuElement.addedMenu, "一级菜单"));
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -80,7 +80,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(Utility.IsAt(MenuElement.Notification, "保存成功"));
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -100,7 +100,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(MobileH5.GetLatestMessageWithMenu().Text == "这里是一级菜单");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Image")]
@@ -128,7 +128,7 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.GetScreenshot(filePath, "删除已添加的图片");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -155,7 +155,7 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.GetScreenshot(filePath, "删除已添加的图文");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -182,7 +182,7 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.GetScreenshot(filePath, "删除已添加的语音");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -209,7 +209,7 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.GetScreenshot(filePath, "删除已添加的视频");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -227,7 +227,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(Utility.IsAt(MenuElement.TextInput, "一级菜单"));
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -245,7 +245,8 @@ namespace TestCases.PortalTests
             Assert.IsFalse(Utility.IsAt(MenuElement.JumpLinkInput, "https://www.google.com"));
         }
 
-        [TestCategory("AddOneLevelMenu_Link")]
+        [TestCategory("AddOneLevelMenu_Limited")]
+        [TestCategory("Menu")]
         [TestMethod]
         [TestProperty("description", "添加一级菜单中输入大于4个汉字或8个字母，是否会有提示;添加一级菜单中输入符号，是否有提示;添加一级菜单中名字为空时，是否会有提示;")]
         public void AddOneLevelMenu_Limited()
@@ -480,7 +481,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.TakeScreenShot(filePath, "检查图文选择素材对话框");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddMenu_Audio_NextPage")]
@@ -514,7 +515,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.TakeScreenShot(filePath, "检查语音选择素材对话框");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -606,7 +607,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(MenuElement.Alert_Failure, "最多只能添加五个二级菜单，当前已达设置上限"));
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("EditOneLevelMenu_Text")]
@@ -626,7 +627,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.TakeScreenShot(filePath, "是否能够成功修改一级菜单内容");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("EditSubMenu_Text")]
@@ -647,7 +648,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.TakeScreenShot(filePath, "是否能够成功修改二级菜单内容");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddOneLevelMenu_Link")]
@@ -667,7 +668,7 @@ namespace TestCases.PortalTests
             //Assert.IsTrue(PortalChromeDriver.GetElementByClassName("menu_button menu_highlight").Text=="1");
         }
 
-        [TestCategory("Menu")]
+        [TestCategory("Menu_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("Menu_NoMaterial_Tips")]

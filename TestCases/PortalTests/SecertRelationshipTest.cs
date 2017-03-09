@@ -57,7 +57,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.ClickSecretRelationship();
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("Can_secretRelationship_TurnOn")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -98,7 +98,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(secretRelationshipElement.IsTurnOff, "停用"), "点击取消按钮，是否可以正常开启'关系识别'功能");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "4.检查'技能设置'页面的功能按钮是否正常工作;5.复制的link是否可以打开;10.是否可以正常使用'关系识别'功能（检查portal 和 手机端）;11.可以上传照片测试;12.测试结果是否可以分享;13.分享后是否可以返回到关系识别页面")]
@@ -172,7 +172,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment), "再次分享后能否正常使用");
         }
 
-        //[TestCategory("secretRelationship")]
+        //[TestCategory("SecretRelationship_BVT")]
         //[TestMethod]
         //[TestProperty("description", "6.检查'奖项设置'页面的功能按钮是否正常工作(1)")]
         //public void Can_secretRelationship_RewardSetting_Work()
@@ -207,7 +207,7 @@ namespace TestCases.PortalTests
 
         //}
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -235,7 +235,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(secretRelationshipElement.AwardRate1, "50%"), "中奖几率保存失败");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship")]
         [TestMethod]
         [TestProperty("description", "7.检查'奖项设置'页面的功能按钮是否正常工作(2)")]
         public void Can_secretRelationship_RewardSetting_Work2()
@@ -278,7 +278,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(secretRelationshipElement.award_rate_tip, "请输入正整数"), "中奖几率能否为小数");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship")]
         [TestMethod]
         [TestProperty("description", "8.“技能设置”，“奖项设置”和“使用说明” Tab是否可以相互切换)")]
         public void Can_secretRelationship_SwitchTab()
@@ -292,7 +292,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(secretRelationshipElement.cs_awards_edit), "点击现在设置后，是否focus在奖项设置上");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "15.在没有设置奖项的情况下:上传一张单个人物的照片；34.在设置奖项的情况下:上传一张单个人物的照片")]
@@ -337,7 +337,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(MobileH5.IsAtPerXpath(secretRelationshipElement.H5Reward_Resource_id), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "16.在没有设置奖项的情况下:上传一张明星图片；35.在设置奖项的情况下:上传一张明星图片")]
@@ -378,7 +378,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(MobileH5.IsAtPerXpath(secretRelationshipElement.H5Reward_Resource_id, "reward_25_3"), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "17.在没有设置奖项的情况下:上传一张政治人物图片；36.在设置奖项的情况下:上传一张政治人物图片")]
@@ -422,7 +422,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(MobileH5.IsAtPerXpath(secretRelationshipElement.H5Reward_Resource_id), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "18.在没有设置奖项的情况下:上传一张非人物图片；37.在设置奖项的情况下:上传一张非人物图片")]
@@ -465,7 +465,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(MobileH5.IsAtPerXpath(secretRelationshipElement.H5Reward_Resource_id), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "19.在没有设置奖项的情况下:上传人物面部不清晰的图片;38.	在没有设置奖项的情况下:上传人物面部不清晰的图片")]
@@ -510,7 +510,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(MobileH5.IsAtPerXpath(secretRelationshipElement.H5Reward_Resource_id), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "20.是否可以获得“公众号最亲密恋人”奖项")]
@@ -546,7 +546,7 @@ namespace TestCases.PortalTests
             //Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_1"), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "21.是否可以获得“公众号最纯真友谊”奖项")]
@@ -569,7 +569,7 @@ namespace TestCases.PortalTests
             //Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_2"), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "22.是否可以获得“公众号最佳亲子组合”奖项")]
@@ -611,7 +611,7 @@ namespace TestCases.PortalTests
             ////Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_3"), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "23.是否可以获得“公众号最佳姐妹淘”奖项")]
@@ -660,7 +660,7 @@ namespace TestCases.PortalTests
 
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "24.是否可以获得“公众号最佳兄弟组合”奖项")]
@@ -694,7 +694,7 @@ namespace TestCases.PortalTests
 
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("Can_secretRelationship_Angle")]
         [TestCategory("BVT")]
         [TestMethod]
@@ -719,7 +719,7 @@ namespace TestCases.PortalTests
            //Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "26.是否可以获得“公众号最高颜值组合”奖项")]
@@ -758,7 +758,7 @@ namespace TestCases.PortalTests
             ////Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_7"), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "26.是否可以获得“公众号最佳旅行拍档”奖项")]
@@ -797,7 +797,7 @@ namespace TestCases.PortalTests
             ////Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_7"), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "是否可以获得“公众号最配阿哥阿妹”奖项")]
@@ -821,22 +821,9 @@ namespace TestCases.PortalTests
             //Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_7"), "奖励是否显示");
             //Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id), "奖励是否显示");
 
-            //FaceRankingH5Page.FaceRankingFromFile(美男美女);
-            //Thread.Sleep(1 * 1000);
-            //MobileAndroidDriver.GetScreenshot(filePath, "图片显示是否正确");
-            //Assert.IsTrue(HIMobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment), "图片显示描述语是否正确");
-            //Assert.IsTrue(SecretRelationshipPage.CheckOficailAccountShow(), "公众号名称是否正确显示");
-            ////Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_7"), "奖励是否显示");
-
-            //FaceRankingH5Page.FaceRankingFromFile(美男美男);
-            //Thread.Sleep(1 * 1000);
-            //MobileAndroidDriver.GetScreenshot(filePath, "图片显示是否正确");
-            //Assert.IsTrue(HIMobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment), "图片显示描述语是否正确");
-            //Assert.IsTrue(SecretRelationshipPage.CheckOficailAccountShow(), "公众号名称是否正确显示");
-            ////Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id, "reward_25_7"), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "是否可以获得“公众号最帅苗寨女婿”奖项")]
@@ -861,7 +848,7 @@ namespace TestCases.PortalTests
             //Assert.IsTrue(MobileAndroidDriver.IsAt(secretRelationshipElement.H5Reward_Resource_id), "奖励是否显示");
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "27.设置最高发奖数量为1,中奖机率为100%,检查发送第1张有效图片的时候就能中奖（所有奖项都试一遍）;28.设置最高发奖数量为1， 中奖机率为100%， 检查发送第2张有效图片的时候能否中奖（所有奖项都试一遍）")]
@@ -945,7 +932,7 @@ namespace TestCases.PortalTests
         }
 
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "29.设置最高发奖数量为5， 中奖机率为100%， 检查发送的前5张有效图片都能中奖（所有奖项都试一遍）;30.设置最高发奖数量为5， 中奖机率为100%， 检查发送的第6张有效图片能否中奖（所有奖项都试一遍）")]
@@ -1052,7 +1039,7 @@ namespace TestCases.PortalTests
 
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "32.只选中任一一个奖项后，上传一张跟该奖项无关的人物图片，是否会中奖（所有奖项都试一遍）")]
@@ -1110,7 +1097,7 @@ namespace TestCases.PortalTests
 
         }
 
-        [TestCategory("secretRelationship")]
+        [TestCategory("SecretRelationship_BVT")]
         [TestMethod]
         [TestCategory("BVT")]
         [TestProperty("description", "停用'关系识别'功能后，输入含有'关系识别'的文本消息或点击相应link，是否能够触发该功能")]
