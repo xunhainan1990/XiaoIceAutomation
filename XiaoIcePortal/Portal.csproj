@@ -63,6 +63,7 @@
     <Compile Include="Pages\MessageBoardPage.cs" />
     <Compile Include="Pages\MomentsSnapPage.cs" />
     <Compile Include="Pages\SecretRelationshipPage.cs" />
+    <Compile Include="Pages\Weibo\FollowedAutoReplyPage_Weibo.cs" />
     <Compile Include="Pages\Weibo\LoginPage_Weibo.cs" />
     <Compile Include="Pages\Weibo\MebuPage_Weibo.cs" />
     <Compile Include="UIElement\ChitChatSkillElement.cs" />

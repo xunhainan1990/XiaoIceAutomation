@@ -232,11 +232,11 @@ namespace TestCases.PortalTests
             PortalChromeDriver.TakeScreenShot(filePath, "添加");
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImage, "u=115503548,1566568049&fm=23&gp=0.jpg"));
 
-            //MobileAndroidDriver.AndroidInitialize();
-            //MobileH5.UnFollowWeChatOffcialAccount();
-            //MobileH5.FollowWeChatOffcialAccount();
-            //Thread.Sleep(5 * 1000);
-            //Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.FrameLayout[contains(@resource-id,'com.tencent.mm:id/a4w')]", "添加第一页图片"));
+            MobileAndroidDriver.AndroidInitialize();
+            MobileH5.UnFollowWeChatOffcialAccount();
+            MobileH5.FollowWeChatOffcialAccount();
+            Thread.Sleep(5 * 1000);
+            Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.FrameLayout[contains(@resource-id,'com.tencent.mm:id/a4w')]", "添加第一页图片"));
 
             filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\删除图片回复");
             FollowedAutoReplyPage.Delete();

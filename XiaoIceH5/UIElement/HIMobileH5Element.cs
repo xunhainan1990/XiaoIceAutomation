@@ -33,8 +33,10 @@ namespace CSH5.UIElement
         public static string HIOffError = "//android.view.View[contains(@content-desc,'抱歉，客服功能已关闭（错误代码：40）')]";
         public static string ReplyFromHi = "//android.view.View[contains(@content-desc,'{0}')]";
         public static string WeChat = "//android.widget.FrameLayout[contains(@content-desc,'微信')]";
+        public static string WeiBo = "//android.widget.FrameLayout[contains(@content-desc,'微博')]";
         public static string CustomerServiceRequest = "收到来自[{0}]的客服请求";
         public static string NoMessage = "当前没有新的客服消息";
+
 
 
 

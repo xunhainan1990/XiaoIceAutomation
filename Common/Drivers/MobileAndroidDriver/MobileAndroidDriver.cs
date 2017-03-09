@@ -30,7 +30,7 @@ namespace Common
             capabilities.SetCapability("resetKeyboard", "True");
             capabilities.SetCapability("newCommandTimeout", 120);
 
-            androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
+              androidDriver = new AndroidDriver<AppiumWebElement>(new Uri("http://127.0.0.1:4723/wd/hub"), capabilities, TimeSpan.FromSeconds(180));
         }
 
         public static void AndroidInitialize_Weibo()

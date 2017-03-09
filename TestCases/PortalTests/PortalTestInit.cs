@@ -17,8 +17,8 @@ namespace TestCases.PortalTests
             //}
             //LoginPage.GoTo();
             HomePage.ClickWeChatApp("平台测试账号2");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+            //WeChatManagermentPage.GoTo_Menu_Page();
+            //MenuPage.DeleteMenuItem();
         }
 
         [TestCleanup]

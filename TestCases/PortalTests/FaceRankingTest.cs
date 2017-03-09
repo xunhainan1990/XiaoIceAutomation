@@ -21,6 +21,26 @@ namespace TestCases.PortalTests
             WeChatManagermentPage.GoToCS_Skill_Page();
             FaceRankingPage.ClickFaceRanking();
             Utility.TurnOn();
+            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
+            if (!Utility.IsAt(MenuElement.FaceRankingMenu, "拼颜值"))
+            {
+                MenuPage.DeleteMenuItem();
+                WeChatManagermentPage.GoToCS_Skill_Page();
+                FaceRankingPage.ClickFaceRanking();
+                string link = FaceRankingPage.CopyLink();
+                FaceRankingPage.CopyAlertConfirm();
+                WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
+                MenuPage.AddMenu("拼颜值");
+                MenuPage.AddMenu_Link_Wait(link);
+                WeChatManagermentPage.GoToCS_Skill_Page();
+                FaceRankingPage.ClickFaceRanking();
+            }
+            else
+            {
+                WeChatManagermentPage.GoToCS_Skill_Page();
+                FaceRankingPage.ClickFaceRanking();
+            }
+
         }
 
         [TestMethod]
@@ -30,7 +50,6 @@ namespace TestCases.PortalTests
         [TestProperty("description", "3.是否可以正常开启'拼颜值'功能")]
         public void FaceRanking_TurnOn()
         {            
-            HomePage.ClickWeChatApp("平台测试账号2");
             //Go to AI Page
             Assert.IsTrue(Utility.IsTurnOn(),"拼颜值正确开启");
             string filePath=PortalChromeDriver.CreateFolder(@"拼颜值\3.是否可以正常开启'拼颜值'功能");
@@ -52,20 +71,10 @@ namespace TestCases.PortalTests
         [TestProperty("description", "4.检查复制的链接是否可以设置到菜单里;5检查在手机端”拼颜值“功能是否可以正常使用；16测试结果是否可以分享")]
         public void FaceRanking_Link_Available()
         {
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            MenuPage.DeleteMenuItem();
-     
-            MenuPage.AddMenu("拼颜值"); MenuPage.AddMenu_Link_Wait(link);
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
-            string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\4.检查复制的链接是否可以设置到菜单里");
-            PortalChromeDriver.TakeScreenShot(filePath, "拼颜值菜单是否正确生成");
-            Assert.IsTrue(Utility.IsAt(MenuElement.FaceRankingMenu), "拼颜值菜单是否正确生成");
+            MobileH5.FollowWeChatOffcialAccount();
             //拼颜值功能是否正常使用
-            filePath = PortalChromeDriver.CreateFolder(@"拼颜值\5.检查在手机端”拼颜值“功能是否可以正常使用");
+            string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\5.检查在手机端”拼颜值“功能是否可以正常使用");
             FaceRankingH5Page.ClickFaceRanking();
 
             FaceRankingH5Page.FaceRankingFromFile("mmexport1481102839261.jpg");
@@ -76,6 +85,9 @@ namespace TestCases.PortalTests
             filePath = PortalChromeDriver.CreateFolder(@"拼颜值\16.测试结果是否可以分享");
             FaceRankingH5Page.ShareToSomeOne();
             FaceRankingH5Page.BackWards();
+            FaceRankingH5Page.BackWards();
+            FaceRankingH5Page.BackWards();
+
             FaceRankingH5Page.CheckLinkAvailable();
             MobileAndroidDriver.GetScreenshot(filePath, "分享出去后是否能正常打开");
             Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment), "分享出去后是否能正常打开");
@@ -102,22 +114,13 @@ namespace TestCases.PortalTests
         [TestProperty("description", "9.检查上传明星图片的效果")]
         public void FaceRanking_Celebrity()
         {
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            if (!Utility.IsAt(MenuElement.FaceRankingMenu,"拼颜值"))
-            {
-                MenuPage.DeleteMenuItem();
-                MenuPage.AddMenu("拼颜值");
-                MenuPage.AddMenu_Link_Wait(link);
-            }
-
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount(); 
+            MobileH5.FollowWeChatOffcialAccount(); 
             FaceRankingH5Page.ClickFaceRanking(); 
             FaceRankingH5Page.FaceRankingFromFile("mmexport1484563134540.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\9.检查上传明星图片的效果");
             MobileAndroidDriver.GetScreenshot(filePath,"9.检查上传明星图片的效果");
+
             Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment,"杨洋"), "未显示明星名字，当前case为林丹");
         }
 
@@ -128,17 +131,8 @@ namespace TestCases.PortalTests
         [TestProperty("description", "10.检查上传政治人物图片的效果")]
         public void FaceRanking_Political()
         {
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
-            {
-                MenuPage.AddMenu("拼颜值");
-                MenuPage.AddMenu_Link_Wait(link);
-            }
-
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+                MobileH5.FollowWeChatOffcialAccount();
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1481256514269.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\10.检查上传政治人物图片的效果");
@@ -153,17 +147,8 @@ namespace TestCases.PortalTests
         [TestProperty("description", "11.检查上传非人物图片的效果")]
         public void FaceRanking_NoneHuman()
         {
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
-            {
-                MenuPage.AddMenu("拼颜值");
-                MenuPage.AddMenu_Link_Wait(link);
-            }
-
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+                MobileH5.FollowWeChatOffcialAccount();
             FaceRankingH5Page.ClickFaceRanking(); 
             FaceRankingH5Page.FaceRankingFromFile("mmexport1463116029472.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\11.检查上传非人物图片的效果");
@@ -176,17 +161,8 @@ namespace TestCases.PortalTests
         [TestProperty("description", "12.检查多次上传测试后，平均值是否被拉高或拉低了")]
         public void FaceRanking_ChangeTheAverage()
         {
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
-            {
-                MenuPage.AddMenu("拼颜值");
-                MenuPage.AddMenu_Link_Wait(link);
-            }
-
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
             FaceRankingH5Page.ClickFaceRanking();
             double before1 =0;
             double after1 = 0;
@@ -218,26 +194,15 @@ namespace TestCases.PortalTests
         [TestProperty("description", "14.检查是否可以正常关闭”拼颜值“的功能;19.是否可以停用'拼颜值'功能")]
         public void FaceRanking_TurnOff()
         {
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            if (!HIPage.IsAt(MenuElement.FaceRankingMenu))
-            {
-                MenuPage.AddMenu("拼颜值");
-                MenuPage.AddMenu_Link_Wait(link);
-            }
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1484563134540.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\14.检查是否可以正常关闭”拼颜值“的功能");
             MobileAndroidDriver.GetScreenshot(filePath, "关闭前拼颜值正常使用，图片显示描述语");
             Assert.IsTrue(MobileH5.IsAtPerXpath(CSH5.UIElement.FaceRankingH5Element.Comment), "关闭前拼颜值正常使用，图片显示描述语");      
             //停用拼颜值
-            WeChatManagermentPage.GoToCS_Skill_Page();
-            FaceRankingPage.ClickFaceRanking();
-            Utility.TurnOff();
-            //FaceRankingPage.TurnOffFaceRanking();
+            Utility.TurnOff();;
             string turnOffPath = PortalChromeDriver.CreateFolder(@"拼颜值\19.是否可以停用'拼颜值'功能");
             PortalChromeDriver.TakeScreenShot(turnOffPath, "Portal是否能正常关闭拼颜值");          
             Assert.IsTrue(!Utility.IsTurnOn(), "Portal是否能正常关闭拼颜值");
@@ -255,23 +220,9 @@ namespace TestCases.PortalTests
         [TestProperty("description", "17.检查手机端拼颜值页面下面的二位码是否可以正常使用")]
         public void FaceRanking_QRCode_Available()
         {
-            string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\17.检查手机端拼颜值页面下面的二位码是否可以正常使用");
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            MenuPage.DeleteMenuItem();
-            try
-            {
-                HIPage.IsAt(MenuElement.FaceRankingMenu);
-            }
-            catch
-            {
-                MenuPage.AddMenu("拼颜值");
-                MenuPage.AddMenu_Link_Wait(link);
-            }           
-
+            string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\检查手机端拼颜值页面下面的二位码是否可以正常使用");
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
             FaceRankingH5Page.ClickFaceRanking();
 
             FaceRankingH5Page.ClickQRCode();
@@ -290,11 +241,10 @@ namespace TestCases.PortalTests
         public void FaceRanking_Trigger()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\检查输入以下trigger，是否会触发拼颜值功能：");
-
             Utility.TurnOff();
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("拼颜值");
+            MobileH5.FollowWeChatOffcialAccount();
+            MobileH5.SendMessageWithMenu("拼颜值");
             Thread.Sleep(2 * 1000);
             Assert.IsTrue( MobileH5.GetLatestMessage().Text.Contains("关闭"));
         }

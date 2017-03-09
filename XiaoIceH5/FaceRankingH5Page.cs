@@ -107,7 +107,7 @@ namespace XiaoIceH5
                             return;
                         }                            
                     }
-                    MobileAndroidDriver.Swipe(MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='11']"));
+                    MobileAndroidDriver.Swipe(MobileAndroidDriver.GetElementByXpath("//android.widget.FrameLayout[@index='10']"));
                 }  
             }
             catch (Exception e)
@@ -149,9 +149,8 @@ namespace XiaoIceH5
         {
             try
             {
- 
-                BackWards();
-                BackWards();
+                FaceRankingH5Page.BackWards();
+                FaceRankingH5Page.BackWards();
                 MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList).Click();
                 MobileAndroidDriver.GetElementByName(MobileCommonElement.ShareUser).Click();
                 Thread.Sleep(2*1000);

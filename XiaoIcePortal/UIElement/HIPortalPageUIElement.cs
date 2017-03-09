@@ -53,5 +53,7 @@ namespace Portal.UIElement
         public static string TurnOnDialogCancle= "//*[@id='confirmbox_wrapper']/div/div[1]/div[1]";
         public static string TopUser = "//*[@id='infoCard_of5NLw3-cVZ0Xn14jQ3gssqS6XD4']/div[2]/div[1]/div[1]";
         public static string LoadingMore= "//*[@id='loadingMore']";
+        public static string alert_disable = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[2]/p";
+        public static string HiEnableBtn = "button_hiEnableBtn_bg_disable";
     }
 }

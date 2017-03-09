@@ -39,9 +39,22 @@ namespace TestCases.PortalTests
         [TestInitialize]
         public void IntiSecretRelationship()
         {
+            WeChatManagermentPage.GoTo_Menu_Page();
+            if (!Utility.IsAt(MenuElement.FaceRankingMenu, "关系识别"))
+            {
+                WeChatManagermentPage.GoToCS_Skill_Page();
+                SecretRelationshipPage.ClickSecretRelationship();
+                SecretRelationshipPage.TurnOn();
+                string link = FaceRankingPage.CopyLink();
+                FaceRankingPage.CopyAlertConfirm();
+                WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
+                MenuPage.AddMenu("关系识别");
+                MenuPage.AddMenu_Link_Wait(link);
+                WeChatManagermentPage.GoToCS_Skill_Page();
+                SecretRelationshipPage.ClickSecretRelationship();
+            }
             WeChatManagermentPage.GoToCS_Skill_Page();
             SecretRelationshipPage.ClickSecretRelationship();
-            SecretRelationshipPage.TurnOn();
         }
 
         [TestCategory("secretRelationship")]
@@ -105,18 +118,9 @@ namespace TestCases.PortalTests
             Utility.BackToAllSkill();
             PortalChromeDriver.TakeScreenShot(filePath, "返回技能插件页面，拼颜值是否开通");
             Assert.IsTrue(Utility.IsAt(secretRelationshipElement.IsTurnOn_AllSkillPage, "（已开启）"), "返回技能插件页面，拼颜值是否开通");
-            
-
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            MenuPage.DeleteMenuItem();
-            MenuPage.AddMenu("关系识别");
-            MenuPage.AddMenu_Link_Wait(link);
-            PortalChromeDriver.TakeScreenShot(filePath, "关系识别菜单是否正确生成");
-            Assert.IsTrue(Utility.IsAt(MenuElement.FaceRankingMenu), "关系识别菜单是否正确生成");       
-              
-
+             
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             //HI上关系识别正常使用
             string filePath5 = PortalChromeDriver.CreateFolder(@"关系识别\5.复制的link是否可以打开");
@@ -301,7 +305,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.ClearAllAward();           
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1460546134950.jpg");
@@ -321,7 +325,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "1"), "100", "100");
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1460546134950.jpg");
@@ -346,7 +350,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.ClearAllAward();
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1484563134540.jpg");            
@@ -387,7 +391,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.ClearAllAward();
           
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1481256514269.jpg");
@@ -431,7 +435,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.ClearAllAward();        
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1463116029472.jpg");        
@@ -474,7 +478,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.ClearAllAward();       
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             FaceRankingH5Page.ClickFaceRanking();
             FaceRankingH5Page.FaceRankingFromFile("mmexport1484632301860.jpg");
@@ -521,7 +525,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "1"), "100", "100");   
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(美男美女);
             MobileAndroidDriver.GetScreenshot(filePath, "美男美女_公众号最亲密恋人");
@@ -556,7 +560,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "2"), "100", "100");
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(美女丑男);
             MobileAndroidDriver.GetScreenshot(filePath, "美女丑男_公众号最纯真友谊");
@@ -579,7 +583,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "3"), "100", "100");         
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
             Thread.Sleep(5*1000);
             ChoosePhotoAndCheck(年轻男小孩);
 
@@ -621,7 +625,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "4"), "100", "100");          
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(美女美女);
            
@@ -670,7 +674,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "5"), "100", "100");           
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(年轻男少男);
 
@@ -705,7 +709,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "6"), "100", "100");
            
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
             ChoosePhotoAndCheck(小孩小孩,6);
 
             MobileAndroidDriver.GetScreenshot(filePath, "小孩小孩_公众号最萌小天使");
@@ -729,7 +733,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "7"), "100", "100");        
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(美女美女);
 
@@ -768,7 +772,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "8"), "100", "100");        
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(美女美女);
 
@@ -807,7 +811,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "9"), "100", "100");        
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(一男一女);
             Thread.Sleep(5*1000);
@@ -846,7 +850,7 @@ namespace TestCases.PortalTests
             SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", "10"), "100", "100");         
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
             ChoosePhotoAndCheck(一男一女);
 
@@ -863,29 +867,17 @@ namespace TestCases.PortalTests
         [TestProperty("description", "27.设置最高发奖数量为1,中奖机率为100%,检查发送第1张有效图片的时候就能中奖（所有奖项都试一遍）;28.设置最高发奖数量为1， 中奖机率为100%， 检查发送第2张有效图片的时候能否中奖（所有奖项都试一遍）")]
         public void Can_secretRelationship_1_100()
         {
-           
+    
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\27.设置最高发奖数量为1,中奖机率为100%,检查发送第1张有效图片的时候就能中奖（所有奖项都试一遍）");
             string filePath28 = PortalChromeDriver.CreateFolder(@"关系识别\28.设置最高发奖数量为1,中奖机率为100%.检查发送第2张有效图片的时候能否中奖（所有奖项都试一遍）");
 
-            //添加关系识别菜单
-            string link = FaceRankingPage.CopyLink();
-            FaceRankingPage.CopyAlertConfirm();
-            WeChatManagermentPage.GoTo_Menu_Page_FaceRanking();
-            MenuPage.DeleteMenuItem();
-            MenuPage.AddMenu("关系识别");
-            MenuPage.AddMenu_Link_Wait(link);
-
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.FollowWeChatOffcialAccount();
-            //MobileH5.GetToTestAccount();
 
             //设置奖励中奖概率
             for (int i=1;i<11;i++)
             {
                 count = 0;
-                WeChatManagermentPage.GoToCS_Skill_Page();
-                SecretRelationshipPage.ClickSecretRelationship();
-                SecretRelationshipPage.TurnOn();
                 PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.RewartSetting);
                 SecretRelationshipPage.ClearAllAward();
                 SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", i+""), "1", "100");
@@ -963,7 +955,7 @@ namespace TestCases.PortalTests
             string filePath30 = PortalChromeDriver.CreateFolder(@"关系识别\30.设置最高发奖数量为5， 中奖机率为100%， 检查发送的第6张有效图片能否中奖（所有奖项都试一遍）");
            
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
             for (int i = 1; i < 11; i++)
             {
                 count = 0;
@@ -1079,7 +1071,7 @@ namespace TestCases.PortalTests
                 SecretRelationshipPage.CheckAward(secretRelationshipElement.Award.Replace("{0}", i + ""), "1", "100");
                
                 MobileAndroidDriver.AndroidInitialize();
-                MobileH5.GetToTestAccount();
+                MobileH5.FollowWeChatOffcialAccount();
                 string file = string.Empty;
                 switch (i)
                 {
@@ -1125,17 +1117,18 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_TurnOff()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\停用'关系识别'功能后，输入含有'关系识别'的文本消息或点击相应link，是否能够触发该功能");
-
+            WeChatManagermentPage.GoTo_Menu_Page();
+            MenuPage.DeleteMenuItem();
             Utility.TurnOff();
             Thread.Sleep(2 * 1000);
             Assert.IsTrue(!Utility.IsTurnOn());
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
+            MobileH5.FollowWeChatOffcialAccount();
 
-            MobileH5.SendMessage("拼颜值");
+            MobileH5.SendMessageWithMenu("关系识别");
             Thread.Sleep(2 * 1000);
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("关闭"),"'拼颜值trigger'");
+            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("管理员"),"'拼颜值trigger'");
 
             FaceRankingH5Page.ClickFaceRanking();
             Assert.IsTrue(!MobileH5.IsAtPerClassName("android.widget.Button"),"点击拼颜值menu");

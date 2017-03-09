@@ -136,6 +136,7 @@ namespace CSH5
         {
             try
             {
+                ResetKeyboard("Appium Android Input Manager for Unicode");
                 var textInputSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.TextInput);
                 textInputSwich.Click();
 
@@ -558,7 +559,7 @@ namespace CSH5
         {
             try
             {
-                ResetKeyboard();
+                ResetKeyboard("搜狗输入法小米版");
                 MobileAndroidDriver.GetElementByName(MobileCommonElement.ContactList).Click();
                 MobileAndroidDriver.GetElementByName(MobileCommonElement.OfficialAccount).Click();
                 MobileAndroidDriver.GetElementByName("添加").Click();
@@ -568,7 +569,6 @@ namespace CSH5
                 MobileAndroidDriver.GetElementByName("平台测试账号2").Click();
                 Thread.Sleep(3 * 1000);
                 MobileAndroidDriver.GetElementByName("进入公众号").Click();
-                Thread.Sleep(5 * 1000);
             }
             catch (Exception e)
             {
@@ -576,16 +576,14 @@ namespace CSH5
             }
         }
 
-        public static void ResetKeyboard()
+        public static void ResetKeyboard(string keyboard)
         {
             BackToHome();
             MobileAndroidDriver.GetElementByXpath("//android.widget.FrameLayout[contains(@content-desc,'设置')]").Click();
-            //MobileAndroidDriver.GetElementByName("设置").Click();
             FaceRankingH5Page.SwipeSetting();
-            MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='2']").Click();
-            MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='4']").Click();
-            MobileAndroidDriver.GetElementByXpath("//android.widget.LinearLayout[@index='1']").Click();
-            //MobileH5.BackToHome();
+            MobileAndroidDriver.ClickElemnetPerName("语言和输入法");
+            MobileAndroidDriver.ClickElemnetPerName("当前输入法");
+            MobileAndroidDriver.ClickElemnetPerName(keyboard);
             BackToHome();
             OpenWeChatFromHome();
         }
