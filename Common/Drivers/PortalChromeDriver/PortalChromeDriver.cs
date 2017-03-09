@@ -27,8 +27,8 @@ namespace Common.Driver
 
         public static void ChromeInitialize()
         {
-            Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
-
+            //Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
+            Instance = new ChromeDriver(@"D:\CSAutomation\HI\Drivers\PortalChromeDriver");
             Instance.Manage().Window.Maximize();
             string line;
             ReadConfig();
@@ -83,7 +83,7 @@ namespace Common.Driver
 
         public static void ChromeInitializeWithNoCookies()
         {
-            Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
+            Instance = new ChromeDriver(@"D:\CSAutomation\HI\Drivers\PortalChromeDriver");
             Instance.Manage().Window.Maximize();
             ReadConfig();
             Instance.Navigate().GoToUrl(testUrl);
@@ -122,7 +122,7 @@ namespace Common.Driver
         public static void ReadConfig()
         {
             string line;
-            StreamReader srTestAgainstConfig = new StreamReader(@"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\TestAgainstConfig.txt");
+            StreamReader srTestAgainstConfig = new StreamReader(@"D:\CSAutomation\HI\Drivers\PortalChromeDriver\TestAgainstConfig.txt");
 
             while ((line = srTestAgainstConfig.ReadLine()) != null && line != "")
             {
@@ -130,17 +130,17 @@ namespace Common.Driver
                 if (para == "product")
                 {
                     testUrl = PortalChromeDriver.BaseProductAddress;
-                    cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
+                    cookiePath = @"D:\CSAutomation\HI\Drivers\PortalChromeDriver\ChromeCookies.txt";
                 }
                 else if(para=="int")
                 {
                     testUrl = PortalChromeDriver.BaseIntAddress;
-                    cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\IntCookies.txt";
+                    cookiePath = @"D:\CSAutomation\HI\Drivers\PortalChromeDriver\IntCookies.txt";
                 }
                 else
                 {
                     testUrl = PortalChromeDriver.StagingAddress;
-                    cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
+                    cookiePath = @"D:\CSAutomation\HI\Drivers\PortalChromeDriver\ChromeCookies.txt";
                 }
             }
         }

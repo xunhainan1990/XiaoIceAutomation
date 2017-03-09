@@ -1117,8 +1117,7 @@ namespace TestCases.PortalTests
         public void Can_secretRelationship_TurnOff()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"关系识别\停用'关系识别'功能后，输入含有'关系识别'的文本消息或点击相应link，是否能够触发该功能");
-            WeChatManagermentPage.GoTo_Menu_Page();
-            MenuPage.DeleteMenuItem();
+
             Utility.TurnOff();
             Thread.Sleep(2 * 1000);
             Assert.IsTrue(!Utility.IsTurnOn());
