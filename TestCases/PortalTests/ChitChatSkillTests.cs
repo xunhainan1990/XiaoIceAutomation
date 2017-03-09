@@ -41,7 +41,7 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.SendMessage("讲个笑话");
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text!=null);
+            Assert.IsTrue(MobileH5.GetLatestMessage(null));
         }
 
         [TestCategory("ChitChatSkill")]
@@ -53,14 +53,14 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.SendMessage("天蝎座运势");
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("今日幸运色"));
+            Assert.IsTrue(MobileH5.GetLatestMessage("今日幸运色"));
 
             Utility.TurnOff();
             Thread.Sleep(60*1000);
             MobileH5.SendMessage("天蝎座运势");
             Thread.Sleep(60 * 1000);
             MobileH5.SendMessage("天蝎座运势");
-            Assert.IsTrue(!MobileH5.GetLatestMessage().Text.Contains("今日幸运色"));
+            Assert.IsTrue(!MobileH5.GetLatestMessage("今日幸运色"));
         }
 
         [TestCategory("ChitChatSkill")]
@@ -72,14 +72,14 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.SendMessage("北京天气");
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("℃"));
+            Assert.IsTrue(MobileH5.GetLatestMessage("℃"));
 
             Utility.TurnOff();
             Thread.Sleep(60 * 1000);
             MobileH5.SendMessage("北京天气");
             Thread.Sleep(60 * 1000);
             MobileH5.SendMessage("北京天气");
-            Assert.IsTrue(!MobileH5.GetLatestMessage().Text.Contains("℃"));
+            Assert.IsTrue(!MobileH5.GetLatestMessage("℃"));
         }
 
         [TestCategory("ChitChatSkill")]
@@ -91,14 +91,14 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.SendMessage("韩寒和小四谁更火");
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("郭敬明"));
+            Assert.IsTrue(MobileH5.GetLatestMessage("郭敬明"));
 
             Utility.TurnOff();
             Thread.Sleep(60 * 1000);
             MobileH5.SendMessage("韩寒和小四谁更火");
             Thread.Sleep(60 * 1000);
             MobileH5.SendMessage("韩寒和小四谁更火");
-            Assert.IsTrue(!MobileH5.GetLatestMessage().Text.Contains("郭敬明"));
+            Assert.IsTrue(!MobileH5.GetLatestMessage("郭敬明"));
         }
 
         [TestCategory("ChitChatSkill")]
@@ -110,14 +110,14 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.SendMessage("搜索周杰伦");
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("关于周杰伦"));
+            Assert.IsTrue(MobileH5.GetLatestMessage("关于周杰伦"));
 
             Utility.TurnOff();
             Thread.Sleep(60 * 1000);
             MobileH5.SendMessage("搜索周杰伦");
             Thread.Sleep(60 * 1000);
             MobileH5.SendMessage("搜索周杰伦");
-            Assert.IsTrue(!MobileH5.GetLatestMessage().Text.Contains("关于周杰伦"));
+            Assert.IsTrue(!MobileH5.GetLatestMessage("关于周杰伦"));
         }
 
         [TestCategory("ChitChatSkill")]
@@ -129,7 +129,7 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
             MobileH5.SendMessage("讲个税前故事");
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text!=null);
+            Assert.IsTrue(MobileH5.GetLatestMessage(null));
         }
 
         [TestCleanup]

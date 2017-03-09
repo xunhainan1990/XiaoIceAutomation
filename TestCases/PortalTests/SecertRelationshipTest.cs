@@ -1127,7 +1127,7 @@ namespace TestCases.PortalTests
 
             MobileH5.SendMessageWithMenu("关系识别");
             Thread.Sleep(2 * 1000);
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("管理员"),"'拼颜值trigger'");
+            Assert.IsTrue(MobileH5.GetLatestMessage("管理员"),"'拼颜值trigger'");
 
             FaceRankingH5Page.ClickFaceRanking();
             Assert.IsTrue(!MobileH5.IsAtPerClassName("android.widget.Button"),"点击拼颜值menu");

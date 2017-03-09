@@ -246,7 +246,7 @@ namespace TestCases.PortalTests
             MobileH5.FollowWeChatOffcialAccount();
             MobileH5.SendMessageWithMenu("拼颜值");
             Thread.Sleep(2 * 1000);
-            Assert.IsTrue( MobileH5.GetLatestMessage().Text.Contains("关闭"));
+            Assert.IsTrue( MobileH5.GetLatestMessage("关闭"));
         }
 
         [TestCleanup]

@@ -155,7 +155,7 @@ namespace XiaoIceH5
                 MobileAndroidDriver.GetElementByName(MobileCommonElement.ShareUser).Click();
                 Thread.Sleep(2*1000);
                 MobileAndroidDriver.GetElementByName(FaceRankingH5Element.ChatWith).Click();
-                MobileH5.GetLatestMessage().Click();
+                MobileH5.GetLatestMessageElement().Click();
             }
             catch (Exception e)
             {

@@ -30,6 +30,7 @@ namespace XiaoIcePortal.Pages
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
             Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(newsPath);
+            Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Confirm);
             Thread.Sleep(1 * 1000);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Bottom_Save);

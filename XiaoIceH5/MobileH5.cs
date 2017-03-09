@@ -366,24 +366,29 @@ namespace CSH5
             }
         }
 
-        public static AppiumWebElement GetLatestMessage()
+        public static  bool GetLatestMessage(string compare=null)
         {
+            var textMessageBefore = MobileAndroidDriver.GetElementsByXpath("//android.widget.TextView[@index='0']");
+            List<AppiumWebElement> elements = new List<AppiumWebElement>();
+            foreach (var item in textMessageBefore)
+            {
+                elements.Add(item);
+            }
+    
+            return elements[2].Text.Contains(compare);
 
-            try
+        }
+
+        public static AppiumWebElement GetLatestMessageElement()
+        {
+            var textMessageBefore = MobileAndroidDriver.GetElementsByXpath("//android.widget.TextView[@index='0']");
+            List<AppiumWebElement> elements = new List<AppiumWebElement>();
+            foreach (var item in textMessageBefore)
             {
-                var textMessageBefore = MobileAndroidDriver.GetElementsByXpath("//android.widget.TextView[@index='0']");
-                List<AppiumWebElement> elements = new List<AppiumWebElement>();
-                foreach (var item in textMessageBefore)
-                {
-                    elements.Add(item);
-                }
-                return elements[elements.Count - 3];
-               
+                elements.Add(item);
             }
-            catch (Exception e)
-            {
-                return null;
-            }
+            
+            return elements[2];      
         }
 
         public static AppiumWebElement GetLatestMessageWithMenu()

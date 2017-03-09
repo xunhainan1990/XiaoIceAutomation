@@ -160,7 +160,7 @@ namespace TestCases.PortalAndH5Tests
             Assert.IsTrue(MobileH5.IsStaffBind());
 
             MobileH5.SendMessage(value);
-            Assert.IsFalse(MobileH5.GetLatestMessage().Text.Equals("客服接入成功"));
+            Assert.IsFalse(MobileH5.GetLatestMessage("客服接入成功"));
         }
 
         [TestMethod]
