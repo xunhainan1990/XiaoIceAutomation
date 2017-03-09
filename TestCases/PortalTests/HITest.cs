@@ -39,7 +39,7 @@ namespace TestCases.PortalTests
 
         [TestCategory("Hi")]
         [TestCategory("Portal")]
-        [TestCategory("Can_ClickSetting")]
+        [TestCategory("Can_ClickSetting_NonCertificate")]
         [TestMethod]
         [TestProperty("description", "1.是否能够成功切换到人工客服功能的“设置” 界面")]
         public void Can_ClickSetting_NonCertificate()
@@ -58,7 +58,8 @@ namespace TestCases.PortalTests
             HIPage.ClickSettings();
             PortalChromeDriver.TakeScreenShot(folder, "1.是否能够成功切换到人工客服功能的“设置” 界面");
             Assert.IsTrue(Utility.IsAt(HIPortalPageUIElement.alert_disable, "抱歉！该技能只对认证号开放！"), "设置页面未成功显示");
-            Assert.IsTrue(Utility.IsAtPerClass(HIPortalPageUIElement.HiEnableBtn,"开启"));
+            PortalChromeDriver.ClickElementPerXpath(CommonElement.TurnOnAndOFF);
+            Assert.IsFalse(HIPage.IsOn(), "未认证用户不能开启人工客服");
         }
 
         [TestMethod]

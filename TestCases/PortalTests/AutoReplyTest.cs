@@ -489,7 +489,7 @@ namespace TestCases.PortalTests
             MobileH5.GetToTestAccount();
             MobileH5.SendMessageWithMenu("A");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("我不是素材"));
+            Assert.IsTrue(MobileH5.GetLatestMessage("我不是素材"));
         }
 
         [TestCleanup]

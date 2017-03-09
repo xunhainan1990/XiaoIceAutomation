@@ -358,7 +358,6 @@ namespace TestCases.PortalTests
             Assert.IsTrue((MobileH5.GetLatestMessage("测试视频10")));
         }
 
-        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAuto_Reply_NoMaterial_Tips")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
