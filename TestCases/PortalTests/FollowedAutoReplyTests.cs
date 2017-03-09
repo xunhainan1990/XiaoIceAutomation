@@ -236,7 +236,7 @@ namespace TestCases.PortalTests
             MobileH5.UnFollowWeChatOffcialAccount();
             MobileH5.FollowWeChatOffcialAccount();
             Thread.Sleep(5 * 1000);
-            Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.FrameLayout[contains(@resource-id,'com.tencent.mm:id/a4w')]", "添加第一页图片"));
+            Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.FrameLayout[contains(@resource-id,'com.tencent.mm:id/a4w')]"), "添加第一页图片");
 
             filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\删除图片回复");
             FollowedAutoReplyPage.Delete();

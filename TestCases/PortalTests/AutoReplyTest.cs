@@ -38,8 +38,9 @@ namespace TestCases.PortalTests
             AutoReplyPage.TurnOffAutoReply();
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
-            MobileH5.SendMessageWithMenu("啊");
+            MobileH5.FollowWeChatOffcialAccount();
+            //MobileH5.GetToTestAccount();
+            MobileH5.SendMessageWithMenu("a");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(!MobileH5.GetLatestMessage().Text.Contains("[平台测试账号2]说："));
         }
@@ -285,7 +286,7 @@ namespace TestCases.PortalTests
             var regulationTextes = PortalChromeDriver.GetElementByClassName(AutoReplyElement.RegulationText);
             regulationTextes.Clear();
             regulationTextes.SendKeys("这是rule");
-            AutoReplyPage.AddTrigger(1 + "", 1 + "");
+            AutoReplyPage.AddTrigger("abc" + "", 1 + "");
 
             AutoReplyPage.AddReply_News(1);
             Thread.Sleep(3 * 1000);
@@ -294,7 +295,7 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("1");
+            MobileH5.SendMessageWithMenu("abc");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(MobileH5.IsAtPerName("关于“东方万里行” 相关问题"));
 
