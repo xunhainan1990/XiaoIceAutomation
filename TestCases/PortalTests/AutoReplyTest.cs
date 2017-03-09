@@ -38,8 +38,9 @@ namespace TestCases.PortalTests
             AutoReplyPage.TurnOffAutoReply();
 
             MobileAndroidDriver.AndroidInitialize();
-            MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("A");
+            MobileH5.FollowWeChatOffcialAccount();
+            //MobileH5.GetToTestAccount();
+            MobileH5.SendMessageWithMenu("a");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(!MobileH5.GetLatestMessage().Text.Contains("[平台测试账号2]说："));
         }
@@ -285,7 +286,7 @@ namespace TestCases.PortalTests
             var regulationTextes = PortalChromeDriver.GetElementByClassName(AutoReplyElement.RegulationText);
             regulationTextes.Clear();
             regulationTextes.SendKeys("这是rule");
-            AutoReplyPage.AddTrigger(1 + "", 1 + "");
+            AutoReplyPage.AddTrigger("abc" + "", 1 + "");
 
             AutoReplyPage.AddReply_News(1);
             Thread.Sleep(3 * 1000);
@@ -294,7 +295,7 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("1");
+            MobileH5.SendMessageWithMenu("abc");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(MobileH5.IsAtPerName("关于“东方万里行” 相关问题"));
 
@@ -338,14 +339,14 @@ namespace TestCases.PortalTests
             var regulationTextes = PortalChromeDriver.GetElementByClassName(AutoReplyElement.RegulationText);
             regulationTextes.Clear();
             regulationTextes.SendKeys("我是rule");
-            AutoReplyPage.AddTrigger("我是trigger", 1 + "");
+            AutoReplyPage.AddTrigger("trigger", 1 + "");
             AutoReplyPage.AddEmoj();
             PortalChromeDriver.TakeScreenShot(filePath, "添加表情回复");
             Assert.IsTrue(PortalChromeDriver.GetElementByXpath(AutoReplyElement.Emoj).GetAttribute("title") == "微笑");
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("我是trigger");
+            MobileH5.SendMessageWithMenu("trigger");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("[平台测试账号2] 说:"));
         }
@@ -388,18 +389,18 @@ namespace TestCases.PortalTests
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\关键词自动回复Mobile可用");
            
-            AutoReplyPage.AddAutoReply("A", "怎么办", "我是美女");
+            AutoReplyPage.AddAutoReply("A", "A", "我是美女");
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("怎么办");
+            MobileH5.SendMessageWithMenu("A");
             Thread.Sleep(2 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "关键词自动回复Mobile可用");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("我是美女"));
 
             filePath = PortalChromeDriver.CreateFolder(@"自动回复\停用关键词回复Mobile无关键词回复");
             AutoReplyPage.TurnOffAutoReply();
-            MobileH5.SendMessage("怎么办");
+            MobileH5.SendMessageWithMenu("A");
             Thread.Sleep(2 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "停用关键词回复Mobile无关键词回复");
             Assert.IsFalse(MobileH5.GetLatestMessage().Text.Contains("我是美女"));
@@ -415,17 +416,17 @@ namespace TestCases.PortalTests
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\回复为超链接和脚本");
 
-            AutoReplyPage.AddAutoReply("A", "怎么办", "<a href='http://bing.com'>必应</a>");
+            AutoReplyPage.AddAutoReply("A", "A", "<a href='http://bing.com'>必应</a>");
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", "[" + 1 + "]"), "http://bing.com"));
-            AutoReplyPage.AddAutoReply("B", "这么办", "<script>alert(“123”);</script>");
+            AutoReplyPage.AddAutoReply("B", "B", "<script>alert(“123”);</script>");
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", "[" + 1 + "]"), "<script>alert(“123”);</script>"));
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("怎么办");
+            MobileH5.SendMessageWithMenu("A");
             PortalChromeDriver.TakeScreenShot(filePath, "关键词为超链接");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("必应"));
-            MobileH5.SendMessage("这么办");
+            MobileH5.SendMessage("B");
             PortalChromeDriver.TakeScreenShot(filePath, "关键词为脚本");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("<script>alert(“123”);</script>"));
         }
@@ -445,7 +446,7 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("jdw");
+            MobileH5.SendMessageWithMenu("jdw");
             Thread.Sleep(1*1000);
             MobileAndroidDriver.GetScreenshot(filePath, "H5如果设置关键词的内容跟素材的名称一致，优先回复关键词");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("我不是素材"));
@@ -465,7 +466,7 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("abcdef123");
+            MobileH5.SendMessageWithMenu("abcdef123");
             Thread.Sleep(2 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "模糊匹配");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("我不是素材"));
@@ -481,12 +482,12 @@ namespace TestCases.PortalTests
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\关键词精确匹配");
            
-            AutoReplyPage.AddAutoReply("A", "谁是最漂亮的人", "我不是素材");
+            AutoReplyPage.AddAutoReply("A", "A", "我不是素材");
             PortalChromeDriver.TakeScreenShot(filePath, "关键词精确匹配");
 
             MobileAndroidDriver.AndroidInitialize();
             MobileH5.GetToTestAccount();
-            MobileH5.SendMessage("谁是最漂亮的人");
+            MobileH5.SendMessageWithMenu("A");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("我不是素材"));
         }

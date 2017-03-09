@@ -11,7 +11,7 @@ using XiaoIcePortal.UIElement;
 
 namespace TestCases.PortalTests.Weibo
 {
-    [TestClass]
+    //[TestClass]
     public class SettingTest_Weibo:PortalTestInit_Weibo
     {
         [TestCategory("Setting")]

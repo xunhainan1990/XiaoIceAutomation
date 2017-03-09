@@ -44,7 +44,7 @@ namespace TestCases.PortalTests
             MobileH5.UnFollowWeChatOffcialAccount();
             MobileH5.FollowWeChatOffcialAccount();
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile端check");
-            Assert.IsTrue((MobileH5.GetLatestMessageWithMenu().Text.Contains("hello，谢谢关注")));
+            Assert.IsTrue((MobileH5.GetLatestMessage().Text.Contains("hello，谢谢关注")));
             MobileH5.BackButtonClick();
 
             FollowedAutoReplyPage.AddAutoReplyText("我是更改的文字回复");
@@ -181,7 +181,7 @@ namespace TestCases.PortalTests
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile check");
             MobileAndroidDriver.ClickElemnetPerName("关于“东方万里行” 相关问题");
-            Assert.IsTrue((MobileH5.GetLatestMessageWithMenu().Text.Contains("关于“东方万里行” 相关问题")));
+            Assert.IsTrue((MobileH5.IsAtPerName("关于“东方万里行” 相关问题")));
   
             FollowedAutoReplyPage.Delete();
             PortalChromeDriver.TakeScreenShot(filePath, "删除图文");
@@ -236,7 +236,7 @@ namespace TestCases.PortalTests
             MobileH5.UnFollowWeChatOffcialAccount();
             MobileH5.FollowWeChatOffcialAccount();
             Thread.Sleep(5 * 1000);
-            Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.FrameLayout[contains(@resource-id,'com.tencent.mm:id/a4w')]", "添加第一页图片"));
+            Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.FrameLayout[contains(@resource-id,'com.tencent.mm:id/a4w')]"), "添加第一页图片");
 
             filePath = PortalChromeDriver.CreateFolder(@"被关注自动回复\删除图片回复");
             FollowedAutoReplyPage.Delete();
@@ -296,7 +296,7 @@ namespace TestCases.PortalTests
             MobileH5.FollowWeChatOffcialAccount();
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "验证添加回复");
-            Assert.IsTrue((MobileH5.GetLatestMessageWithMenu().Text.Contains("测试视频11")), "验证添加回复");
+            Assert.IsTrue((MobileH5.GetLatestMessage().Text.Contains("测试视频11")), "验证添加回复");
 
             FollowedAutoReplyPage.Delete();
             PortalChromeDriver.TakeScreenShot(filePath, "删除视频回复");
@@ -355,7 +355,7 @@ namespace TestCases.PortalTests
             MobileH5.FollowWeChatOffcialAccount();
 
             MobileAndroidDriver.GetScreenshot(filePath, "同时添加所有回复素材，video会上传至微信平台");
-            Assert.IsTrue((MobileH5.GetLatestMessageWithMenu().Text.Contains("测试视频10")));
+            Assert.IsTrue((MobileH5.GetLatestMessage().Text.Contains("测试视频10")));
         }
 
         [TestCategory("FollowedAutoReply")]

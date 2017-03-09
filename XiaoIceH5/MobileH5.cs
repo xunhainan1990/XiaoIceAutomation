@@ -128,26 +128,25 @@ namespace CSH5
             catch(Exception e)
             {
 
-            }
-           
+            }           
         }
 
         public static void SendMessageWithMenu(string text)
         {
             try
             {
-                ResetKeyboard("Appium Android Input Manager for Unicode");
+                //ResetKeyboard("Appium Android Input Manager for Unicode");
                 var textInputSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.TextInput);
                 textInputSwich.Click();
 
-                var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
-                keyBoardSwich.Click();
+                //var keyBoardSwich = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.KeyBoardSwichXpath);
+                //keyBoardSwich.Click();
 
                 var sendMessage = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.EditTextXpath);
 
                 sendMessage.SendKeys(text);
 
-                var sendButton = MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.SendButtonXpath);
+                var sendButton = MobileAndroidDriver.GetElementByName(HIMobileH5Element.SendButtonXpath);
                 sendButton.Click();
                 Thread.Sleep(2 * 1000);
 

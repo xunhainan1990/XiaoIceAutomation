@@ -15,7 +15,7 @@ using XiaoIcePortal.UIElement;
 
 namespace TestCases.PortalTests.Weibo
 {
-    [TestClass]
+   // [TestClass]
     public class AutoReplyTest_Weibo: PortalTestInit_Weibo
     {
         [TestCategory("AutoReply_Weibo")]
