@@ -25,7 +25,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "5.是否可以正常开启'自主学习技能'功能（图文库素材大于等于10篇的时候）")]
@@ -37,7 +37,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "6.在技能设置页面，检查全选按钮是否可用")]
@@ -57,7 +57,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "在技能设置页面，检查是否支持跨页选择")]
@@ -68,13 +68,13 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.Page_Next);
-            Thread.Sleep(2*1000);
+            Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             Assert.IsTrue(Utility.IsAt(DocChatElement.CurrentSelectNum, "2"));
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "在技能设置页面，检查更新时间按钮是否可用")]
@@ -85,13 +85,13 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.Sort);
-            Thread.Sleep(2*1000);
+            Thread.Sleep(2 * 1000);
             Assert.IsTrue(Utility.IsAt(DocChatElement.FirstArticle, "a"));
             Assert.IsTrue(Utility.IsAt(DocChatElement.CurrentSelectNum, "0"));
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "检查技能设置页面是否显示翻页和跳转按钮，当文章数大于10篇")]
@@ -99,7 +99,7 @@ namespace TestCases.PortalTests
         {
             //默认有>=10条素材
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.Page_Next);
-            Thread.Sleep(2*1000);
+            Thread.Sleep(2 * 1000);
             Assert.IsTrue(Utility.IsAt(DocChatElement.FirstArticle, "b"));
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.Page_Before);
             Thread.Sleep(2 * 1000);
@@ -107,7 +107,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "检查技能设置页面是否显示翻页和跳转按钮，当文章数大于10篇")]
@@ -133,7 +133,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "是否可以设置一篇或几篇未学习的文章为已学习状态")]
@@ -144,7 +144,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.NotStudy);
-            Thread.Sleep(2*1000);
+            Thread.Sleep(2 * 1000);
             Assert.IsTrue(Utility.IsAt(DocChatElement.First_StudyStatus.Replace("{0}", 1 + ""), "未学习"));
 
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.FirstCheck);
@@ -156,7 +156,7 @@ namespace TestCases.PortalTests
 
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "已学习的文章是否可以重复学习")]
@@ -174,7 +174,7 @@ namespace TestCases.PortalTests
 
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "是否可以设置一篇或几篇已学习的文章为未学习状态")]
@@ -190,7 +190,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "是否设置为已学习，当同时选择已学习和未学习的文章后，点击“开始学习”")]
@@ -214,7 +214,7 @@ namespace TestCases.PortalTests
 
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "是否设置为未学习，当同时选择已学习和未学习的文章后，点击“取消学习”（PS:已学习的文章不能小于10篇）")]
@@ -237,7 +237,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "检查是否设置为已学习，选择当前页所有文章后，点击“开始学习”")]
@@ -257,7 +257,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "检查是否设置为未学习，选择当前页所有文章后，点击“取消学习”")]
@@ -272,7 +272,7 @@ namespace TestCases.PortalTests
         }
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "检查是否设置为已学习，选择所有页的所有文章后，点击“开始学习”")]
@@ -299,7 +299,7 @@ namespace TestCases.PortalTests
 
 
         [TestMethod]
-        [TestCategory("DocChat")]
+        [TestCategory("DocChat_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestProperty("description", "检查是否设置为未学习，选择所有页面的所有文章后，点击“取消学习”")]

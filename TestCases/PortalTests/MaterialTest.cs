@@ -25,7 +25,7 @@ namespace TestCases.PortalTests
             WeChatManagermentPage.GoTo_Material_Page();
         }
 
-        [TestCategory("Material")]
+        [TestCategory("Material_BVT")]
         [TestCategory("Material_News")]
         [TestMethod]
         [TestProperty("description", "当有图文素材的时候，检查图文消息界面是否显示正确")]
@@ -59,7 +59,7 @@ namespace TestCases.PortalTests
 
         }
 
-        [TestCategory("Material")]
+        [TestCategory("Material_BVT")]
         [TestCategory("Material_Image")]
         [TestMethod]
         [TestProperty("description", "当有图片素材的时候，检查图片库界面是否显示正确")]
@@ -95,7 +95,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(MaterialElement.Page_Input_Warning, "输入页码不正确"));
         }
 
-        [TestCategory("Material")]
+        [TestCategory("Material_BVT")]
         [TestCategory("Material_News")]
         [TestMethod]
         [TestProperty("description", "当有图文素材的时候，检查图文消息界面是否显示正确")]
@@ -128,7 +128,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(MaterialElement.Page_Input_Warning, "输入页码不正确"));
         }
 
-        [TestCategory("Material")]
+        [TestCategory("Material_BVT")]
         [TestCategory("Material_Video")]
         [TestMethod]
         [TestProperty("description", "当有视频素材的时候，检查视频界面是否显示正确")]
@@ -161,7 +161,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(MaterialElement.Page_Input_Warning, "输入页码不正确"));
         }
 
-        [TestCategory("Material")]
+        [TestCategory("Material_BVT")]
         [TestCategory("Material_Video")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -179,7 +179,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(MaterialPage.IsClickable(MaterialElement.FirstAward));
         }
 
-        [TestCategory("Material")]
+        [TestCategory("Material_BVT")]
         [TestCategory("Material_Set_All")]
         [TestMethod]
         [TestCategory("BVT")]
@@ -205,7 +205,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.Save_Button);
         }
 
-        [TestCategory("Material")]
+        [TestCategory("Material_BVT")]
         [TestCategory("Material_Set_All")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]

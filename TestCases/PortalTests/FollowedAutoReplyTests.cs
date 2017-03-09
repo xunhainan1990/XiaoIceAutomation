@@ -25,7 +25,7 @@ namespace TestCases.PortalTests
             FollowedAutoReplyPage.Delete();
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("AddText_FollowedAutoReply")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -113,7 +113,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.Alert_Failure_Confirm);
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAutoReply_AddText_href")]
         [TestMethod]
         [TestCategory("BVT")]
@@ -129,7 +129,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAutoReply, "新浪"));           
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAutoReply_AddText_script")]
         [TestMethod]
         [TestCategory("BVT")]
@@ -145,7 +145,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAutoReply, "<script type='text/javascript'>document.write('< h1 > Hello World!</ h1 >')</script>"));          
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("FollowedAutoReply_AddText_href_Image")]
@@ -161,7 +161,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAutoReply, "图片"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAutoReply_Add_Delete_Edit_News")]
         [TestMethod]
         [TestCategory("BVT")]
@@ -192,7 +192,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImageAndText, "jdw"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAutoReply_Add_News_NextPage")]
         [TestMethod]
         [TestCategory("Staging")]
@@ -218,7 +218,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.NewsChoose, "关于“东方万里行” 相关问题"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAutoReply_Add_Delete_Edit_Image")]
         [TestCategory("Staging")]
         [TestMethod]
@@ -250,7 +250,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImage, "1114.png"),"修改图片");
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("AddImageAndText_FollowedAutoReply_NextPage")]
@@ -277,7 +277,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.ImageChoose, "u=115503548,1566568049&fm=23&gp=0.jpg"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("FollowedAutoReply_Add_Delete_Edit_Video")]
@@ -308,7 +308,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedVideo, "测试视频10"), "修改音频回复");
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAutoReply_Video_NextPage")]
         [TestCategory("Staging")]
         [TestMethod]
@@ -335,7 +335,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.VideoChoose, "测试视频11"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("FollowedAutoReply_EditImage_NextPage")]
@@ -358,7 +358,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue((MobileH5.GetLatestMessage("测试视频10")));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAuto_Reply_NoMaterial_Tips")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -383,7 +383,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(MenuElement.NoMaterial_Tip, "没有同步到素材，请去往微信后台添加。新添加素材最多需15分钟同步到本地。"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_BVT")]
         [TestCategory("FollowedAuto_Reply_Delete_null")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]

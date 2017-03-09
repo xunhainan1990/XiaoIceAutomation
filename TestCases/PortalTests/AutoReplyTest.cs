@@ -26,7 +26,7 @@ namespace TestCases.PortalTests
             AutoReplyPage.TurnOnAutoReply();
             AutoReplyPage.ClearReply();
         }
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("AutoReply_ClearAll_TurnOff")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -45,7 +45,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(!MobileH5.GetLatestMessage("[平台测试账号2]说："));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("AddText_AutoReply")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -90,7 +90,7 @@ namespace TestCases.PortalTests
             AutoReplyPage.DeleteReply();
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("DeleteText_AutoReply")]
@@ -112,7 +112,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(!MobileH5.GetLatestMessage("[平台测试账号2]说："));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("DeleteText_AutoReply")]
@@ -127,7 +127,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.TrigerContent.Replace("[{0}]", "[" + 1 + "]"), 1 + ""));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("DeleteText_AutoReply")]
@@ -143,7 +143,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", "[" + 1 + "]"), 1 + ""));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("EditReply_AutoReply")]
@@ -192,7 +192,7 @@ namespace TestCases.PortalTests
             PortalChromeDriver.TakeScreenShot(filePath, "添加200自动回复");
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("AddReply_AddTrigger_Total_10")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -272,7 +272,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator, "h"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("Rule_Add_Delete_Response_News")]
@@ -325,7 +325,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator, "i"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("Rule_Add_Response_Emoj")]
@@ -379,7 +379,7 @@ namespace TestCases.PortalTests
             AutoReplyPage.Alert_Failure_OK();
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("TurnOff_AutoReply")]
@@ -406,7 +406,7 @@ namespace TestCases.PortalTests
             Assert.IsFalse(MobileH5.GetLatestMessage("我是美女"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("Rule_Add_Response_href_script")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -431,7 +431,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(MobileH5.GetLatestMessage("<script>alert(“123”);</script>"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("Rule_Trigger_SameWith_Material")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -452,7 +452,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(MobileH5.GetLatestMessage("我不是素材"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("Rule_Fuzzy_Matching")]
@@ -472,7 +472,7 @@ namespace TestCases.PortalTests
             Assert.IsTrue(MobileH5.GetLatestMessage("我不是素材"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_BVT")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("ARule_Exact_Match")]
@@ -489,7 +489,7 @@ namespace TestCases.PortalTests
             MobileH5.GetToTestAccount();
             MobileH5.SendMessageWithMenu("A");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(MobileH5.GetLatestMessage("我不是素材"));
+            Assert.IsTrue(MobileH5.GetLatestMessage().Text.Contains("我不是素材"));
         }
 
         [TestCleanup]
