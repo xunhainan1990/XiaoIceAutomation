@@ -128,8 +128,7 @@ namespace CSH5
             catch(Exception e)
             {
 
-            }
-           
+            }           
         }
 
         public static void SendMessageWithMenu(string text)

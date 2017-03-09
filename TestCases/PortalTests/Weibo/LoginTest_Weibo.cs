@@ -13,7 +13,7 @@ using XiaoIcePortal.Pages.Weibo;
 
 namespace TestCases.PortalTests.Weibo
 {
-    [TestClass]
+    //[TestClass]
     public class LoginTest_Weibo: PortalTestInitNoCookies
     {
         [TestCategory("BVT")]

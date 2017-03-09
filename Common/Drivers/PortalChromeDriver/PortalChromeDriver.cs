@@ -27,7 +27,7 @@ namespace Common.Driver
 
         public static void ChromeInitialize()
         {
-            Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
+            Instance = new ChromeDriver(@"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
 
             Instance.Manage().Window.Maximize();
             string line;
@@ -55,13 +55,13 @@ namespace Common.Driver
 
         public static void ChromeInitializeWithWechat()
         {
-            WechatInstance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
+            WechatInstance = new ChromeDriver(@"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
 
             WechatInstance.Manage().Window.Maximize();
             string line;
             ReadConfig();
             WechatInstance.Navigate().GoToUrl(wechatUrl);
-            StreamReader sr = new StreamReader(@"D:\work\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\mp.weixin.txt");
+            StreamReader sr = new StreamReader(@"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\mp.weixin.txt");
             while ((line = sr.ReadLine()) != null)
             {
                 string[] cookies = line.Split(';', '=', '{');
@@ -73,7 +73,7 @@ namespace Common.Driver
 
         public static ChromeDriver ChromeInitializeNewWindow(string url)
         {
-            NewInstance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
+            NewInstance = new ChromeDriver(@"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
 
             NewInstance.Manage().Window.Maximize();
             ReadConfig();
@@ -83,7 +83,7 @@ namespace Common.Driver
 
         public static void ChromeInitializeWithNoCookies()
         {
-            Instance = new ChromeDriver(@"D:\work\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
+            Instance = new ChromeDriver(@"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\TestCases\bin\Debug\Drivers\PortalChromeDriver");
             Instance.Manage().Window.Maximize();
             ReadConfig();
             Instance.Navigate().GoToUrl(testUrl);
@@ -122,7 +122,7 @@ namespace Common.Driver
         public static void ReadConfig()
         {
             string line;
-            StreamReader srTestAgainstConfig = new StreamReader(@"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\TestAgainstConfig.txt");
+            StreamReader srTestAgainstConfig = new StreamReader(@"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\TestAgainstConfig.txt");
 
             while ((line = srTestAgainstConfig.ReadLine()) != null && line != "")
             {
@@ -130,17 +130,17 @@ namespace Common.Driver
                 if (para == "product")
                 {
                     testUrl = PortalChromeDriver.BaseProductAddress;
-                    cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
+                    cookiePath = @"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
                 }
                 else if(para=="int")
                 {
                     testUrl = PortalChromeDriver.BaseIntAddress;
-                    cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\IntCookies.txt";
+                    cookiePath = @"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\IntCookies.txt";
                 }
                 else
                 {
                     testUrl = PortalChromeDriver.StagingAddress;
-                    cookiePath = @"D:\work\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
+                    cookiePath = @"C:\Users\v-haxun\Source\Repos\XiaoIceAutomation\Common\bin\Debug\Drivers\PortalChromeDriver\ChromeCookies.txt";
                 }
             }
         }
