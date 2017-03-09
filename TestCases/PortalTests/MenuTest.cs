@@ -17,6 +17,13 @@ namespace TestCases.PortalTests
     [TestClass]
     public class MenuTest : PortalTestInit
     {
+        [TestInitialize]
+        public void IntiSecretRelationship()
+        {
+            WeChatManagermentPage.GoTo_Menu_Page();
+            MenuPage.DeleteMenuItem();
+        }
+
         [TestCategory("Menu")]
         [TestCategory("AddOneLevelMenu_Link")]
         [TestCategory("BVT")]

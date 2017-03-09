@@ -7,6 +7,7 @@ using System;
 using Common;
 using XiaoIcePortal.Pages;
 using CSH5;
+using XiaoIcePortal.UIElement;
 
 namespace TestCases.PortalTests
 {
@@ -34,6 +35,30 @@ namespace TestCases.PortalTests
             HIPage.ClickSettings();
             PortalChromeDriver.TakeScreenShot(folder, "1.是否能够成功切换到人工客服功能的“设置” 界面");
             Assert.IsTrue(HIPage.IsSetting(),"设置页面未成功显示");            
+        }
+
+        [TestCategory("Hi")]
+        [TestCategory("Portal")]
+        [TestCategory("Can_ClickSetting")]
+        [TestMethod]
+        [TestProperty("description", "1.是否能够成功切换到人工客服功能的“设置” 界面")]
+        public void Can_ClickSetting_NonCertificate()
+        {
+            folder = PortalChromeDriver.CreateFolder(@"HI\1.是否能够成功切换到人工客服功能的“设置” 界面");
+            //Click settings
+            PortalChromeDriver.ClickElementPerXpath(MenuElement.Account_Arrow_Down);
+            PortalChromeDriver.ClickElementPerXpath(MenuElement.Logout);
+            LoginPage.LoginWithPhoneNumber("13269120258");
+            Thread.Sleep(10 * 1000);
+            MobileAndroidDriver.AndroidMmsInitialize();
+            MobileH5.GetLoginCode();
+
+            HomePage.ClickWeChatApp("不是衣橱的海南");
+            WeChatManagermentPage.GoToHIPage();
+            HIPage.ClickSettings();
+            PortalChromeDriver.TakeScreenShot(folder, "1.是否能够成功切换到人工客服功能的“设置” 界面");
+            Assert.IsTrue(Utility.IsAt(HIPortalPageUIElement.alert_disable, "抱歉！该技能只对认证号开放！"), "设置页面未成功显示");
+            Assert.IsTrue(Utility.IsAtPerClass(HIPortalPageUIElement.HiEnableBtn,"开启"));
         }
 
         [TestMethod]

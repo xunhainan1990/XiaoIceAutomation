@@ -27,7 +27,7 @@ namespace TestCases.PortalTests
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "检查公众号文章推介级别设置默认显示平衡")]
-        public static void Setting_Article_Level()
+        public void Setting_Article_Level()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\检查公众号文章推介级别设置默认显示平衡");
 
@@ -57,7 +57,7 @@ namespace TestCases.PortalTests
         [TestCategory("BVT")]
         [TestMethod]
         [TestProperty("description", "检查聊天风格设置默认显示保守")]
-        public static void Setting_Chat_Style()
+        public void Setting_Chat_Style()
         {
 
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\检查聊天风格设置默认显示保守");
@@ -75,12 +75,6 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_Conservative);
             Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Confirm);
-        }
-        [TestCleanup]
-        public void AndroidCleanUp()
-        {
-            if (MobileAndroidDriver.androidDriver != null)
-                MobileAndroidDriver.androidDriver.Dispose();
         }
     }
 }

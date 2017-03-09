@@ -13,6 +13,7 @@ namespace XiaoIcePortal.UIElement
         public static string tabnews= "//*[@id='tabnews']/span";
         public static string tabimage ="//*[@id='tabimage']/i";
         public static string tabvideo= "//*[@id='tabvideo']/span/span";
+        public static string tabvoice = "//*[@id='tabvoice']";
         public static string autoreply_content= "//*[@id='autoreply_content']/div/a";
 
         public static string ImageChoose= "//*[@id='choosetbox_wrapper']/div/div[2]/div[1]/div[1]/div[2]/span";
@@ -35,7 +36,7 @@ namespace XiaoIcePortal.UIElement
         public static string AddedImageAndText= "//*[@id='autoreply_content']/div/div/div/div[1]/h4/a";
         public static string AddedImage= "//*[@id='autoreply_content']/div/div/div/div[1]/div[2]/span";
         public static string AddedVideo= "//*[@id='autoreply_content']/div/div/div/div[1]/div[1]/h4";
-
+        public static string AddedAudio = "//*[@id='autoreply_content']/div/div/div/div[1]/div[2]/div[1]/span[2]";
         public static string Alert_Failure_Confirm= "//*[@id='alertbox_wrapper']/div/div[3]/a";
 
 
