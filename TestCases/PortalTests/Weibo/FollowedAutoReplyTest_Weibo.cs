@@ -279,7 +279,7 @@ namespace TestCases.PortalTests.Weibo
             HomePage.ClickWeChatApp("XiaoIceTest");
             WeChatManagermentPage.GoTo_AutoReply_Page();
             FollowedAutoReplyPage.Delete();
-            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabimage);
+            PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.tabnews);
             PortalChromeDriver.ClickElementPerXpath(FollowedAutoReplyElement.autoreply_content);
             Thread.Sleep(2 * 1000);
             Assert.IsTrue(Utility.IsAt(MenuElement.NoMaterial_Tip, "没有同步到素材，请去往微信后台添加。新添加素材最多需15分钟同步到本地。"));

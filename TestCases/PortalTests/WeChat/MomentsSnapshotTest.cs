@@ -172,7 +172,7 @@ namespace TestCases
            
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
-            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 1, 2017-03-15 17:44");
+            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 4, 2017-03-15 17:44");
             Thread.Sleep(5 * 1000);
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessageWithMenu().Text.Contains("[平台测试账号2] 说:ok"));
         }
@@ -194,7 +194,7 @@ namespace TestCases
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
-            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 1, 2017-03-15 17:46");
+            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 3, 2017-03-15 17:46");
             Thread.Sleep(5 * 1000);
             MobileAndroidDriver.GetScreenshot(folder, "是否支持微信相册截图");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessageWithMenu().Text.Contains("[平台测试账号2] 说:ok"));
@@ -216,7 +216,7 @@ namespace TestCases
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
-            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 1, 2017-03-15 17:47");
+            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 2, 2017-03-15 17:47");
             Thread.Sleep(5 * 1000);
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessageWithMenu().Text.Contains("[平台测试账号2] 说:ok"));
         }
@@ -260,7 +260,7 @@ namespace TestCases
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
-            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 1, 2017-03-15 17:44");
+            Mobile_WeChat_Utility.SendPhotoFromFileWithMenu("图片 2, 2017-03-15 17:47");
             Thread.Sleep(5 * 1000);
             Assert.IsFalse(Mobile_WeChat_Utility.GetLatestMessageWithMenu().Text.Contains("[平台测试账号2] 说:ok"));
         }
