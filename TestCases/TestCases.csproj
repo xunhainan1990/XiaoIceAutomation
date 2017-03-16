@@ -81,26 +81,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PortalTests\ChitChatSkillTests.cs" />
-    <Compile Include="PortalTests\MomentsSnapshotTest.cs" />
+    <Compile Include="PortalTests\WeChat\ChitChatSkillTests.cs" />
+    <Compile Include="PortalTests\WeChat\MomentsSnapshotTest.cs" />
     <Compile Include="PortalAndH5Tests\HIPortalAndH5Test.cs" />
     <Compile Include="PortalAndH5Tests\PortalAndH5TestInit.cs" />
-    <Compile Include="PortalTests\AutoReplyTest.cs" />
-    <Compile Include="PortalTests\DocChatTests.cs" />
-    <Compile Include="PortalTests\FollowedAutoReplyTests.cs" />
-    <Compile Include="PortalTests\HITest.cs" />
-    <Compile Include="PortalTests\LoginTest.cs" />
-    <Compile Include="PortalTests\FaceRankingTest.cs" />
-    <Compile Include="PortalTests\MaterialTest.cs" />
-    <Compile Include="PortalTests\MenuTest.cs" />
+    <Compile Include="PortalTests\WeChat\AutoReplyTest.cs" />
+    <Compile Include="PortalTests\WeChat\DocChatTests.cs" />
+    <Compile Include="PortalTests\WeChat\FollowedAutoReplyTests.cs" />
+    <Compile Include="PortalTests\WeChat\HITest.cs" />
+    <Compile Include="PortalTests\WeChat\LoginTest.cs" />
+    <Compile Include="PortalTests\WeChat\FaceRankingTest.cs" />
+    <Compile Include="PortalTests\WeChat\MaterialTest.cs" />
+    <Compile Include="PortalTests\WeChat\MenuTest.cs" />
     <Compile Include="PortalTests\PortalTestInit.cs" />
     <Compile Include="PortalTests\PortalTestInitNoCookies.cs" />
-    <Compile Include="PortalTests\SecertRelationshipTest.cs" />
-    <Compile Include="PortalTests\SettingTests.cs" />
+    <Compile Include="PortalTests\WeChat\SecertRelationshipTest.cs" />
+    <Compile Include="PortalTests\WeChat\SettingTests.cs" />
     <Compile Include="PortalTests\Weibo\AutoReplyTest_Weibo.cs" />
+    <Compile Include="PortalTests\Weibo\FaceRankingTest_Weibo.cs" />
     <Compile Include="PortalTests\Weibo\FollowedAutoReplyTest_Weibo.cs" />
     <Compile Include="PortalTests\Weibo\LoginTest_Weibo.cs" />
-    <Compile Include="PortalTests\Weibo\MenuTest_Weibo.cs" />
     <Compile Include="PortalTests\Weibo\PortalTestInit_Weibo.cs" />
     <Compile Include="PortalTests\Weibo\SettingTest_Weibo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,6 +121,7 @@
       <Name>Portal</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

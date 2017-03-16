@@ -1,5 +1,5 @@
-﻿using Common.Driver;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Portal;
 using Portal.Pages;
 using System;
 using System.Collections.Generic;

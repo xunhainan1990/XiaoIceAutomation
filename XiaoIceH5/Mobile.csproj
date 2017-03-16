@@ -61,13 +61,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MobileH5.cs" />
-    <Compile Include="FaceRankingH5Page.cs" />
-    <Compile Include="Mobile_Weibo.cs" />
-    <Compile Include="UIElement\Element_Weibo.cs" />
+    <Compile Include="Pages\FaceRankingMobilePage_Weibo.cs" />
+    <Compile Include="MobileAndroidDriver.cs" />
+    <Compile Include="UIElement\MobileCommonElement_WeChat.cs" />
+    <Compile Include="Pages\Mobile_WeChat_Utility.cs" />
+    <Compile Include="Pages\FaceRankingMobilePage_WeChat.cs" />
+    <Compile Include="Pages\Mobile_Weibo_Utility.cs" />
+    <Compile Include="UIElement\MobileCommonElement_Weibo.cs" />
     <Compile Include="UIElement\SMSElement.cs" />
-    <Compile Include="UIElement\HIMobileH5Element.cs" />
-    <Compile Include="UIElement\PinYanZhiH5Element.cs" />
+    <Compile Include="UIElement\HIMobileElement.cs" />
+    <Compile Include="UIElement\FaceRankingMobileElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

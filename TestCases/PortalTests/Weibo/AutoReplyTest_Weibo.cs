@@ -1,21 +1,16 @@
 ﻿using Common;
-using Common.Driver;
 using CSH5;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Portal;
 using Portal.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using XiaoIceH5;
+using Mobile;
 using XiaoIcePortal.Pages;
 using XiaoIcePortal.UIElement;
 
 namespace TestCases.PortalTests.Weibo
 {
-   // [TestClass]
+    [TestClass]
     public class AutoReplyTest_Weibo: PortalTestInit_Weibo
     {
         [TestCategory("AutoReply_Weibo")]
@@ -35,15 +30,14 @@ namespace TestCases.PortalTests.Weibo
             AutoReplyPage.TurnOffAutoReply();
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("A");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("A");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(!MobileH5.IsAtPerName("[啊_荀] 说:a"));
+            Assert.IsTrue(!Mobile_WeChat_Utility.IsAtPerName("[啊_荀] 说:a"));
         }
 
-
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("AddText_AutoReply")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -66,8 +60,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(CommonElement.notification), "规则名为空");
         }
 
-
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("DeleteAutoReply_AutoReply_Weibo")]
@@ -86,14 +79,14 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.RuleContent, "规则1：A"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("A");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("A");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(!MobileH5.IsAtPerName("[啊_荀] 说:Hi"));
+            Assert.IsTrue(!Mobile_WeChat_Utility.IsAtPerName("[啊_荀] 说:Hi"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("DeleteTrigger_AutoReply_Weibo")]
@@ -112,7 +105,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.TrigerContent.Replace("[{0}]", "[" + 1 + "]"), 1 + ""));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("DeleteReply_AutoReply_Weibo")]
@@ -131,7 +124,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", "[" + 1 + "]"), 1 + ""));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("EditReply_AutoReply_Weibo")]
@@ -160,14 +153,14 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", ""), "修改的Reply"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("修改的Trigger");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("修改的Trigger");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(MobileH5.IsAtPerName("[啊_荀] 说:修改的Reply"));
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerName("[啊_荀] 说:修改的Reply"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("AddReply_AddTrigger_Total_10_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -196,7 +189,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.TrigerContent.Replace("[{0}]", "[" + 11 + "]"), 11 + ""));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("Rule_Add_Delete_Response_News_Weibo")]
@@ -221,11 +214,11 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.PicValidator1, "g"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("1");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("1");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(MobileH5.IsAtPerName("g"));
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerName("g"));
 
             filePath = PortalChromeDriver.CreateFolder(@"自动回复\删除图文");
             AutoReplyPage.DeletePicReply(1);
@@ -233,7 +226,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsFalse(Utility.IsAt(AutoReplyElement.PicValidator, "g"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("Rule_Add_Response_Emoj_Weibo")]
@@ -256,14 +249,14 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(PortalChromeDriver.GetElementByXpath(AutoReplyElement.Emoj).GetAttribute("title") == "发红包啦");
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("我是trigger");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("我是trigger");
             MobileAndroidDriver.GetScreenshot(filePath, "添加表情回复");
-            Assert.IsTrue(Mobile_Weibo.GetLatestMessage().Text.Contains("[啊_荀] 说:"));
+            Assert.IsTrue(Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("[啊_荀] 说:"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("TurnOff_AutoReply_Weibo")]
@@ -280,23 +273,23 @@ namespace TestCases.PortalTests.Weibo
 
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("怎么办");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("怎么办");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(MobileH5.IsAtPerName("[啊_荀] 说:我是美女"));
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerName("[啊_荀] 说:我是美女"));
 
             filePath = PortalChromeDriver.CreateFolder(@"自动回复\停用关键词回复Mobile无关键词回复");
             AutoReplyPage.TurnOffAutoReply();
-            MobileH5.BackButtonClick();
-            Mobile_Weibo.ClearAllMessage();
-            MobileH5.SendMessage("怎么办");
+            Mobile_WeChat_Utility.BackButtonClick();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_WeChat_Utility.SendMessage("怎么办");
             Thread.Sleep(2 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "停用关键词回复Mobile无关键词回复");
-            Assert.IsFalse(MobileH5.IsAtPerName("[啊_荀] 说:[我是美女]"));
+            Assert.IsFalse(Mobile_WeChat_Utility.IsAtPerName("[啊_荀] 说:[我是美女]"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("Rule_Add_Response_href_script_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -315,17 +308,17 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(AutoReplyElement.ReplyContent.Replace("[{0}]", "[" + 1 + "]"), "<script>alert(“123”);</script>"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("怎么办");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("怎么办");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(Mobile_Weibo.GetLatestMessage().Text.Contains("必应"));
-            Mobile_Weibo.SendMessage("这么办");
+            Assert.IsTrue(Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("必应"));
+            Mobile_Weibo_Utility.SendMessage("这么办");
             PortalChromeDriver.TakeScreenShot(filePath, "关键词为脚本");
-            Assert.IsTrue(Mobile_Weibo.GetLatestMessage().Text.Contains("[啊_荀] 说:<script>alert(“123”);</script>"));
+            Assert.IsTrue(Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("[啊_荀] 说:<script>alert(“123”);</script>"));
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("Rule_Trigger_SameWith_Material")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -342,14 +335,14 @@ namespace TestCases.PortalTests.Weibo
             PortalChromeDriver.TakeScreenShot(filePath, "Portal如果设置关键词的内容跟素材的名称一致，优先回复关键词");
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("g");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("g");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(Mobile_Weibo.GetLatestMessage().Text.Contains("我不是素材")); ;
+            Assert.IsTrue(Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("我不是素材")); ;
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("Rule_Fuzzy_Matching")]
@@ -365,14 +358,14 @@ namespace TestCases.PortalTests.Weibo
             AutoReplyPage.AddAutoReply_Fuzzy_Matching("A", "abcdef", "我不是素材");
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("abcdef123");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("abcdef123");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(Mobile_Weibo.GetLatestMessage().Text.Contains("我不是素材")); ;
+            Assert.IsTrue(Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("我不是素材")); ;
         }
 
-        [TestCategory("AutoReply")]
+        [TestCategory("AutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("ARule_Exact_Match")]
@@ -389,11 +382,11 @@ namespace TestCases.PortalTests.Weibo
             PortalChromeDriver.TakeScreenShot(filePath, "关键词精确匹配");
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.Follow();
-            Mobile_Weibo.ClearAllMessage();
-            Mobile_Weibo.SendMessage("谁是最漂亮的人");
+            Mobile_Weibo_Utility.Follow();
+            Mobile_Weibo_Utility.ClearAllMessage();
+            Mobile_Weibo_Utility.SendMessage("谁是最漂亮的人");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
-            Assert.IsTrue(Mobile_Weibo.GetLatestMessage().Text.Contains("我不是素材")); ;
+            Assert.IsTrue(Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("我不是素材")); ;
         }
 
         [TestCleanup]

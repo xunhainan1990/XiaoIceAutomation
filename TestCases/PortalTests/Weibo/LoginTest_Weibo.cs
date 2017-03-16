@@ -1,6 +1,7 @@
 ﻿using Common;
-using Common.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mobile;
+using Portal;
 using Portal.Pages;
 using Portal.UIElement;
 using System;
@@ -13,10 +14,12 @@ using XiaoIcePortal.Pages.Weibo;
 
 namespace TestCases.PortalTests.Weibo
 {
-    //[TestClass]
+    [TestClass]
     public class LoginTest_Weibo: PortalTestInitNoCookies
     {
         [TestCategory("BVT")]
+        [TestCategory("Login")]
+        [TestCategory("Login_Weibo")]
         [TestCategory("LoginWith_Outer_AddWeibo")]
         [TestMethod]
         public void LoginWith_Outer_AddWeibo()
@@ -26,13 +29,15 @@ namespace TestCases.PortalTests.Weibo
             MobileAndroidDriver.AndroidMmsInitialize();
             LoginPage.LoginWithPhoneNumber("13269120258");
             Thread.Sleep(10 * 1000);
-            CSH5.MobileH5.GetLoginCode_Bind();
+            CSH5.Mobile_WeChat_Utility.GetLoginCode_Bind();
             PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
             Assert.IsTrue(LoginPage_Weibo.GetApp("啊_荀"));
         }
 
         [TestCategory("BVT")]
+        [TestCategory("Login_Weibo")]
         [TestCategory("Login")]
+        [TestCategory("LoginWith_Inner_AddWeibo")]
         [TestMethod]
         public void LoginWith_Inner_AddWeibo()
         {
@@ -40,7 +45,7 @@ namespace TestCases.PortalTests.Weibo
             MobileAndroidDriver.AndroidMmsInitialize();
             LoginPage.LoginWithPhoneNumber("13269120258");
             Thread.Sleep(10 * 1000);
-            CSH5.MobileH5.GetLoginCode();
+            CSH5.Mobile_WeChat_Utility.GetLoginCode();
             LoginPage_Weibo.AddWeiboAccount();
             PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
             Assert.IsTrue(LoginPage_Weibo.GetApp("啊_荀"));

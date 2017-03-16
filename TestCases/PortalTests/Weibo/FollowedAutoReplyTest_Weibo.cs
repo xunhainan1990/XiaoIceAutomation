@@ -1,23 +1,17 @@
 ﻿using Common;
-using Common.Driver;
 using CSH5;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Portal;
 using Portal.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using XiaoIceH5;
-using XiaoIceH5.UIElement;
+using Mobile;
 using XiaoIcePortal.Pages;
 using XiaoIcePortal.Pages.Weibo;
 using XiaoIcePortal.UIElement;
 
 namespace TestCases.PortalTests.Weibo
 {
-    //[TestClass]
+    [TestClass]
     public class FollowedAutoReplyTest_Weibo: PortalTestInit_Weibo
     {
         [TestInitialize]
@@ -27,7 +21,7 @@ namespace TestCases.PortalTests.Weibo
             FollowedAutoReplyPage.Delete();
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("AddText_FollowedAutoReply")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -43,10 +37,10 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAutoReply, "hello，谢谢关注"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile端check");
-            Assert.IsTrue((Mobile_Weibo.GetLatestMessage().Text.Contains("hello，谢谢关注")));
+            Assert.IsTrue((Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("hello，谢谢关注")));
 
             FollowedAutoReplyPage.AddAutoReplyText("我是更改的文字回复");
             Thread.Sleep(2 * 1000);
@@ -60,7 +54,7 @@ namespace TestCases.PortalTests.Weibo
 
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("FollowedAutoReply_AddText_href_Weibo")]
         [TestMethod]
         [TestCategory("BVT")]
@@ -76,13 +70,13 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAutoReply, "新浪"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile端check");
-            Assert.IsTrue((Mobile_Weibo.GetLatestMessage().Text.Contains("新浪")));
+            Assert.IsTrue((Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("新浪")));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("FollowedAutoReply_AddText_script_Weibo")]
         [TestMethod]
         [TestCategory("BVT")]
@@ -98,13 +92,13 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAutoReply, "<script type='text/javascript'>document.write('< h1 > Hello World!</ h1 >')</script>"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile端check");
-            Assert.IsTrue((Mobile_Weibo.GetLatestMessage().Text.Contains("<script type='text/javascript'>document.write('< h1 > Hello World!</ h1 >')</script>")));
+            Assert.IsTrue((Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("<script type='text/javascript'>document.write('< h1 > Hello World!</ h1 >')</script>")));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("FollowedAutoReply_AddText_href_Image_Weibo")]
@@ -120,13 +114,13 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAutoReply, "图片"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile端check");
-            Assert.IsTrue((Mobile_Weibo.GetLatestMessage().Text.Contains("图片")));
+            Assert.IsTrue((Mobile_Weibo_Utility.GetLatestMessage().Text.Contains("图片")));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("FollowedAutoReply_Add_Delete_Edit_News")]
         [TestMethod]
         [TestCategory("BVT")]
@@ -141,11 +135,11 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImageAndText, "g"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile端check");
             MobileAndroidDriver.ClickElemnetPerName("g");
-            Assert.IsTrue(MobileH5.IsAtPerName("头条文章"));
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerName("头条文章"));
 
             FollowedAutoReplyPage.Delete();
             PortalChromeDriver.TakeScreenShot(filePath, "删除图文");
@@ -156,7 +150,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImageAndText, "e"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("FollowedAutoReply_Add_News_NextPage")]
         [TestMethod]
         [TestCategory("Staging")]
@@ -182,7 +176,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.NewsChoose, "g"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("FollowedAutoReply_Add_Delete_Edit_Image")]
         [TestCategory("Staging")]
         [TestMethod]
@@ -196,8 +190,8 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImage, "Capture.PNG"));
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
             MobileAndroidDriver.GetScreenshot(filePath, "Mobile端check");
             Assert.IsTrue(MobileAndroidDriver.IsAt("//android.widget.ImageView[contains(@resource-id,'com.sina.weibo:id/message_pic_shadow')]"));
 
@@ -213,7 +207,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedImage, "efwe.jpg"), "修改图片");
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("FollowedAutoReply_Add_Delete_Edit_Video")]
@@ -228,10 +222,10 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAudio, "秋天不回来.amr"), "添加视频回复");
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
             MobileAndroidDriver.GetScreenshot(filePath, "验证添加回复");
-            Assert.IsTrue((MobileH5.IsAtPerXpath("//android.widget.TextView[contains(@resource-id,'com.sina.weibo:id/audio_time')]")), "验证添加回复");
+            Assert.IsTrue((Mobile_WeChat_Utility.IsAtPerXpath("//android.widget.TextView[contains(@resource-id,'com.sina.weibo:id/audio_time')]")), "验证添加回复");
 
             FollowedAutoReplyPage.Delete_Image();
             PortalChromeDriver.TakeScreenShot(filePath, "删除视频回复");
@@ -243,8 +237,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAudio, "童话.amr"), "修改音频回复");
         }
 
-
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
         [TestCategory("FollowedAutoReply_EditImage_NextPage")]
@@ -260,14 +253,14 @@ namespace TestCases.PortalTests.Weibo
             FollowedAutoReplyPage_Weibo.AddAutoReplyVoice("秋天不回来.amr");
 
             MobileAndroidDriver.AndroidInitialize_Weibo();
-            Mobile_Weibo.UnFollow();
-            Mobile_Weibo.Follow();
+            Mobile_Weibo_Utility.UnFollow();
+            Mobile_Weibo_Utility.Follow();
 
             MobileAndroidDriver.GetScreenshot(filePath, "同时添加所有回复素材，video会上传至微信平台");
             Assert.IsTrue(Utility.IsAt(FollowedAutoReplyElement.AddedAudio, "秋天不回来.amr"), "添加视频回复");
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("FollowedAuto_Reply_NoMaterial_Tips")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]
@@ -281,7 +274,7 @@ namespace TestCases.PortalTests.Weibo
             LoginPage.LoginWithPhoneNumber("13269120258");
             Thread.Sleep(10 * 1000);
             MobileAndroidDriver.AndroidMmsInitialize();
-            MobileH5.GetLoginCode();
+            Mobile_WeChat_Utility.GetLoginCode();
 
             HomePage.ClickWeChatApp("XiaoIceTest");
             WeChatManagermentPage.GoTo_AutoReply_Page();
@@ -292,7 +285,7 @@ namespace TestCases.PortalTests.Weibo
             Assert.IsTrue(Utility.IsAt(MenuElement.NoMaterial_Tip, "没有同步到素材，请去往微信后台添加。新添加素材最多需15分钟同步到本地。"));
         }
 
-        [TestCategory("FollowedAutoReply")]
+        [TestCategory("FollowedAutoReply_Weibo")]
         [TestCategory("FollowedAuto_Reply_Delete_null")]
         [TestCategory("BVT")]
         [TestCategory("Staging")]

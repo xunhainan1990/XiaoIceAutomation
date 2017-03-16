@@ -64,25 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonElement.cs" />
-    <Compile Include="Drivers\MobileAndroidDriver\MobileAndroidDriver.cs" />
-    <Compile Include="Drivers\PortalChromeDriver\PortalChromeDriver.cs" />
     <Compile Include="FakeUser.cs" />
-    <Compile Include="MobileCommonElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users.cs" />
-    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Drivers\PortalChromeDriver\ChromeCookies.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Drivers\PortalChromeDriver\chromedriver.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Drivers\PortalChromeDriver\TestAgainstConfig.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Users.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
