@@ -28,7 +28,7 @@ namespace Portal
         public static void ChromeInitialize()
         {
             //Instance = new ChromeDriver(@"D:\CSAutomation\HI\ChromeDriver");
-            Instance = new ChromeDriver(@"D:\CSAutomation\HI\Drivers\PortalChromeDriver");
+            Instance = new ChromeDriver(@"D:\DailyRun\CSTest\ChromeDriver");
             Instance.Manage().Window.Maximize();
             string line;
             ReadConfig();
@@ -55,13 +55,13 @@ namespace Portal
 
         public static void ChromeInitializeWithWechat()
         {
-            WechatInstance = new ChromeDriver(@"D:\CSAutomation\HI\ChromeDriver");
+            WechatInstance = new ChromeDriver(@"D:\DailyRun\CSTest\ChromeDriver");
 
             WechatInstance.Manage().Window.Maximize();
             string line;
             ReadConfig();
             WechatInstance.Navigate().GoToUrl(wechatUrl);
-            StreamReader sr = new StreamReader(@"D:\work\XiaoIceAutomation\Common\Drivers\PortalChromeDriver\mp.weixin.txt");
+            StreamReader sr = new StreamReader(@"D:\DailyRun\CSTest\ChromeDriver\mp.weixin.txt");
             while ((line = sr.ReadLine()) != null)
             {
                 string[] cookies = line.Split(';', '=', '{');
@@ -73,7 +73,7 @@ namespace Portal
 
         public static ChromeDriver ChromeInitializeNewWindow(string url)
         {
-            NewInstance = new ChromeDriver(@"D:\CSAutomation\HI\ChromeDriver");
+            NewInstance = new ChromeDriver(@"D:\DailyRun\CSTest\ChromeDriver");
 
             NewInstance.Manage().Window.Maximize();
             ReadConfig();
@@ -83,7 +83,7 @@ namespace Portal
 
         public static void ChromeInitializeWithNoCookies()
         {
-            Instance = new ChromeDriver(@"D:\CSAutomation\HI\ChromeDriver");
+            Instance = new ChromeDriver(@"D:\DailyRun\CSTest\ChromeDriver");
             Instance.Manage().Window.Maximize();
             ReadConfig();
             Instance.Navigate().GoToUrl(testUrl);
@@ -122,7 +122,7 @@ namespace Portal
         public static void ReadConfig()
         {
             string line;
-            StreamReader srTestAgainstConfig = new StreamReader(@"D:\CSAutomation\HI\ChromeDriver\TestAgainstConfig.txt");
+            StreamReader srTestAgainstConfig = new StreamReader(@"D:\DailyRun\CSTest\ChromeDriver\TestAgainstConfig.txt");
 
             while ((line = srTestAgainstConfig.ReadLine()) != null && line != "")
             {
@@ -130,17 +130,17 @@ namespace Portal
                 if (para == "product")
                 {
                     testUrl = PortalChromeDriver.BaseProductAddress;
-                    cookiePath = @"D:\CSAutomation\HI\ChromeDriver\ChromeCookies.txt";
+                    cookiePath = @"D:\DailyRun\CSTest\ChromeDriver\ChromeCookies.txt";
                 }
                 else if(para=="int")
                 {
                     testUrl = PortalChromeDriver.BaseIntAddress;
-                    cookiePath = @"D:\CSAutomation\HI\ChromeDriver\IntCookies.txt";
+                    cookiePath = @"D:\DailyRun\CSTest\ChromeDriver\IntCookies.txt";
                 }
                 else
                 {
                     testUrl = PortalChromeDriver.StagingAddress;
-                    cookiePath = @"D:\CSAutomation\HI\ChromeDriver\ChromeCookies.txt";
+                    cookiePath = @"D:\DailyRun\CSTest\ChromeDriver\ChromeCookies.txt";
                 }
             }
         }

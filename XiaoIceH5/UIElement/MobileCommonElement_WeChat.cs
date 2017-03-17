@@ -23,5 +23,8 @@ namespace Common
         public static string Send = "发送";
         public static string Cancle = "取消";
         public static string Menu = "菜单";
+        public static string  Search= "//android.widget.TextView[contains(@content-desc,'搜索')]";
+        public static string SearchBox = "//android.widget.EditText[contains(@resource-id,'com.tencent.mm:id/gr')]";
+        
     }
 }

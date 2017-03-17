@@ -115,6 +115,8 @@ namespace CSH5
                 MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_WeChat.ContactList);
                 MobileAndroidDriver.GetElementByName(MobileCommonElement_WeChat.ContactList).Click();
                 MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_WeChat.OfficialAccount);
+                MobileAndroidDriver.GetElementByXpath(MobileCommonElement_WeChat.Search).Click();
+                MobileAndroidDriver.GetElementByXpath(MobileCommonElement_WeChat.SearchBox).SendKeys("平台测试账号");
                 MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_WeChat.TestAccout);
                 Thread.Sleep(1*1000);
             }

@@ -1,6 +1,7 @@
 ﻿using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Portal;
+using Portal.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,12 @@ namespace TestCases.PortalTests.Weibo
     [TestClass]
     public class SettingTest_Weibo:PortalTestInit_Weibo
     {
+        [TestInitialize]
+        public void IntiMomentsSnapshot()
+        {
+            WeChatManagermentPage.GoTo_Setting_Page();
+        }
+
         [TestCategory("Setting")]
         [TestCategory("Setting_Article_Level_Weibo")]
         [TestCategory("BVT")]
@@ -50,7 +57,7 @@ namespace TestCases.PortalTests.Weibo
         public void Setting_Chat_Style_Weibo()
         {
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\检查聊天风格设置默认显示保守");
-            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("保守：聊天语言较为谨慎（系统默认）"));
+            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("严谨：聊天语言较为谨慎"));
             //Assert.IsTrue(Utility.IsAt(SettingElement.Chat_Style_Conservative, "保守：聊天语言较为谨慎（系统默认）"));
 
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_Lively);
@@ -58,10 +65,16 @@ namespace TestCases.PortalTests.Weibo
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Confirm);
             Thread.Sleep(2 * 1000);
             //Assert.IsTrue(Utility.IsAt(SettingElement.Chat_Style_Lively, "活泼：聊天语言较为轻松"));
-            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("活泼：聊天语言较为轻松"));
+            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("活泼：聊天语言较为轻松活泼"));
+
+            PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_naughty);
+            Thread.Sleep(2 * 1000);
+            PortalChromeDriver.ClickElementPerXpath(SettingElement.Confirm);
+            Thread.Sleep(2 * 1000);
+            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("调皮：聊天语言较为丰富且带有小冰个性"));
 
 
-            PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_Conservative);
+            PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_Lively);
             Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Confirm);
         }

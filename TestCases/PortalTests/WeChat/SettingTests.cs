@@ -54,7 +54,7 @@ namespace TestCases.PortalTests
         {
 
             string filePath = PortalChromeDriver.CreateFolder(@"自动回复\检查聊天风格设置默认显示保守");
-            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("保守：聊天语言较为谨慎（系统默认）"));
+            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("严谨：聊天语言较为谨慎"));
             //Assert.IsTrue(Utility.IsAt(SettingElement.Chat_Style_Conservative, "保守：聊天语言较为谨慎（系统默认）"));
 
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_Lively);
@@ -62,10 +62,15 @@ namespace TestCases.PortalTests
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Confirm);
             Thread.Sleep(2 * 1000);
             //Assert.IsTrue(Utility.IsAt(SettingElement.Chat_Style_Lively, "活泼：聊天语言较为轻松"));
-            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("活泼：聊天语言较为轻松"));
+            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("活泼：聊天语言较为轻松活泼"));
 
+            PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_naughty);
+            Thread.Sleep(2 * 1000);
+            PortalChromeDriver.ClickElementPerXpath(SettingElement.Confirm);
+            Thread.Sleep(2 * 1000);
+            Assert.IsTrue(PortalChromeDriver.GetElementByXpathByClassName(SettingElement.Chat_Style_Div, SettingElement.CheckedRadio).Text.Contains("调皮：聊天语言较为丰富且带有小冰个性"));
 
-            PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_Conservative);
+            PortalChromeDriver.ClickElementPerXpath(SettingElement.Chat_Style_Lively);
             Thread.Sleep(2 * 1000);
             PortalChromeDriver.ClickElementPerXpath(SettingElement.Confirm);
         }

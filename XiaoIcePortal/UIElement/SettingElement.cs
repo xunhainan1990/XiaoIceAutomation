@@ -16,5 +16,6 @@ namespace XiaoIcePortal.UIElement
         public static string Chat_Style_Div = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[4]";
         public static string Chat_Style_Conservative = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[4]/ul/li[1]";
         public static string Chat_Style_Lively = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[4]/ul/li[2]";
+        public static string Chat_Style_naughty = "/html/body/div/div[2]/div[2]/div[2]/div/div/div[4]/ul/li[3]";
     }
 }

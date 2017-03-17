@@ -36,6 +36,7 @@ namespace TestCases.PortalTests
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.FollowWeChatOffcialAccount();
             //MobileH5.GetToTestAccount();
+            Mobile_WeChat_Utility.ResetKeyboard("Appium Android Input Manager for Unicode");
             Mobile_WeChat_Utility.SendMessageWithMenu("a");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(!Mobile_WeChat_Utility.GetLatestMessage("[平台测试账号2]说："));
@@ -389,6 +390,7 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessageWithMenu("A");
             Thread.Sleep(2 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "关键词自动回复Mobile可用");
@@ -396,6 +398,7 @@ namespace TestCases.PortalTests
 
             filePath = PortalChromeDriver.CreateFolder(@"自动回复\停用关键词回复Mobile无关键词回复");
             AutoReplyPage.TurnOffAutoReply();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessageWithMenu("A");
             Thread.Sleep(2 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "停用关键词回复Mobile无关键词回复");
@@ -419,10 +422,12 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessageWithMenu("A");
             PortalChromeDriver.TakeScreenShot(filePath, "关键词为超链接");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage("必应"));
-            Mobile_WeChat_Utility.SendMessage("B");
+            Mobile_WeChat_Utility.ClearAllRecord();
+            Mobile_WeChat_Utility.SendMessageWithMenu("B");
             PortalChromeDriver.TakeScreenShot(filePath, "关键词为脚本");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage("<script>alert(“123”);</script>"));
         }
@@ -462,6 +467,7 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessageWithMenu("abcdef123");
             Thread.Sleep(2 * 1000);
             MobileAndroidDriver.GetScreenshot(filePath, "模糊匹配");
@@ -483,6 +489,7 @@ namespace TestCases.PortalTests
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessageWithMenu("A");
             MobileAndroidDriver.GetScreenshot(filePath, "H5关键词精确匹配");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage("我不是素材"));

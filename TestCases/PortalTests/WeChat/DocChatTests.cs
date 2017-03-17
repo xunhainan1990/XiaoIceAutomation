@@ -239,7 +239,9 @@ namespace TestCases.PortalTests
         {
             //默认有>=10条素材
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.checkBoxDocChatAll);
+            Thread.Sleep(1*1000);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.docChatArrow);
+            Thread.Sleep(1 * 1000);
             PortalChromeDriver.ClickElementPerXpath(DocChatElement.HasStudy);
             Thread.Sleep(2 * 1000);
 
