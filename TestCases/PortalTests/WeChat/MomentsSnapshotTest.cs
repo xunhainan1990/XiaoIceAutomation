@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSH5;
+using Mobile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mobile;
 using Portal;
@@ -212,7 +212,7 @@ namespace TestCases
             Utility.TurnOn();
             MomentsSnapPage.DeleteCampain();
             Thread.Sleep(2 * 1000);
-            MomentsSnapPage.CreateCampaign("脸盲");
+            MomentsSnapPage.CreateCampaign("河北");
 
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();

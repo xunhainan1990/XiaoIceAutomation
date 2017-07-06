@@ -1,6 +1,6 @@
 ﻿using Common;
-using CSH5;
-using CSH5.UIElement;
+using Mobile;
+using Mobile.UIElement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +18,13 @@ namespace Mobile
         {
             try
             {
-                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a35')]").Click();
+                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a3l')]").Click();
 
             }
             catch (Exception e)
             {
                 MobileAndroidDriver.ClickElemnetPerName("服务按钮");
-                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a35')]").Click();
+                MobileAndroidDriver.GetElementByXpath("//android.widget.TextView[contains(@resource-id,'com.tencent.mm:id/a3l')]").Click();
             }
         }
 
@@ -182,7 +182,7 @@ namespace Mobile
         {
             try
             {             
-                string comment = MobileAndroidDriver.GetElementByXpath(CSH5.UIElement.FaceRankingMobileElement.Comment).GetAttribute("name") ;
+                string comment = MobileAndroidDriver.GetElementByXpath(Mobile.UIElement.FaceRankingMobileElement.Comment).GetAttribute("name") ;
                 Regex r = new Regex(@"\d(\.\d+)");
                 int start = 0;
                 Match m = r.Match(comment, start);
@@ -208,11 +208,11 @@ namespace Mobile
             }
         }
 
-        public static bool CheckOficailAccountShow()
+        public static bool CheckOficailAccountShow(string Account= "公众号名称：平台测试账号2")
         {
             try
             {
-                MobileAndroidDriver.GetElementByName("公众号名称：平台测试账号2");
+                MobileAndroidDriver.GetElementByName(Account);
                 return true;
             }
             catch (Exception e)
@@ -221,6 +221,8 @@ namespace Mobile
             }
 
         }
+
+       
 
     }
 }

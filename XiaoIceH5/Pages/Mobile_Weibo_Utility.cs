@@ -1,6 +1,6 @@
 ﻿using Common;
-using CSH5;
-using CSH5.UIElement;
+using Mobile;
+using Mobile.UIElement;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using System;
@@ -86,7 +86,9 @@ namespace Mobile
             try
             {
                 MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_Weibo.Discovery);
+
                 MobileAndroidDriver.GetElementByXpath(MobileCommonElement_Weibo.SearchEdit).SendKeys("啊_");
+                //MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_Weibo.Users);
                 MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_Weibo.FollowedAccount);
                 if (Mobile_WeChat_Utility.IsAtPerName("加关注"))
                 {
@@ -156,12 +158,21 @@ namespace Mobile
             Mobile_WeChat_Utility.BackToHome();
             OpenWeChatFromHome();
         }
-         public static void OpenWeChatFromHome()
+        public static void OpenWeChatFromHome()
         {
             try
             {
                 MobileAndroidDriver.GetElementByXpath(HIMobileH5Element.WeiBo).Click();
                 Thread.Sleep(5 * 1000);
+            }
+            catch (Exception e) { }
+        }
+
+        public static void BackWards()
+        {
+            try
+            {
+                MobileAndroidDriver.GetElementByXpath(MobileCommonElement_Weibo.WeiboBack).Click();
             }
             catch (Exception e) { }
         }

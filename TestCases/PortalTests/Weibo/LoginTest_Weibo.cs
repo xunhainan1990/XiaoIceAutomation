@@ -29,7 +29,7 @@ namespace TestCases.PortalTests.Weibo
             MobileAndroidDriver.AndroidMmsInitialize();
             LoginPage.LoginWithPhoneNumber("13269120258");
             Thread.Sleep(10 * 1000);
-            CSH5.Mobile_WeChat_Utility.GetLoginCode_Bind();
+            Mobile.Mobile_WeChat_Utility.GetLoginCode_Bind();
             PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
             Assert.IsTrue(LoginPage_Weibo.GetApp("啊_荀"));
         }
@@ -45,7 +45,7 @@ namespace TestCases.PortalTests.Weibo
             MobileAndroidDriver.AndroidMmsInitialize();
             LoginPage.LoginWithPhoneNumber("13269120258");
             Thread.Sleep(10 * 1000);
-            CSH5.Mobile_WeChat_Utility.GetLoginCode();
+            Mobile.Mobile_WeChat_Utility.GetLoginCode();
             LoginPage_Weibo.AddWeiboAccount();
             PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
             Assert.IsTrue(LoginPage_Weibo.GetApp("啊_荀"));

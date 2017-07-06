@@ -14,8 +14,8 @@ namespace Common
         public static string OfficialAccount = "公众号";
 
         public static string ShareUser = "chrysanthemum";
-        //public static string Discover= "发现";
-        //public static string Moments= "朋友圈";
+        public static string Discover= "发现";
+        public static string Moments= "朋友圈";
         //public static string More= "更多功能按钮";
         //public static string ChoosePhoto= "从相册选择";
         //public static string MomentShare_Photo= "图片 1, 2017-02-03 16:00";

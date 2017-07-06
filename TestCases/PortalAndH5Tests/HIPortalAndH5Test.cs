@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading;
-using CSH5;
-using CSH5.UIElement;
+using Mobile;
+using Mobile.UIElement;
 using Portal.Pages;
 using Portal.UIElement;
 using XiaoIcePortal.Pages;
@@ -26,7 +26,6 @@ namespace TestCases.PortalAndH5Tests
 
         [TestCategory("Hi")]
         [TestCategory("BVT")]
-        [TestMethod]
         [TestProperty("description", "10.[接入条件设置]是否可以添加一条与自定义回复的关键词相同的触发关键词")]
         public void Can_AddTrigger_InHI_ComeFirst()
         {
@@ -55,7 +54,6 @@ namespace TestCases.PortalAndH5Tests
 
         }
 
-        [TestMethod]
         [TestCategory("Hi")]
         [TestCategory("BVT")]
         [TestProperty("description", "19.[接入条件设置]是否可以正常保存，当编辑已有的触发关键词内容与自定义关键词回复相同的内容时")]
@@ -98,7 +96,9 @@ namespace TestCases.PortalAndH5Tests
 
             WeChatManagermentPage.GoTo_Menu_Page();
             MenuPage.DeleteMenuItem();
+
             //确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             //切换到Hi的设置Tab页
             HIPage.SwichHISettingTab(HIPortalPageUIElement.SubTabHIStaff);
@@ -140,6 +140,7 @@ namespace TestCases.PortalAndH5Tests
         {
             PortalChromeDriver.CreateFolder(@"HI\31.[客服人员设定]是否可以正常使用，当登陆密码有效期内(首次绑定)");
             //确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             //切换到Hi的设置Tab页
             HIPage.SwichHISettingTab(HIPortalPageUIElement.SubTabHIStaff);
@@ -279,6 +280,7 @@ namespace TestCases.PortalAndH5Tests
         {
             PortalChromeDriver.CreateFolder(@"HI\59.[对话窗口]是否有新消息提示标识显示，当开启人工客服后有消息接入_客户H5发送消息");
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
 
             //H5页面进入平台测试账号对话窗口   
@@ -308,6 +310,7 @@ namespace TestCases.PortalAndH5Tests
         public void Is_Big_MsgTip_Show_InHiWin()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             HIPage.HiChatPoartal();
 
@@ -332,6 +335,7 @@ namespace TestCases.PortalAndH5Tests
         {
             string foler = PortalChromeDriver.CreateFolder(@"HI\43.客服是否可以正常回复收到的用户消息");
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
 
             //H5页面进入平台测试账号对话窗口   
@@ -361,6 +365,7 @@ namespace TestCases.PortalAndH5Tests
         public void Is_NewMsg_TopShow_InHIWin()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             //Portal客服打开Hi对话窗口
             HIPage.OpenHiChatWindow();
@@ -386,6 +391,7 @@ namespace TestCases.PortalAndH5Tests
         public void TriggerHICardPerCustomize()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             #region 添加一条触发关键词
             HIPage.ClearTriggers();
@@ -431,6 +437,7 @@ namespace TestCases.PortalAndH5Tests
         public void TriggerHiCardAfterEditTriger()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             HIPage.ClearTriggers();
             #region 修改设置好的关键词
@@ -462,6 +469,7 @@ namespace TestCases.PortalAndH5Tests
         public void TriggerHiCardPerHITurnOFF()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
 
             #region 
@@ -489,6 +497,7 @@ namespace TestCases.PortalAndH5Tests
         public void Portal_H5_Chat()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             HIPage.OpenHiChatWindow();
             HIPage.GetTestUserFromUserList();
@@ -534,6 +543,7 @@ namespace TestCases.PortalAndH5Tests
         public void CheckReplyBackFromHI_NotInH5()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             //H5页面进入平台测试账号对话窗口   
             Mobile_WeChat_Utility.GetToTestAccount();
@@ -571,6 +581,7 @@ namespace TestCases.PortalAndH5Tests
         public void Can_ShareWin_ToFriend()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
 
             //H5页面进入平台测试账号对话窗口   
@@ -683,6 +694,7 @@ namespace TestCases.PortalAndH5Tests
         public void IsHICardAvailableAfterHITurnOff()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             //H5页面进入平台测试账号对话窗口   
             Mobile_WeChat_Utility.GetToTestAccount();
@@ -708,6 +720,7 @@ namespace TestCases.PortalAndH5Tests
         public void Can_Continue_Chat_PressHome()
         {
             //Portal确保HI是Turn on的状态
+            WeChatManagermentPage.GoToHIPage();
             HIPage.TurnOnSetup();
             //H5页面进入平台测试账号对话窗口   
             Mobile_WeChat_Utility.GetToTestAccount();

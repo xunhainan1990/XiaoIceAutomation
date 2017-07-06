@@ -28,7 +28,7 @@ namespace Portal
             catch (Exception e) { return false; }
         }
 
-        public static bool IsAtPerClass(string className, string expected)
+        public static bool IsAtPerClass(string className, string expected="")
         {
             try
             {

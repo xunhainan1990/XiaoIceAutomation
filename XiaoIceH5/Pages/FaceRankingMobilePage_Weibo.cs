@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSH5.UIElement;
+using Mobile.UIElement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace Mobile
             try
             {
                 MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_WeChat.Menu);
-                MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.FaceRanking);
+                MobileAndroidDriver.GetElementByXpath(FaceRankingMobileElement.Menuitem).Click();
             }
             catch (Exception e)
             {
@@ -29,19 +29,42 @@ namespace Mobile
         {
             try
             {
-                MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.UploadImage);
+                MobileAndroidDriver.GetElementByXpath(FaceRankingMobileElement.UploadImage).Click();
                 MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.FromFile);
                 MobileAndroidDriver.GetElementByName("显示根目录").Click();
                 MobileAndroidDriver.GetElementByName("图片").Click();
                 MobileAndroidDriver.GetElementByName("WeiXin").Click();
                 //MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
                 //MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
-                MobileAndroidDriver.GetElementByName(file, true).Click();
+                MobileAndroidDriver.GetElementByName(file).Click();
                 Thread.Sleep(5 * 1000);
             }
             catch (Exception e)
             {
 
+                try
+                {
+                    var top = MobileAndroidDriver.GetElementByXpath("//android.widget.FrameLayout[@index='1']");
+                    MobileAndroidDriver.Swipe(top);
+                    MobileAndroidDriver.GetElementByName(file, true).Click();
+                }
+                catch
+                {
+                    try
+                    {
+                        var top = MobileAndroidDriver.GetElementByXpath("//android.widget.FrameLayout[@index='1']");
+                        MobileAndroidDriver.Swipe(top);
+                        MobileAndroidDriver.GetElementByName(file, true).Click();
+                        Thread.Sleep(5 * 1000);
+                    }
+                    catch
+                    {
+                        var top = MobileAndroidDriver.GetElementByXpath("//android.widget.FrameLayout[@index='1']");
+                        MobileAndroidDriver.Swipe(top);
+                        MobileAndroidDriver.GetElementByName(file, true).Click();
+                        Thread.Sleep(5 * 1000);
+                    }
+                }
             }
         }
 
@@ -51,6 +74,7 @@ namespace Mobile
             {
                 MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.ShaiChuQu);
                 MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.Share);
+                MobileAndroidDriver.GetElementByXpath(FaceRankingMobileElement.CheckWeiboShare).Click();
             }
             catch (Exception e)
             {
@@ -58,17 +82,26 @@ namespace Mobile
             }
         }
 
-        public static void CheckLinkAvailable()
+        public static void ShareToWeChat()
         {
             try
             {
-                MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.GoToMyWeibo);
-                MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.Share);
+                MobileAndroidDriver.GetElementByXpath(FaceRankingMobileElement.Weibo_More).Click();
+                MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.WeChat_Moment);
+                MobileAndroidDriver.ClickElemnetPerName(FaceRankingMobileElement.Send);
+                Mobile_WeChat_Utility.BackToHome();
+                MobileAndroidDriver.androidDriver.Dispose();
+                MobileAndroidDriver.AndroidInitialize();
+                MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_WeChat.Discover);
+                MobileAndroidDriver.ClickElemnetPerName(MobileCommonElement_WeChat.Moments);
+                MobileAndroidDriver.GetElementByXpath(FaceRankingMobileElement.Webo_Share).Click();
             }
             catch (Exception e)
             {
 
             }
         }
+
+        
     }
 }

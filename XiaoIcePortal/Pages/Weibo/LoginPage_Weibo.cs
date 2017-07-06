@@ -96,7 +96,10 @@ namespace XiaoIcePortal.Pages.Weibo
             try
             {
                 PortalChromeDriver.GetElementByXpath(HomePageElement.AddAccount).Click();
+                //tab switch
                 PortalChromeDriver.GetElementByXpath(LoginElement_Weibo.Weiboauth).Click();
+                PortalChromeDriver.GetElementByXpath(LoginElement_Weibo.I_Agree).SendKeys(Keys.Space);
+                PortalChromeDriver.GetElementByXpath(LoginElement_Weibo.I_Agree).Click();
                 PortalChromeDriver.GetElementByXpath(LoginElement_Weibo.AuthButton).Click();
                 PortalChromeDriver.GetElementByXpath(LoginElement_Weibo.WeiboAccount).SendKeys("18660207496");
                 PortalChromeDriver.GetElementByXpath(LoginElement_Weibo.WeiboPassword).SendKeys("dongni816721");
@@ -112,6 +115,11 @@ namespace XiaoIcePortal.Pages.Weibo
             {
 
             }
+        }
+
+        public static void Bind()
+        {
+
         }
 
     }

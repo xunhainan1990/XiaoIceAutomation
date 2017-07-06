@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using CSH5.UIElement;
+using Mobile.UIElement;
 using Portal;
 using Portal.Pages;
 using Portal.UIElement;
@@ -10,7 +10,7 @@ using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using Mobile;
 
-namespace CSH5
+namespace Mobile
 {
     public class Mobile_WeChat_Utility
     {
@@ -295,6 +295,12 @@ namespace CSH5
             }
             catch (Exception e)
             {
+                MobileAndroidDriver.GetElementByName("更多功能按钮，已折叠").Click();
+                MobileAndroidDriver.GetElementByName("相册").Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.MoreButton).Click();
+                //MobileAndroidDriver.GetElementByName(PhotoFileElement.ListView).Click();
+                MobileAndroidDriver.GetElementByName(fileName, true).Click();
+                MobileAndroidDriver.GetElementByName(MobileCommonElement_WeChat.Send).Click();
             }
 
         }
@@ -558,16 +564,15 @@ namespace CSH5
         {
             try
             {
-                ResetKeyboard("搜狗输入法小米版");
+                //ResetKeyboard("搜狗输入法小米版");
                 MobileAndroidDriver.GetElementByName(MobileCommonElement_WeChat.ContactList).Click();
                 MobileAndroidDriver.GetElementByName(MobileCommonElement_WeChat.OfficialAccount).Click();
                 MobileAndroidDriver.GetElementByName("添加").Click();
                 MobileAndroidDriver.GetElementByName("搜索公众号").SendKeys("cstest-2");
                 Thread.Sleep(5*1000);
-                MobileAndroidDriver.androidDriver.PressKeyCode(AndroidKeyCode.KeycodeNumpad_ENTER);
-                MobileAndroidDriver.GetElementByName("平台测试账号2").Click();
+                //MobileAndroidDriver.androidDriver.PressKeyCode(AndroidKeyCode.KeycodeNumpad_ENTER);
+                MobileAndroidDriver.GetElementByName("微信号：cstest-2").Click();
                 Thread.Sleep(3 * 1000);
-                MobileAndroidDriver.GetElementByName("进入公众号").Click();
             }
             catch (Exception e)
             {

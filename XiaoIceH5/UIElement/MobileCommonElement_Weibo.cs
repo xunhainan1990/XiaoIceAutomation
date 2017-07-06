@@ -12,6 +12,7 @@ namespace Mobile.UIElement
         public static string Account = "置顶";
         public static string Myself="我的资料";
         public static string Discovery = "发现";
+        public static string Users = "用户";
         public static string Follow= "//android.view.View[contains(@resource-id,'com.sina.weibo:id/cabFollow')]";
         public static string AllFollowed = "全部关注";
         public static string Followed_Search=  "搜全部关注";
@@ -32,6 +33,7 @@ namespace Mobile.UIElement
         public static string ClearHistory = "清空聊天记录";
         public static string ClearConfirm = "清空";
         public static string Send = "发送";
+        public static string WeiboBack = "//android.widget.TextView[contains(@resource-id,'com.sina.weibo:id/titleLeft')]";
 
     }
 }

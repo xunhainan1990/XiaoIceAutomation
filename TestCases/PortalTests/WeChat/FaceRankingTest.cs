@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSH5;
+using Mobile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Portal;
 using Portal.Pages;
@@ -59,8 +59,6 @@ namespace TestCases.PortalTests
 
             Utility.BackToAllSkill();
             Assert.IsTrue(Utility.IsAt(FaceRankingElement.IsTurnOn_AllSkillPage, "（已开启）"), "返回技能插件页面，拼颜值是否开通");
-
-
         }
         
         [TestMethod]
@@ -77,7 +75,7 @@ namespace TestCases.PortalTests
 
             FaceRankingMobilePage_WeChat.FaceRankingFromFile(SecretRelationshipTest.美女美女);
             MobileAndroidDriver.GetScreenshot(filePath, "图片显示描述语");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment), "图片显示描述语");
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment), "图片显示描述语");
 
             //分享出去后是否能正常打开
             filePath = PortalChromeDriver.CreateFolder(@"拼颜值\16.测试结果是否可以分享");
@@ -88,22 +86,22 @@ namespace TestCases.PortalTests
 
             FaceRankingMobilePage_WeChat.CheckLinkAvailable();
             MobileAndroidDriver.GetScreenshot(filePath, "分享出去后是否能正常打开");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment), "分享出去后是否能正常打开");
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment), "分享出去后是否能正常打开");
 
             //分享之后能否正常使用
             FaceRankingMobilePage_WeChat.FaceRankingFromFile(SecretRelationshipTest.美女美女);
             MobileAndroidDriver.GetScreenshot(filePath, "分享出去后是否能正常使用");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment), "分享出去后是否能正常使用");
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment), "分享出去后是否能正常使用");
 
             //再次分享后是否正常打开
             FaceRankingMobilePage_WeChat.ShareToSomeOne();
             FaceRankingMobilePage_WeChat.CheckLinkAvailable();
             MobileAndroidDriver.GetScreenshot(filePath, "第二次分享出去后是否能正常打开");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment), "分享出去后是否能正常打开");
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment), "分享出去后是否能正常打开");
             //二次分享之后能否正常使用
             FaceRankingMobilePage_WeChat.FaceRankingFromFile(SecretRelationshipTest.美女美女);
             MobileAndroidDriver.GetScreenshot(filePath, "第二次分享出去后是否能正常使用");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment), "第二次分享出去后是否能正常使用");
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment), "第二次分享出去后是否能正常使用");
         }
 
         [TestMethod]
@@ -119,7 +117,7 @@ namespace TestCases.PortalTests
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\9.检查上传明星图片的效果");
             MobileAndroidDriver.GetScreenshot(filePath,"9.检查上传明星图片的效果");
 
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment,"杨洋"), "未显示明星名字，当前case为林丹");
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment,"杨洋"), "未显示明星名字，当前case为林丹");
         }
 
 
@@ -130,13 +128,13 @@ namespace TestCases.PortalTests
         public void FaceRanking_Political()
         {
             MobileAndroidDriver.AndroidInitialize();
-                Mobile_WeChat_Utility.FollowWeChatOffcialAccount();
+            Mobile_WeChat_Utility.FollowWeChatOffcialAccount();
             FaceRankingMobilePage_WeChat.ClickFaceRanking();
             FaceRankingMobilePage_WeChat.FaceRankingFromFile("mmexport1489570645729.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\10.检查上传政治人物图片的效果");
             MobileAndroidDriver.GetScreenshot(filePath, "10.检查上传政治人物图片的效果");
-            Assert.IsFalse(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment, "李克强"), "Comment里不出现人名，不出现评分");
-            Assert.IsFalse(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment, "公众号颜值"), "Comment不出现评分");
+            Assert.IsFalse(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment, "李克强"), "Comment里不出现人名，不出现评分");
+            Assert.IsFalse(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment, "公众号颜值"), "Comment不出现评分");
         }
 
         [TestMethod]
@@ -151,7 +149,7 @@ namespace TestCases.PortalTests
             FaceRankingMobilePage_WeChat.FaceRankingFromFile("mmexport1489570865737.jpg");
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\11.检查上传非人物图片的效果");
             MobileAndroidDriver.GetScreenshot(filePath, "11.检查上传非人物图片的效果");
-            Assert.IsFalse(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment, "公众号颜值"), "Comment不出现评分");
+            Assert.IsFalse(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment, "公众号颜值"), "Comment不出现评分");
         }
 
         [TestMethod]
@@ -198,7 +196,7 @@ namespace TestCases.PortalTests
             FaceRankingMobilePage_WeChat.FaceRankingFromFile(SecretRelationshipTest.美男美女);
             string filePath = PortalChromeDriver.CreateFolder(@"拼颜值\14.检查是否可以正常关闭”拼颜值“的功能");
             MobileAndroidDriver.GetScreenshot(filePath, "关闭前拼颜值正常使用，图片显示描述语");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment), "关闭前拼颜值正常使用，图片显示描述语");      
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment), "关闭前拼颜值正常使用，图片显示描述语");      
             //停用拼颜值
             Utility.TurnOff();;
             string turnOffPath = PortalChromeDriver.CreateFolder(@"拼颜值\19.是否可以停用'拼颜值'功能");
@@ -209,7 +207,7 @@ namespace TestCases.PortalTests
             FaceRankingMobilePage_WeChat.BackWards();           
             FaceRankingMobilePage_WeChat.ClickFaceRanking();
             MobileAndroidDriver.GetScreenshot(filePath, "关闭拼颜值技能后H5端是否能正常使用");
-            Assert.IsFalse(Mobile_WeChat_Utility.IsAt(CSH5.UIElement.FaceRankingMobileElement.AccountFaceRanking), "关闭拼颜值技能后H5端是否能正常使用");
+            Assert.IsFalse(Mobile_WeChat_Utility.IsAt(Mobile.UIElement.FaceRankingMobileElement.AccountFaceRanking), "关闭拼颜值技能后H5端是否能正常使用");
         }
 
         [TestMethod]
@@ -225,11 +223,11 @@ namespace TestCases.PortalTests
 
             FaceRankingMobilePage_WeChat.ClickQRCode();
             MobileAndroidDriver.GetScreenshot(filePath, "点击二维码是否进入公众号");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAt(CSH5.UIElement.FaceRankingMobileElement.FaceRanking));
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerName(Mobile.UIElement.FaceRankingMobileElement.Menuitem));
             FaceRankingMobilePage_WeChat.ClickFaceRanking();
             FaceRankingMobilePage_WeChat.FaceRankingFromFile(SecretRelationshipTest.美男美女);
             MobileAndroidDriver.GetScreenshot(filePath, "二维码进去公众号后是否能正常使用拼颜值");
-            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(CSH5.UIElement.FaceRankingMobileElement.Comment), "二维码进去公众号后是否能正常使用拼颜值");
+            Assert.IsTrue(Mobile_WeChat_Utility.IsAtPerXpath(Mobile.UIElement.FaceRankingMobileElement.Comment), "二维码进去公众号后是否能正常使用拼颜值");
         }
 
         [TestMethod]
@@ -243,6 +241,7 @@ namespace TestCases.PortalTests
             Utility.TurnOff();
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.FollowWeChatOffcialAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessageWithMenu("拼颜值");
             Thread.Sleep(2 * 1000);
             Assert.IsTrue( Mobile_WeChat_Utility.GetLatestMessage("关闭"));

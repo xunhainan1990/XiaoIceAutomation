@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSH5;
+using Mobile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mobile;
 using Portal;
@@ -10,7 +10,6 @@ using XiaoIcePortal.UIElement;
 
 namespace TestCases.PortalTests
 {
-    [TestClass]
     public class AutoReplyTest : PortalTestInit
     {
 

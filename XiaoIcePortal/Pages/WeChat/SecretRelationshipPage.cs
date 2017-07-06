@@ -27,6 +27,19 @@ namespace XiaoIcePortal.Pages
             }
         }
 
+        public static void ClickSecretRelationship_Weibo()
+        {
+            try
+            {
+                PortalChromeDriver.GetElementByXpath(secretRelationshipElement.secretRelationship_Weibo).Click();
+            }
+            catch (Exception e)
+            {
+                PortalChromeDriver.GetElementByXpath(secretRelationshipElement.AllSkillLink).Click();
+                PortalChromeDriver.GetElementByXpath(secretRelationshipElement.secretRelationship_Weibo).Click();
+            }
+        }
+
         public static void SetNow()
         {
             PortalChromeDriver.ClickElementPerXpath(secretRelationshipElement.SetNow);

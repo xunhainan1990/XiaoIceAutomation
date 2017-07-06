@@ -102,6 +102,7 @@
     <Compile Include="PortalTests\Weibo\FollowedAutoReplyTest_Weibo.cs" />
     <Compile Include="PortalTests\Weibo\LoginTest_Weibo.cs" />
     <Compile Include="PortalTests\Weibo\PortalTestInit_Weibo.cs" />
+    <Compile Include="PortalTests\Weibo\SecertRelationshipTest_Weibo.cs" />
     <Compile Include="PortalTests\Weibo\SettingTest_Weibo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

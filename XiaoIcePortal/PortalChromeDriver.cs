@@ -27,30 +27,42 @@ namespace Portal
 
         public static void ChromeInitialize()
         {
-            //Instance = new ChromeDriver(@"D:\CSAutomation\HI\ChromeDriver");
             Instance = new ChromeDriver(@"D:\DailyRun\CSTest\ChromeDriver");
             Instance.Manage().Window.Maximize();
             string line;
             ReadConfig();
 
             Instance.Navigate().GoToUrl(testUrl);
-            //var loginInput = WaitForPageElementToLoad(By.Id("phoneNumber"), PortalChromeDriver.Instance);
-            //loginInput.SendKeys("18613881880");
-            ////Send Verification
-            //var sendVrificationButton = GetElementByID("sendverification");
-            //sendVrificationButton.Click();
-            //Instance.Navigate().GoToUrl(testUrl);
-            //var allCookie = Instance.Manage().Cookies.AllCookies;
+            //GetCookies();
 
             StreamReader sr = new StreamReader(cookiePath);
             while ((line = sr.ReadLine()) != null)
             {
-                string[] cookies = line.Split(';', '=', '{');
-                Cookie cookie = new Cookie(cookies[1], cookies[2], "/");
+                string[] cookies = line.Split(';', '=');
+                Cookie cookie = new Cookie(cookies[0], cookies[1], "/");
                 Instance.Manage().Cookies.AddCookie(cookie);
             }
             Instance.Navigate().GoToUrl(testUrl);
          
+        }
+
+        public static void GetCookies()
+        {
+            ReadConfig();
+            var loginInput = WaitForPageElementToLoad(By.Id("phoneNumber"), PortalChromeDriver.Instance);
+            loginInput.SendKeys("18613881880");
+            //Send Verification
+            var sendVrificationButton = GetElementByID("sendverification");
+            sendVrificationButton.Click();
+            //input verification
+            Instance.Navigate().GoToUrl(testUrl);
+            var allCookie = Instance.Manage().Cookies.AllCookies;
+            StreamWriter sw = new StreamWriter(cookiePath);
+            foreach (var item in allCookie)
+            {
+                sw.WriteLine(item);
+            }
+            sw.Close();
         }
 
         public static void ChromeInitializeWithWechat()
@@ -375,7 +387,7 @@ namespace Portal
         {
             try
             {
-                PortalChromeDriver.GetElementByXpath(xpath).Click(); ;
+                PortalChromeDriver.GetElementByXpath(xpath).Click(); 
             }
             catch (Exception e)
             {

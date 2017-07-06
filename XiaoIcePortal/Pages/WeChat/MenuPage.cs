@@ -1,14 +1,12 @@
 ﻿using System;
-using XiaoIcePortal.UIElement;
 using System.Threading;
-using Portal.Pages;
 using Portal;
+using XiaoIcePortal.UIElement;
 
 namespace XiaoIcePortal.Pages
 {
     public class MenuPage
     {
-
         public static void AddMenu(string menuName)
         {
             try

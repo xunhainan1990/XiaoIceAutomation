@@ -1,1 +1,0 @@
-<Playlist Version="1.0"><Add Test="TestCases.PortalTests.LoginTest.LoginWith_PhoneNumber" /><Add Test="TestCases.PortalTests.HITest.Can_ClickSetting" /><Add Test="TestCases.PortalTests.HITest.Can_AddTrigger" /><Add Test="TestCases.PortalTests.LoginTest.ALoginWith_PhoneNumber" /></Playlist>

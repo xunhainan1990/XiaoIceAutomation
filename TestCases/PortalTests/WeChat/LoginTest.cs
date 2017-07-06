@@ -8,7 +8,6 @@ using Mobile;
 
 namespace TestCases.PortalTests
 {
-    [TestClass]
     public class ZLoginTest : PortalTestInitNoCookies
     {
         [TestCategory("Login")]
@@ -20,7 +19,7 @@ namespace TestCases.PortalTests
             LoginPage.LoginWithPhoneNumber("13269120258");
             Thread.Sleep(10 * 1000);
             MobileAndroidDriver.AndroidMmsInitialize();
-            CSH5.Mobile_WeChat_Utility.GetLoginCode();
+            Mobile.Mobile_WeChat_Utility.GetLoginCode();
             PortalChromeDriver.TakeScreenShot("手机号码获取登陆密码进行登陆");
             Assert.IsTrue(Utility.IsAt("/html/body/div/div[2]/div/div[1]/div/div[2]/a/span", "添加账号"));
         }

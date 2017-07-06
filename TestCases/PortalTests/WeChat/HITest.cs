@@ -4,7 +4,7 @@ using Portal.Pages;
 using Portal.UIElement;
 using System;
 using Common;
-using CSH5;
+using Mobile;
 using XiaoIcePortal.UIElement;
 using Portal;
 using Mobile;
@@ -40,7 +40,7 @@ namespace TestCases.PortalTests
         [TestCategory("Hi")]
         [TestCategory("Portal")]
         [TestCategory("Can_ClickSetting_NonCertificate")]
-        [TestMethod]
+        //[TestMethod]
         [TestProperty("description", "1.是否能够成功切换到人工客服功能的“设置” 界面")]
         public void Can_ClickSetting_NonCertificate()
         {

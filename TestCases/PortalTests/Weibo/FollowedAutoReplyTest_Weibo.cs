@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSH5;
+using Mobile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Portal;
 using Portal.Pages;
@@ -11,7 +11,7 @@ using XiaoIcePortal.UIElement;
 
 namespace TestCases.PortalTests.Weibo
 {
-    [TestClass]
+
     public class FollowedAutoReplyTest_Weibo: PortalTestInit_Weibo
     {
         [TestInitialize]

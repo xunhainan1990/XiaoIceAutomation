@@ -182,6 +182,7 @@ namespace TestCases.PortalTests
             //重置
             MaterialPage.Set_All();
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.Article_Button);
+            Thread.Sleep(2*1000);
             //取消全部选中
             PortalChromeDriver.ClickElementPerXpath(MaterialElement.Set_All);
             Assert.IsFalse(MaterialPage.IsClickablePerCssSelector("custom_checkbox"));

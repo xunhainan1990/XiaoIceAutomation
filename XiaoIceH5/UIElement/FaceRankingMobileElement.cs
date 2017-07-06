@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSH5.UIElement
+namespace Mobile.UIElement
 {
     public class FaceRankingMobileElement
     {
-        public static string FaceRanking = "拼颜值";
+        public static string Menuitem = "平台测试账号2";
         public static string QRCodeDrect = "二维码直通";
         public static string ChooseFile="选择文件";
         public static string ClickHere = "我实话实说，你不要打我哦，看这边点这里";
@@ -27,13 +27,17 @@ namespace CSH5.UIElement
         public static string AccountFaceRanking = "平台测试账号2 · 拼颜值";
         public static string SwipItem = "//android.widget.Image[contains(@resource-id,'xb_show_box')]";
 
-        public static string UploadImage = "上传照片";
+        public static string UploadImage = "//android.widget.Button[contains(@content-desc,'选择文件')]";
 
         public static string FromFile = "文档";
         public static string ShaiChuQu = "晒出去";
         public static string Share = "分享";
 
-        public static string WeiboBack = "//android.view.View[contains(@resource-id,'com.sina.weibo:id/titleLeft')]";
+        public static string Weibo_More = "//android.widget.TextView[contains(@resource-id,'com.sina.weibo:id/titleRight')]"; 
         public static string GoToMyWeibo= "去我的微博看看>>";
+        public static string WeChat_Moment = "朋友圈";
+        public static string Webo_Share = "//android.widget.LinearLayout[contains(@resource-id,'com.tencent.mm:id/co4')]";
+        //public static string Webo_Share = " 分享链接啊_荀 · 关系识别";
+        public static string CheckWeiboShare = "//android.view.View[contains(@content-desc,'去我的微博看看>>')]"; 
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Common;
-using CSH5;
+using Mobile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mobile;
 using Portal;
@@ -34,17 +34,6 @@ namespace TestCases.PortalTests
             Assert.IsTrue(Utility.IsTurnOn(), "聊天技能包正确开启");
         }
 
-        [TestCategory("ChitChatSkill")]
-        [TestCategory("ChitChatSkill_Divination")]
-        [TestMethod]
-        [TestCategory("BVT")]
-        public void ChitChatSkill_Ice_Joke()
-        {
-            MobileAndroidDriver.AndroidInitialize();
-            Mobile_WeChat_Utility.GetToTestAccount();
-            Mobile_WeChat_Utility.SendMessage("讲个笑话");
-            Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage(null));
-        }
 
         [TestCategory("ChitChatSkill")]
         [TestCategory("ChitChatSkill_Divination")]
@@ -54,13 +43,16 @@ namespace TestCases.PortalTests
         {
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("天蝎座运势");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage("今日幸运色"));
 
             Utility.TurnOff();
             Thread.Sleep(60*1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("天蝎座运势");
             Thread.Sleep(60 * 1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("天蝎座运势");
             Assert.IsTrue(!Mobile_WeChat_Utility.GetLatestMessage("今日幸运色"));
         }
@@ -73,13 +65,16 @@ namespace TestCases.PortalTests
         {
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("北京天气");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage("℃"));
 
             Utility.TurnOff();
             Thread.Sleep(60 * 1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("北京天气");
             Thread.Sleep(60 * 1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("北京天气");
             Assert.IsTrue(!Mobile_WeChat_Utility.GetLatestMessage("℃"));
         }
@@ -92,13 +87,16 @@ namespace TestCases.PortalTests
         {
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("韩寒和小四谁更火");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage("郭敬明"));
 
             Utility.TurnOff();
             Thread.Sleep(60 * 1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("韩寒和小四谁更火");
             Thread.Sleep(60 * 1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("韩寒和小四谁更火");
             Assert.IsTrue(!Mobile_WeChat_Utility.GetLatestMessage("郭敬明"));
         }
@@ -111,13 +109,16 @@ namespace TestCases.PortalTests
         {
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("搜索周杰伦");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage("关于周杰伦"));
 
             Utility.TurnOff();
             Thread.Sleep(60 * 1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("搜索周杰伦");
             Thread.Sleep(60 * 1000);
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("搜索周杰伦");
             Assert.IsTrue(!Mobile_WeChat_Utility.GetLatestMessage("关于周杰伦"));
         }
@@ -130,6 +131,7 @@ namespace TestCases.PortalTests
         {
             MobileAndroidDriver.AndroidInitialize();
             Mobile_WeChat_Utility.GetToTestAccount();
+            Mobile_WeChat_Utility.ClearAllRecord();
             Mobile_WeChat_Utility.SendMessage("讲个税前故事");
             Assert.IsTrue(Mobile_WeChat_Utility.GetLatestMessage(null));
         }
